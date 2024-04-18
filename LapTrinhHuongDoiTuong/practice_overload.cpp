@@ -21,7 +21,11 @@ public:
     bool operator<=(PhanSo);
     bool operator>=(PhanSo);
     // Xây dựng nhập, xuất:
-    friend ostream &operator<<(ostream &out, PhanSo a);
+    friend ostream &operator<<(ostream &out, PhanSo a)
+    {
+        out << a.tuSo << "/" << a.mauSo << endl;
+        return out;
+    };
     friend istream &operator>>(istream &in, PhanSo &a);
 };
 PhanSo::PhanSo(int t = 0, int m = 1)
@@ -81,11 +85,7 @@ bool PhanSo::operator>=(PhanSo a)
     return (this->tuSo / (float)this->mauSo) >= (a.tuSo / (float)a.mauSo);
 }
 #pragma endregion
-ostream &operator<<(ostream &out, PhanSo &a)
-{
-    out << a.tuSo << "/" << a.mauSo << endl;
-    return out;
-}
+
 istream &operator>>(istream &in, PhanSo &a)
 {
     cout << "Nhap Tu So: ";
