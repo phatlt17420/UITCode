@@ -1,6 +1,6 @@
 #include <iostream>
 using namespace std;
-#pragma region AirlineTicket
+#pragma region VeMaybay
 class VeMayBay
 {
 private:
@@ -51,7 +51,7 @@ float VeMayBay::GetGiaVe()
 }
 
 #pragma endregion
-#pragma region Person
+#pragma region Nguoi
 class Nguoi
 {
 private:
@@ -77,11 +77,10 @@ Nguoi::~Nguoi()
 }
 void Nguoi::NhapNguoi()
 {
-    cin.ignore();
+
     cout << "Nhap Ho va Ten: ";
+    getline(cin, hoTen);
     fflush(stdin);
-    getline(cin, this->hoTen);
-    cin.ignore();
     cout << "Nhap Gioi Tinh: ";
     fflush(stdin);
     getline(cin, this->gioiTinh);
@@ -97,13 +96,13 @@ void Nguoi::XuatNguoi()
 
 #pragma endregion
 
-#pragma region Passenger
+#pragma region HanhKhach
 class HanhKhach : public Nguoi
 {
 private:
     VeMayBay *ve;
     int soLuong;
-    static float tongTien;
+    float tongTien;
 
 public:
     HanhKhach();
@@ -158,6 +157,7 @@ int main()
     cin >> n;
     for (int i = 0; i < n; i++)
     {
+        p[i].NhapHanhKhach();
     }
 
     system("pause");
