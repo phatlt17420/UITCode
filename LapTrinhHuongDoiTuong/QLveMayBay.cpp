@@ -1,19 +1,18 @@
-#include <iostream>
+#include <bits/stdc++.h>
 using namespace std;
-#pragma region VeMaybay
 class VeMayBay
 {
 private:
     string tenChuyen;
     string ngayBay;
-    float giaVe;
+    int giaVe;
 
 public:
     VeMayBay();
     ~VeMayBay();
-    void nhapVe();
-    void xuatVe();
-    float GetGiaVe();
+    void NhapVeMayBay();
+    void XuatVeMayBay();
+    void GetGiaVe();
 };
 VeMayBay::VeMayBay()
 {
@@ -23,142 +22,16 @@ VeMayBay::VeMayBay()
 }
 VeMayBay::~VeMayBay()
 {
-    cout << "End VeMayBay!";
+    cout << "End VeMayBay!" << endl;
 }
-void VeMayBay::nhapVe()
+void VeMayBay::NhapVeMayBay()
 {
-    cin.ignore();
-    cout << "Nhap Ten Chuyen bay: ";
-    fflush(stdin);
-    getline(cin, this->tenChuyen);
-    cin.ignore();
-    cout << "Nhap Ngay Bay: ";
-    fflush(stdin);
-    getline(cin, this->ngayBay);
-    cout << "Nhap Gia Ve: ";
-    cin >> this->giaVe;
-}
-void VeMayBay::xuatVe()
-{
-    cout << "================================" << endl;
-    cout << "Ten chuyen bay: " << this->tenChuyen << endl;
-    cout << "Ngay bay: " << this->ngayBay << endl;
-    cout << "Gia ve: " << this->giaVe << endl;
-}
-float VeMayBay::GetGiaVe()
-{
-    return this->giaVe;
+    cout << "Nhap tenChuyen: ";
+    cin >> this->tenChuyen;
 }
 
-#pragma endregion
-#pragma region Nguoi
-class Nguoi
-{
-private:
-    string hoTen;
-    string gioiTinh;
-    int tuoi;
-
-public:
-    Nguoi();
-    ~Nguoi();
-    void NhapNguoi();
-    void XuatNguoi();
-};
-Nguoi::Nguoi()
-{
-    this->hoTen = "";
-    this->gioiTinh = "";
-    this->tuoi = 0;
-}
-Nguoi::~Nguoi()
-{
-    cout << "End Nguoi!" << endl;
-}
-void Nguoi::NhapNguoi()
-{
-
-    cout << "Nhap Ho va Ten: ";
-    getline(cin, hoTen);
-    fflush(stdin);
-    cout << "Nhap Gioi Tinh: ";
-    fflush(stdin);
-    getline(cin, this->gioiTinh);
-    cout << "Nhap Tuoi: ";
-    cin >> this->tuoi;
-}
-void Nguoi::XuatNguoi()
-{
-    cout << "Ho va Ten: " << this->hoTen << endl;
-    cout << "Gioi tinh: " << this->gioiTinh << endl;
-    cout << "Tuoi: " << this->tuoi << endl;
-}
-
-#pragma endregion
-
-#pragma region HanhKhach
-class HanhKhach : public Nguoi
-{
-private:
-    VeMayBay *ve;
-    int soLuong;
-    float tongTien;
-
-public:
-    HanhKhach();
-    ~HanhKhach();
-    void NhapHanhKhach();
-    void XuatHanhKhach();
-    void TinhTongTien();
-};
-HanhKhach::HanhKhach()
-{
-    this->soLuong = 0;
-    ve = new VeMayBay[this->soLuong];
-    this->tongTien = 0;
-}
-HanhKhach::~HanhKhach()
-{
-    this->soLuong = 0;
-    delete[] ve;
-    this->tongTien = 0;
-}
-void HanhKhach::NhapHanhKhach()
-{
-    Nguoi::NhapNguoi();
-    cout << "Nhap so luong ve may bay cua Hanh Khach: ";
-    cin >> this->soLuong;
-    cout << "Nhap lan luot thong tin Ve May Bay của KH: ";
-    for (int i = 0; i < this->soLuong; i++)
-    {
-        cout << "Nhap thong tin ve may bay thu " << i << " : " << endl;
-        this->ve->nhapVe();
-    }
-}
-void HanhKhach::XuatHanhKhach()
-{
-    Nguoi::XuatNguoi();
-    cout << "So luong ve may bay: " << this->soLuong << endl;
-    cout << "Tong so tien cua Hanh Khach: " << this->tongTien << endl;
-}
-void HanhKhach::TinhTongTien()
-{
-    float kq;
-    kq = ve->GetGiaVe() * this->soLuong;
-    this->tongTien += kq;
-}
-
-#pragma endregion
 int main()
 {
-    HanhKhach *p;
-    int n;
-    cout << "Nhap so luong KH trong danh sach mua ve may bay:";
-    cin >> n;
-    for (int i = 0; i < n; i++)
-    {
-        p[i].NhapHanhKhach();
-    }
 
     system("pause");
     return 0;
