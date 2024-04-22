@@ -60,7 +60,7 @@ int main()
     // cout << d.TinhGiaTri() << endl;
     // b. Phương thức tính nghiệm đơn thức khi F(x) = b (b thuộc R)
     d.tinhNghiem();
-
+    cout << endl;
     system("pause");
     return 0;
 }
