@@ -1,19 +1,18 @@
-#include <iostream>
+#include <bits/stdc++.h>
 using namespace std;
-#pragma region VeMaybay
 class VeMayBay
 {
 private:
     string tenChuyen;
     string ngayBay;
-    float giaVe;
+    int giaVe;
 
 public:
     VeMayBay();
     ~VeMayBay();
-    void nhapVe();
-    void xuatVe();
-    float GetGiaVe();
+    void NhapVeMayBay();
+    void XuatVeMayBay();
+    int GetGiaVe();
 };
 VeMayBay::VeMayBay()
 {
@@ -23,35 +22,29 @@ VeMayBay::VeMayBay()
 }
 VeMayBay::~VeMayBay()
 {
-    cout << "End VeMayBay!";
+    cout << "End VeMayBay!" << endl;
 }
-void VeMayBay::nhapVe()
+void VeMayBay::NhapVeMayBay()
 {
     cin.ignore();
-    cout << "Nhap Ten Chuyen bay: ";
-    fflush(stdin);
+    cout << "Nhap tenChuyen: ";
     getline(cin, this->tenChuyen);
-    cin.ignore();
-    cout << "Nhap Ngay Bay: ";
-    fflush(stdin);
+    cout << "Nhap ngayBay: ";
     getline(cin, this->ngayBay);
-    cout << "Nhap Gia Ve: ";
+    cout << "Nhap giaVe: ";
     cin >> this->giaVe;
 }
-void VeMayBay::xuatVe()
+void VeMayBay::XuatVeMayBay()
 {
-    cout << "================================" << endl;
-    cout << "Ten chuyen bay: " << this->tenChuyen << endl;
+    cout << "=============================================================" << endl;
+    cout << "Ten Chuyen: " << this->tenChuyen << endl;
     cout << "Ngay bay: " << this->ngayBay << endl;
     cout << "Gia ve: " << this->giaVe << endl;
 }
-float VeMayBay::GetGiaVe()
+int VeMayBay::GetGiaVe()
 {
     return this->giaVe;
 }
-
-#pragma endregion
-#pragma region Nguoi
 class Nguoi
 {
 private:
@@ -77,32 +70,27 @@ Nguoi::~Nguoi()
 }
 void Nguoi::NhapNguoi()
 {
-
-    cout << "Nhap Ho va Ten: ";
-    getline(cin, hoTen);
-    fflush(stdin);
-    cout << "Nhap Gioi Tinh: ";
-    fflush(stdin);
+    cin.ignore();
+    cout << "Nhap ten Nguoi: ";
+    getline(cin, this->hoTen);
+    cout << "Nhap gioi tinh: ";
     getline(cin, this->gioiTinh);
-    cout << "Nhap Tuoi: ";
+    cout << "Nhap tuoi: ";
     cin >> this->tuoi;
 }
 void Nguoi::XuatNguoi()
 {
+    cout << "=========================================" << endl;
     cout << "Ho va Ten: " << this->hoTen << endl;
     cout << "Gioi tinh: " << this->gioiTinh << endl;
     cout << "Tuoi: " << this->tuoi << endl;
 }
-
-#pragma endregion
-
-#pragma region HanhKhach
 class HanhKhach : public Nguoi
 {
 private:
-    VeMayBay *ve;
+    VeMayBay ve[1000];
     int soLuong;
-    float tongTien;
+    int tongTien;
 
 public:
     HanhKhach();
@@ -114,52 +102,110 @@ public:
 HanhKhach::HanhKhach()
 {
     this->soLuong = 0;
-    ve = new VeMayBay[this->soLuong];
+    ve[this->soLuong];
     this->tongTien = 0;
 }
 HanhKhach::~HanhKhach()
 {
     this->soLuong = 0;
-    delete[] ve;
+    // delete[] ve;
     this->tongTien = 0;
 }
 void HanhKhach::NhapHanhKhach()
 {
     Nguoi::NhapNguoi();
-    cout << "Nhap so luong ve may bay cua Hanh Khach: ";
+    cout << "Nhap So Luong ve may bay: ";
     cin >> this->soLuong;
-    cout << "Nhap lan luot thong tin Ve May Bay của KH: ";
+    cout << "=Nhap chi tiet ve may bay=" << endl;
     for (int i = 0; i < this->soLuong; i++)
     {
-        cout << "Nhap thong tin ve may bay thu " << i << " : " << endl;
-        this->ve->nhapVe();
+        ve[i].NhapVeMayBay();
     }
 }
 void HanhKhach::XuatHanhKhach()
 {
     Nguoi::XuatNguoi();
-    cout << "So luong ve may bay: " << this->soLuong << endl;
-    cout << "Tong so tien cua Hanh Khach: " << this->tongTien << endl;
+    cout << "So Luong ve da mua: " << this->soLuong << endl;
+    cout << "Tong so Tien: " << this->tongTien << endl;
 }
 void HanhKhach::TinhTongTien()
 {
-    float kq;
-    kq = ve->GetGiaVe() * this->soLuong;
-    this->tongTien += kq;
+    int result;
+    for (int i = 0; i < this->soLuong; i++)
+    {
+        result += ve[i].GetGiaVe();
+    }
+    this->tongTien = result;
 }
+class QuanLyHanhKhach
+{
+private:
+    HanhKhach *p;
+    int soLuongHK;
 
-#pragma endregion
+public:
+    void Nhap();
+    void tinhTienMoiHK();
+    void Xuat();
+    void Menu();
+};
+void QuanLyHanhKhach::Nhap()
+{
+    cout << "Nhap so luong Hanh Khach can quan ly: ";
+    cin >> this->soLuongHK;
+    p = new HanhKhach[this->soLuongHK];
+    for (int i = 0; i < this->soLuongHK; i++)
+    {
+        (p + i)->NhapHanhKhach();
+    }
+}
+void QuanLyHanhKhach::tinhTienMoiHK()
+{
+    for (int i = 0; i < this->soLuongHK; i++)
+    {
+        (p + i)->TinhTongTien();
+    }
+}
+void QuanLyHanhKhach::Xuat()
+{
+    for (int i = 0; i < this->soLuongHK; i++)
+    {
+        (p + i)->XuatHanhKhach();
+    }
+}
+void QuanLyHanhKhach::Menu()
+{
+    int selection;
+    do
+    {
+        system("pause");
+        system("cls");
+        cout << "1. Nhap Hanh Khach" << endl;
+        cout << "2. Tinh tien moi Hanh Khach: " << endl;
+        cout << "3. Xuat danh sach Hanh Khach" << endl;
+        cout << "4. Thoat chuong trinh" << endl;
+        cout << "Nhap lua chon cua ban: ";
+        cin >> selection;
+        switch (selection)
+        {
+        case 1:
+            this->Nhap();
+            break;
+        case 2:
+            this->tinhTienMoiHK();
+            break;
+        case 3:
+            this->Xuat();
+            break;
+        case 4:
+            exit(1);
+        }
+    } while (selection > 0 || selection < 4);
+}
 int main()
 {
-    HanhKhach *p;
-    int n;
-    cout << "Nhap so luong KH trong danh sach mua ve may bay:";
-    cin >> n;
-    for (int i = 0; i < n; i++)
-    {
-        p[i].NhapHanhKhach();
-    }
-
+    QuanLyHanhKhach f;
+    f.Menu();
     system("pause");
     return 0;
 }
