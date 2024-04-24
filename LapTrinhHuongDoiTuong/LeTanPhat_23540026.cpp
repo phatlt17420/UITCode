@@ -57,6 +57,7 @@ void GCN::Nhap()
 }
 void GCN::Xuat()
 {
+    cout << "=========================================================" << endl;
     cout << "GCN so: " << this->SoGCN << endl;
     cout << "Ho Ten CSH: " << this->hoTenCSH << endl;
     cout << "Nam sinh: " << this->namSinh << endl;
@@ -67,6 +68,7 @@ void GCN::Xuat()
     cout << "Dia Chi thua dat: " << this->diachithuadat << endl;
     cout << "Dien Tich: " << this->dienTich << endl;
     cout << "Ngay Cap GCN: " << this->ngayCapGCN << endl;
+    cout << endl;
 }
 
 class GCNDatNongNghiep : public GCN
@@ -102,10 +104,11 @@ void GCNDatNongNghiep::Nhap()
 void GCNDatNongNghiep::Xuat()
 {
     GCN::Xuat();
-    cout << endl;
+    cout << "Thong tin tinh thue Dat Nong Nghiep: " << endl;
     cout << "Thoi han su dung dat: " << this->thoiHanSD;
     cout << "Don gia thue phai dong hang nam/m2: " << this->donGiaThue;
     cout << "Tong tien thue phai dong hang nam: " << this->tongTienThue;
+    cout << endl;
 }
 void GCNDatNongNghiep::TinhThue()
 {
@@ -143,7 +146,7 @@ void GCNDatPhiNongNghiep::Nhap()
 void GCNDatPhiNongNghiep::Xuat()
 {
     GCN::Xuat();
-    cout << endl;
+    cout << "Thong tin tinh thue Dat Phi Nong Nghiep" << endl;
     cout << "Don gia thue phai dong hang nam/m2: " << this->donGiaThue;
     cout << "Tong tien thue phai dong hang nam: " << this->tongTienThue;
 }
@@ -175,8 +178,10 @@ void QuanLy::NhapGCN()
     int type; // loại đất
     for (int i = 0; i < this->soLuong; i++)
     {
+
         cout << "1. GCN dat Nong Nghiep   2. GCN dat Phi Nong Nghiep :";
         cin >> type;
+
         if (type == 1)
         {
             p[i] = new GCNDatNongNghiep();
@@ -216,6 +221,7 @@ void QuanLy::ThuaDatMaxThue()
         }
     }
     cout << "Thua dat co tien su dung dat lon nhat: ";
+    cout << endl;
     p[tmp]->Xuat();
 }
 void QuanLy::DSHetThoiHan()
