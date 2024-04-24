@@ -201,11 +201,12 @@ void GamesStart::GreatGate()
     cout << "Nhap so Gate can tao: ";
     cin >> this->n;
     g = new Gate *[n];
-    cout << "(1: CommercicalGate; 2: IntelligentGate; 3: PowerGate). Nhap loai cong can tao: ";
-    int TypeGate;
-    cin >> TypeGate;
+
     for (int i = 0; i < n; i++)
     {
+        cout << "(1: CommercicalGate; 2: IntelligentGate; 3: PowerGate). Nhap loai cong can tao: ";
+        int TypeGate;
+        cin >> TypeGate;
         if (TypeGate == 1)
         {
             g[i] = new BusinessGate();
@@ -247,8 +248,6 @@ int main()
 {
     GamesStart p1;
 
-
-    
     p1.GreatGate();
     p1.GreatPrince();
     p1.Do();
