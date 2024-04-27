@@ -57,17 +57,18 @@ void GCN::Nhap()
 }
 void GCN::Xuat()
 {
+    cout << endl;
     cout << "=========================================================" << endl;
-    cout << "GCN so: " << this->SoGCN << endl;
-    cout << "Ho Ten CSH: " << this->hoTenCSH << endl;
-    cout << "Nam sinh: " << this->namSinh << endl;
-    cout << "CMND so: " << this->CMND << endl;
-    cout << "Dia chi CSH: " << this->DiaChiCSH << endl;
-    cout << "Thua Dat so: " << this->soThua << endl;
-    cout << "To Ban Do so: " << this->soToBanDo << endl;
-    cout << "Dia Chi thua dat: " << this->diachithuadat << endl;
-    cout << "Dien Tich: " << this->dienTich << endl;
-    cout << "Ngay Cap GCN: " << this->ngayCapGCN << endl;
+    cout << "- GCN so: " << this->SoGCN << endl;
+    cout << "- Ho Ten CSH: " << this->hoTenCSH << endl;
+    cout << "- Nam sinh: " << this->namSinh << endl;
+    cout << "- CMND so: " << this->CMND << endl;
+    cout << "- Dia chi CSH: " << this->DiaChiCSH << endl;
+    cout << "- Thua Dat so: " << this->soThua << endl;
+    cout << "- To Ban Do so: " << this->soToBanDo << endl;
+    cout << "- Dia Chi thua dat: " << this->diachithuadat << endl;
+    cout << "- Dien Tich: " << this->dienTich << endl;
+    cout << "- Ngay Cap GCN: " << this->ngayCapGCN << endl;
     cout << endl;
 }
 
@@ -104,10 +105,10 @@ void GCNDatNongNghiep::Nhap()
 void GCNDatNongNghiep::Xuat()
 {
     GCN::Xuat();
-    cout << "Thong tin tinh thue Dat Nong Nghiep: " << endl;
-    cout << "Thoi han su dung dat: " << this->thoiHanSD;
-    cout << "Don gia thue phai dong hang nam/m2: " << this->donGiaThue;
-    cout << "Tong tien thue phai dong hang nam: " << this->tongTienThue;
+    cout << "- Thong tin tinh thue Dat Nong Nghiep: " << endl;
+    cout << "- Thoi han su dung dat: " << this->thoiHanSD;
+    cout << "- Don gia thue phai dong hang nam/m2: " << this->donGiaThue << endl;
+    cout << "- Tong tien thue phai dong hang nam: " << this->tongTienThue << endl;
     cout << endl;
 }
 void GCNDatNongNghiep::TinhThue()
@@ -146,9 +147,9 @@ void GCNDatPhiNongNghiep::Nhap()
 void GCNDatPhiNongNghiep::Xuat()
 {
     GCN::Xuat();
-    cout << "Thong tin tinh thue Dat Phi Nong Nghiep" << endl;
-    cout << "Don gia thue phai dong hang nam/m2: " << this->donGiaThue;
-    cout << "Tong tien thue phai dong hang nam: " << this->tongTienThue;
+    cout << "- Thong tin tinh thue Dat Phi Nong Nghiep" << endl;
+    cout << "- Don gia thue phai dong hang nam/m2: " << this->donGiaThue << endl;
+    cout << "- Tong tien thue phai dong hang nam: " << this->tongTienThue << endl;
 }
 void GCNDatPhiNongNghiep::TinhThue()
 {
@@ -232,7 +233,7 @@ void QuanLy::DSHetThoiHan()
     cout << "Cac thua dat het thoi han su dung: ";
     for (int i = 0; i < this->soLuong; i++)
     {
-        if ((p[i]->GetThoiHanSD() - namhientai) < 0)
+        if (!((p[i]->GetThoiHanSD() - namhientai) > 0))
         {
             p[i]->Xuat();
         }
