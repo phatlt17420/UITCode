@@ -22,7 +22,7 @@ Q TinhTong(Q a, K b)
 template <class A>
 class Sort
 {
-    A array[100];
+    SinhVien array[100];
     int n;
 
 public:
@@ -59,10 +59,14 @@ public:
         }
     }
 };
-
+class SinhVien
+{
+};
 int main()
 {
-    //
+    // ứng dùng sắp xếp trong class SinhVien
+    Sort<SinhVien> s;
+    // ứng dụng
     Sort<float> s;
     s.Nhap();
     s.Xuat();
