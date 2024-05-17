@@ -1,35 +1,31 @@
-#include <iostream>
+/*###Begin banned keyword - each of the following line if appear in code will raise error. regex supported
+define
+include
+using
+###End banned keyword*/
 
+#include <iostream>
 using namespace std;
+
+
+
+//###INSERT CODE HERE -
 
 int main()
 {
-    int n;
-    cin>>n;
-    int *arr=new int[n];
-    for (int i=0; i<n; i++)
+    int n, *a = NULL;
+    inputArray(a,n); //Luu y van de tham chieu cho con tro a va n
+
+    // nhap cac gia tri can tim, neu nhap -1 thi ket thuc viec tim kiem
+    int x;
+    while(1)
     {
-        cin>>arr[i];
+        cin>>x;
+        if(x==-1)break;
+        cout<<binarySearch2(a,n,x)<<endl;
 
     }
-    for (int j=0;j<n;j++)
-    {
-        for (int i=0; i<n-1; i++)
-    {
-        if(arr[i]>arr[i+1])
-        {
-            swap(arr[i],arr[i+1]);
 
-        }
-
-    }
-    }
-
-
-    for (int i=0; i<n; i++)
-    {
-        cout<<arr[i]<<" ";
-
-    }
     return 0;
 }
+
