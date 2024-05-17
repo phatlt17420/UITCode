@@ -4,27 +4,30 @@ using namespace std;
 
 int main()
 {
-    int n, a[100];
-
-   cin>>n;
-
-    for(int i=0; i<n; i++)
+    int *arr,n;
+cin>>n;
+arr= new int [n];
+for (int i=0;i<n;i++){
+    cin>>arr[i];
+}
+int Min=arr[0];
+int soLan=0;
+for (int i=0; i<n;i++){
+    if(Min>arr[i])
     {
-        cin>>a[i];
+        Min=arr[i];
+
     }
-    int x;
-    cin>>x;
-    for(int i=0; i<n; i++)
+}
+for (int i=0; i<n;i++){
+    if(Min==arr[i])
     {
-        int viTri;
-        if(x==a[i]&&viTri==0)
-        {
-            cout<<x<<" xuat hien dau tien tai vi tri thu "<<i<<" trong mang";
-            viTri=1;
-            break;
-        }
-        if(viTri==0)
-            cout<<"Khong tim thay "<<x;
+        soLan++;
+
     }
+}
+
+cout<<Min<<" "<<soLan;
+
     return 0;
 }
