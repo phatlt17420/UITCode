@@ -55,10 +55,13 @@ void addAndFind (List &L, int a, int b)
         }
         pt=pt->next;
     }
+
     if (tmp==NULL)
         addHead(L,b);
-    if (tmp==L.Tail)
-        L.Tail=pb;
+    else if (tmp==L.Tail)
+    {
+        addTail(L,b);
+    }
     else
     {
         pb->next=tmp->next;

@@ -45,20 +45,23 @@ void addTail (List &L, int x)
 }
 void add(List &L, int a, int b)
 {
-    node *p=L.Head;
-    node *pb=creatNode(b);
-    if (p==NULL)
-        L.Head=L.Tail=pb;
-
-    while (p->next==NULL)
-        {
-            if(p->data==a)
-                break;
-            p=p->next;
+node *pb=creatNode(b);
+node *p=L.Head;
+if(L.Head==NULL)
+    L.Head=L.Tail=pb;
+while (p!=NULL)
+{
+    if(p->data==a)
+        break;
+    p=p->next;
+}
+if (p==NULL)
+    addHead(L,b);
+else{
+    pb->next=p->next;
+    p->next=pb;
 
 }
-            p->next=pb;
-            pb->next=p->next;
 
 }
 void outputList(List L)
