@@ -6,52 +6,54 @@ struct Diem
     int x;
     int y;
 };
-void Merge (Diem *arr, int left, int mid, int right)
+void QuickSortUp(Diem *arr, int left, int right)
 {
-    int i=left;
-    int j=mid+1;
-    Diem *c=new Diem[right-left+1];
-    int nc=0;
-    while(i<=mid&&j<=right)
-    {
-        if(arr[i].x>arr[j].y)
-        {
-            c[nc]=arr[i];
-            i++;
-            nc++;
-        }
-        else
-        {
-            c[nc]=arr[j];
-            j++;
-            nc++;
-        }
-    }
-    while (i<=mid)
-    {
-        c[nc]=arr[i];
-        i++;
-        nc++;
-    }
-    while (j<=right)
-    {
-        c[nc]=arr[j];
-        j++;
-        nc++;
-    }
-    for (int i=0; i<nc; i++)
-        arr[left+i]=c[i];
-}
-void MergeSort (Diem *arr, int left, int right)
-{
+    int i= left;
+    int j=right;
 
-    if (left<right)
+    int mid =arr[(left+right)/2].x;
+    while (i<=j)
     {
-        int mid=(left+right)/2;
-        MergeSort(arr,left, mid);
-        MergeSort(arr,mid + 1,right);
-        Merge(arr,left, mid, right);
+        while (arr[i].x<mid)
+            i++;
+        while (arr[j].x>mid)
+            j--;
+        if (i<=j)
+        {
+            swap(arr[i],arr[j]);
+            i++;
+            j--;
+        }
     }
+if (left<j)
+    QuickSortUp(arr,left,j);
+if (right>i)
+    QuickSortUp(arr,i,right);
+
+}
+void QuickSortDown(Diem *arr, int left, int right)
+{
+    int i= left;
+    int j=right;
+    int mid =arr[(left+right)/2].y;
+    while (i<=j)
+    {
+        while (arr[i].y>mid)
+            i++;
+        while (arr[j].y<mid)
+            j--;
+        if (i<=j)
+        {
+            swap(arr[i],arr[j]);
+            i++;
+            j--;
+        }
+    }
+if (left<j)
+    QuickSortDown(arr,left,j);
+if (right>i)
+    QuickSortDown(arr,i,right);
+
 }
 
 void output(Diem *arr, int n)
@@ -60,21 +62,36 @@ void output(Diem *arr, int n)
         cout<<arr[i].x<<" "<<arr[i].y<<endl;}
 int main()
 {
+
     int n;
     cin>>n;
     Diem *arr=new Diem[n];
     for (int i=0; i<n; i++)
     cin>>arr[i].x>>arr[i].y;
-    MergeSort(arr,0,n-1);
-    int *a=new int[n];
-    int na=0;
-    int *b=new int[n];
-    int nb=0;
+
+    QuickSortUp(arr,0,n-1);
+
+
     for (int i=0; i<n; i++)
     {
+        int left=i;
+        int right;
         if (arr[i].x==arr[i+1].x)
+        {
 
+            for (int j=left; j<n-1; j++)
+            {
+
+
+                if((arr[j].x!=arr[j+1].x))
+                {
+                    right=j;
+                    break;
+                }
+            }
         }
+        QuickSortDown(arr,left,right);
+    }
 
     output(arr,n);
 
