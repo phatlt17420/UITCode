@@ -72,29 +72,37 @@ bool isValid(string s)
     {
         if (s[i]=='(')
             Push(S,s[i]);
-        if ((s[i]==')'))
-        {
-            if(isEmpty(S))
-                return false;
-            Pop(S); // lưu ý trường hợp xóa nhưng stack rỗng.
-        }
-        if (s[i]=='[')
-            Push(S,s[i]);
-        if ((s[i]==']'))
-        {
-            if(isEmpty(S))
-                return false;
-            Pop(S); // lưu ý trường hợp xóa nhưng stack rỗng.
-        }
-        if (s[i]=='{')
-            Push(S,s[i]);
-        if ((s[i]=='}'))
+        else if ((s[i]==')'))
         {
             if(isEmpty(S))
                 return false;
             Pop(S); // lưu ý trường hợp xóa nhưng stack rỗng.
         }
     }
+    for(int i=0; i<s.size(); i++)
+    {
+        if (s[i]=='[')
+            Push(S,s[i]);
+        else if ((s[i]==']'))
+        {
+            if(isEmpty(S))
+                return false;
+            Pop(S); // lưu ý trường hợp xóa nhưng stack rỗng.
+        }
+    }
+    for(int i=0; i<s.size(); i++)
+    {
+        if (s[i]=='{')
+            Push(S,s[i]);
+        else if ((s[i]=='}'))
+        {
+            if(isEmpty(S))
+                return false;
+            Pop(S); // lưu ý trường hợp xóa nhưng stack rỗng.
+        }
+    }
+
+
     if (!(isEmpty(S)))
         return false;
     return true;
