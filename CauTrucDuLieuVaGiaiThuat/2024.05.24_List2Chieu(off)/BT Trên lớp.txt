@@ -1,0 +1,295 @@
+1:
+struct province {
+	int id, pop;
+	string name;
+	float area;
+};
+struct node {
+	province info;
+	node* next;
+};
+struct List {
+	node* head, * tail;
+};
+
+
+
+node* createNode(province p) {
+	node* n = new node;
+	n->info = p;
+	n->next = NULL;
+	return n;
+}
+
+void addTail(List& l, province p) {
+	node* n = createNode(p);
+	if (l.head == NULL) {
+		l.head = l.tail = n;
+	}
+	else {
+		l.tail->next = n;
+		l.tail = n;
+	}
+}
+
+void Init(List& l) {
+	l.head = l.tail = NULL;
+}
+
+void inputProvince(province& p) {
+	cin >> p.id;
+	cin.ignore();
+	getline(cin, p.name);
+	cin >> p.pop >> p.area;
+}
+
+void inputListProvinces(List& l) {
+	int n;
+	cin >> n;
+	for (int i = 0; i < n;i++) {
+		province p;
+		inputProvince(p);
+		addTail(l, p);
+	}
+}
+
+
+void outputProvince(province p) {
+	cout << p.id << "\t" << p.name << "\t" << p.pop << "\t" << p.area << endl;
+}
+
+void outputListProvinces(List l) {
+	node* tempNode = l.head;
+	while (tempNode != NULL) {
+		outputProvince(tempNode->info);
+		tempNode = tempNode ->next;
+	}
+}
+
+void outputProvincesMore1MillionPop(List l) {
+	node* tempNode = l.head;
+	while (tempNode != NULL) {
+		if (tempNode->info.pop*1000 > 1000000) {
+			outputProvince(tempNode->info);
+		}
+		tempNode = tempNode->next;
+	}
+}
+
+node* findProMaxArea(List l) {
+	node* tempNode = l.head;
+	node* nodeWithMaxArea = l.head;
+	while (tempNode != NULL) {
+		if (tempNode->info.area > nodeWithMaxArea->info.area) {
+			nodeWithMaxArea = tempNode;
+		}
+		tempNode = tempNode->next;
+	}
+	return nodeWithMaxArea;
+}
+
+2:
+DNode* createNode(int value) {
+    DNode* p = new DNode;
+    p->info = value;
+    p->pNext = p->pPrev = NULL;
+    return p;
+}
+
+void addTail(DList& l, int x) {
+    DNode* p = createNode(x);
+    if (l.pHead == NULL) {
+        l.pHead = l.pTail = p;
+    }
+    else {
+        p->pPrev = l.pTail;
+        l.pTail->pNext = p;
+        l.pTail = p;
+    }
+}
+
+void createList(DList& l) {
+    int x;
+    while (true) {
+        cin >> x;
+        if (x == -1) break;
+        addTail(l, x);
+    }
+}
+
+void init(DList& l) {
+    l.pHead = l.pTail = NULL;
+}
+
+void printList(DList l) {
+    DNode* p = l.pHead;
+    if (p == NULL) {
+        cout << "List is empty" << endl;
+    }
+    while (p != NULL) {
+        cout << p->info << " ";
+        p = p->pNext;
+    }
+}
+
+3:
+DNode* createNode(int value) {
+    DNode* p = new DNode;
+    p->info = value;
+    p->pNext = p->pPrev = NULL;
+    return p;
+}
+
+void addTail(DList& l, int x) {
+    DNode* p = createNode(x);
+    if (l.pHead == NULL) {
+        l.pHead = l.pTail = p;
+    }
+    else {
+        p->pPrev = l.pTail;
+        l.pTail->pNext = p;
+        l.pTail = p;
+    }
+}
+
+void addHead(DList& l, int x) {
+    DNode* p = createNode(x);
+    if (l.pHead == NULL) {
+        l.pHead = l.pTail = p;
+    }
+    else {
+        p->pNext = l.pHead;
+        l.pHead->pPrev = p;
+        l.pHead = p;
+    }
+}
+
+void createList(DList& l) {
+    int x;
+    while (true) {
+        cin >> x;
+        if (x == -1) break;
+        addTail(l, x);
+    }
+}
+
+void init(DList& l) {
+    l.pHead = l.pTail = NULL;
+}
+
+void printList(DList l) {
+    DNode* p = l.pHead;
+    if (p == NULL) {
+        cout << "List is empty" << endl;
+    }
+    while (p != NULL) {
+        cout << p->info << " ";
+        p = p->pNext;
+    }
+}
+
+4:
+DNode* createNode(int value) {
+	DNode* p = new DNode;
+	p->info = value;
+	p->pNext = p->pPrev = NULL;
+	return p;
+}
+
+void addTail(DList& l, int x) {
+	DNode* p = createNode(x);
+	if (l.pHead == NULL) {
+		l.pHead = l.pTail = p;
+	}
+	else {
+		p->pPrev = l.pTail;
+		l.pTail->pNext = p;
+		l.pTail = p;
+	}
+}
+
+void addHead(DList& l, int x) {
+	DNode* p = createNode(x);
+	if (l.pHead == NULL) {
+		l.pHead = l.pTail = p;
+	}
+	else {
+		p->pNext = l.pHead;
+		l.pHead->pPrev = p;
+		l.pHead = p;
+	}
+}
+
+void createList(DList& l) {
+	int x;
+	while (true) {
+		cin >> x;
+		if (x == -1) break;
+		addTail(l, x);
+	}
+}
+
+void init(DList& l) {
+	l.pHead = l.pTail = NULL;
+}
+
+void printList(DList l) {
+	DNode* p = l.pHead;
+	if (p == NULL) {
+		cout << "List is empty" << endl;
+	}
+	while (p != NULL) {
+		cout << p->info << " ";
+		p = p->pNext;
+	}
+}
+
+void addBefore(DList& l, int x, int y) {
+	DNode* targetNode = l.pHead;
+	if (targetNode == NULL) {
+		cout << "\nCan't find the value " << x;
+		return;
+	};
+	while (targetNode != NULL && targetNode->info != x) {
+		targetNode = targetNode->pNext;
+	}
+	if (targetNode == NULL) {
+		cout << "\nCan't find the value " << x;
+		return;
+	}
+	DNode* p = createNode(y);
+	p->pNext = targetNode;
+	p->pPrev = targetNode->pPrev;
+	if (targetNode != l.pHead) {
+		targetNode->pPrev->pNext = p;
+	}
+	else {
+		l.pHead = p;
+	}
+	targetNode->pPrev = p;
+}
+
+void addAfter(DList& l, int x, int y) {
+	DNode* targetNode = l.pHead;
+	if (targetNode == NULL) {
+		cout << "\nCan't find the value " << x;
+		return;
+	};
+	while (targetNode != NULL && targetNode->info != x) {
+		targetNode = targetNode->pNext;
+	}
+	if (targetNode == NULL) {
+		cout << "\nCan't find the value " << x;
+		return;
+	}
+	DNode* p = createNode(y);
+	p->pPrev = targetNode;
+	p->pNext = targetNode->pNext;
+	if (targetNode != l.pTail) {
+		targetNode->pNext->pPrev = p;
+	}
+	else {
+		l.pTail = p;
+	}
+	targetNode->pNext = p;
+}
