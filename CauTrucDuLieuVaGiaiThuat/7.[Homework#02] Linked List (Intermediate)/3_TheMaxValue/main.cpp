@@ -54,6 +54,7 @@ void outputList(List L)
 }
 node* findMax(List L)
 {
+    string *kq=new string;
     if (L.pHead == NULL)
         return NULL;
     node*pMax=L.pHead;
