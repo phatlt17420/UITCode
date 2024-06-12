@@ -84,11 +84,11 @@ int main()
     }
     cout<<"Stack:";
     printStack(S);
-    cout<<"\nTop:"<<Top(S);
-    Pop(S);
-    cout<<"\nUpdated Stack:";
-    printStack(S);
-    cout<<"\nTop:"<<Top(S);
+//    cout<<"\nTop:"<<Top(S);
+//    Pop(S);
+//    cout<<"\nUpdated Stack:";
+//    printStack(S);
+//    cout<<"\nTop:"<<Top(S);
     return 0;
 }
 
