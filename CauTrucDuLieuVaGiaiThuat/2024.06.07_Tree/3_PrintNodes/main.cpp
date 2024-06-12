@@ -67,7 +67,8 @@ void listLeafs(Tree T)
 {
     if (T==NULL)
         return;
-    else{
+    else
+    {
         if(T->left==NULL && T->right==NULL)
             cout<<T->info<<" ";
         listLeafs(T->left);
@@ -79,7 +80,8 @@ void listNodesWithOneChild(Tree T)
 {
     if (T==NULL)
         return;
-    else{
+    else
+    {
         if(T->left==NULL && T->right!=NULL)
             cout<<T->info<<" ";
         if(T->left!=NULL && T->right==NULL)
@@ -97,23 +99,42 @@ void listNodesWithTwoChildren(Tree T)
     listNodesWithTwoChildren(T->left);
     listNodesWithTwoChildren(T->right);
 }
-void listInternalNodes(Tree T,0)
+void listInternalNodes(Tree T,int x)
 {
+    if (T==NULL)
+        return;
+    if(!(T->left==NULL && T->right==NULL)&&x!=0)
+    {
+        cout<<T->info<<" ";
+    }
+    x=1;
 
+
+    listInternalNodes(T->left,x);
+    listInternalNodes(T->right,x);
 }
+
+
 
 int main()
 {
-	Tree T = NULL;
-	inputTree(T);
-	cout<<"\nNLR: "; NLR(T);
-	cout<<"\nLRN: "; LRN(T);
-	cout<<"\nLNR: "; LNR(T);
+    Tree T = NULL;
+    inputTree(T);
+    cout<<"\nNLR: ";
+    NLR(T);
+    cout<<"\nLRN: ";
+    LRN(T);
+    cout<<"\nLNR: ";
+    LNR(T);
 
-	cout<<"\nLeaf nodes: "; listLeafs(T);
-	cout<<"\nInternal nodes: "; listInternalNodes(T,0);
-	cout<<"\nNodes with one child: "; listNodesWithOneChild(T);
-	cout<<"\nNodes with two children: "; listNodesWithTwoChildren(T);
+    cout<<"\nLeaf nodes: ";
+    listLeafs(T);
+    cout<<"\nInternal nodes: ";
+    listInternalNodes(T,0);
+    cout<<"\nNodes with one child: ";
+    listNodesWithOneChild(T);
+    cout<<"\nNodes with two children: ";
+    listNodesWithTwoChildren(T);
 
-	return 0;
+    return 0;
 }

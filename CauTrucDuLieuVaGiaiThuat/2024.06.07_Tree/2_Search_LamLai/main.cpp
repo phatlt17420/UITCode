@@ -1,21 +1,21 @@
 #include <iostream>
 using namespace std;
 // Bài 2:
-struct node
+struct Node
 {
     int info;
-    node* left;
-    node* right;
+    Node* left;
+    Node* right;
 };
-typedef node* Tree;
-node* creatnode (int x)
+typedef Node* Tree;
+Node* creatnode (int x)
 {
-    node*p =new node;
+    Node*p =new Node;
     p->info=x;
     p->left=p->right=NULL;
     return p;
 }
-void addnode(node* &T,int x)
+void addnode(Tree &T,int x)
 {
     if(T==NULL)
         T=creatnode(x);
@@ -27,7 +27,7 @@ void addnode(node* &T,int x)
             addnode(T->right,x);
     }
 }
-void inputTree(node *&T)
+void inputTree(Tree &T)
 {
     int n,x;
     cin>>n;
@@ -46,38 +46,49 @@ void LNR(Tree T)
     LNR(T->right);
 }
 
-node* Search (Tree T, int x)
+Node* Search (Tree T, int x)
 {
     if (T==NULL)
-        return T;
+        return NULL;
     if (T->info==x)
         return T;
-    else if (T->info>x)
+    if (T->info>x)
         return Search(T->left,x);
     else
         return Search(T->right,x);
 }
-//int maxValue (Tree T)
+
+//int maxValue(Tree T)
 //{
-//    node*p=T;
-//    while (p->right!=NULL)
-//    {
-//        p=p->right;
-//    }
-//    return p->info;
+//    if (T->right==NULL)
+//        return T->info;
+//    maxValue(T->right);
 //}
-int maxValue(Tree T)
+//int minValue(Tree T)
+//{
+//    if (T->left==NULL)
+//        return T->info;
+//    minValue(T->left);
+//}
+int maxValue (Tree T)
 {
-    if (T->right==NULL)
-        return T->info;
-    maxValue(T->right);
+    Node*p=T;
+    while (p->right!=NULL)
+    {
+        p=p->right;
+    }
+    return p->info;
 }
-int minValue(Tree T)
+int minValue (Tree T)
 {
-    if (T->left==NULL)
-        return T->info;
-    minValue(T->left);
+    Node*p=T;
+    while (p->left!=NULL)
+    {
+        p=p->left;
+    }
+    return p->info;
 }
+
 // viết theo dạng đệ quy
 //int maxValue (Tree T)
 //{
@@ -94,7 +105,7 @@ int main()
     int x;
     cout<<"\nEnter the element you want to find: ";
     cin>>x;
-    node *p=Search(T,x);
+    Node *p=Search(T,x);
     if (p) cout<< "Found";
     else cout<<"Not found";
     cout<<"\nMinimum value in BTS is "<<minValue(T);

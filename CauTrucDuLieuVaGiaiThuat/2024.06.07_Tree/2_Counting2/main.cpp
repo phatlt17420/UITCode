@@ -67,27 +67,68 @@ int depthOfTree(Tree T)
 ý tưởng:
 
 */
-int countEven(Tree T,int &count_even)
+void countEven(Tree T,int &count_even)
 {
     if(T==NULL)
-        return 0;
+        return ;
     if (T->info%2==0)
         count_even++;
     countEven(T->left,count_even);
     countEven(T->right,count_even);
 }
-int countOdd(Tree T, int &count_odd)
+void countOdd(Tree T, int &count_odd)
 {
-        if(T==NULL)
-        return 0;
+    if(T==NULL)
+        return ;
     if (T->info%2!=0)
         count_odd++;
     countOdd(T->left,count_odd);
     countOdd(T->right,count_odd);
 }
-void countPositive(Tree T)
+int countPositive(Tree T)
 {
-
+    int dem=0;
+    if(T==NULL)
+        return 0;
+    if (T->info>0)
+        dem++;
+    return dem+countPositive(T->left)+countPositive(T->right);
+}
+int countNegative(Tree T)
+{
+    int dem=0;
+    if(T==NULL)
+        return 0;
+    if (T->info<0)
+        dem++;
+    return countNegative(T->left) + countNegative(T->right)+dem;
+}
+bool isPrime(int x)
+{
+    if (x<=1)
+        return false;
+    for (int i=2; i<=x/2; i++)
+        if(x%i==0)
+            return false;
+    return true;
+}
+int countPrime(Tree T)
+{
+    int dem=0;
+    if(T==NULL)
+        return 0;
+    if (isPrime(T->info))
+        dem++;
+    return countPrime(T->left) + countPrime(T->right)+dem;
+}
+void listPrime(Tree T)
+{
+    if(T==NULL)
+        return;
+    if (isPrime(T->info))
+        cout<<T->info<<" ";
+    listPrime(T->left);
+    listPrime(T->right);
 }
 int main()
 {
@@ -106,12 +147,12 @@ int main()
     cout<<"Number of even nodes: "<<count_even<<endl;
     cout<<"Number of odd nodes: "<<count_odd<<endl;
 
-//    cout<<"Number of positive nodes: "<<countPositive(T)<<endl;
-//    cout<<"Number of negative nodes: "<<countNegative(T)<<endl;
-//
-//    cout<<"Number of prime nodes: "<<countPrime(T)<<endl;
-//    cout<<"Prime numbers: ";
-//    listPrime(T);
+    cout<<"Number of positive nodes: "<<countPositive(T)<<endl;
+    cout<<"Number of negative nodes: "<<countNegative(T)<<endl;
+
+    cout<<"Number of prime nodes: "<<countPrime(T)<<endl;
+    cout<<"Prime numbers: ";
+    listPrime(T);
 
     return 0;
 }
