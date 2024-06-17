@@ -48,7 +48,7 @@ void inputTree(Tree &T)
         addnode(T,x);
 }
 }
-void SearchStandFor(node* &p,node *&q)
+void SearchStandFor(node* &p,node* &q)
 {
     if(q->left!=NULL)
         SearchStandFor(p,q->left);
@@ -61,25 +61,28 @@ void SearchStandFor(node* &p,node *&q)
     }
 }
 
-int deleteNode(Tree &T, int x)
+void deleteNode(Tree &T, int x)
 {
     if(T==NULL)
-        return 0;
+        return;
     if(x<T->info)
-        return deleteNode(T->left,x);
-    else // (x>T->info)
-        return deleteNode(T->right,x);
-
-
-    node* p =T;
-    if(T->left==NULL)
-        T=T->right;
-    else if(T->right==NULL)
-        T=T->left;
+        deleteNode(T->left,x);
+    else if(x>T->info) // (x>T->info)
+        deleteNode(T->right,x);
     else
-        SearchStandFor(p,T->right);
+    {
+        node* p =T;
+        if(T->left==NULL)
+            T=T->right;
+        else if(T->right==NULL)
+            T=T->left;
+        else
+            SearchStandFor(p,T->right);
+        delete p;
+    }
 
-    delete p;
+
+
 }
 
 
