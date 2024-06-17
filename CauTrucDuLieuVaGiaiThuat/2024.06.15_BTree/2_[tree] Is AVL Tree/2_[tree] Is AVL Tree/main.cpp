@@ -42,12 +42,12 @@ void NLR(Tree T)
 }
 int depthTree(Tree T)
 {
-     if(T==NULL)
+    if(T==NULL)
         return -1;
-        else
-        {
-            return 1+max (depthTree(T->left),depthTree(T->right));
-        }
+    else
+    {
+        return 1+max (depthTree(T->left),depthTree(T->right));
+    }
 }
 bool isAVL(Tree T)
 {
@@ -62,6 +62,7 @@ bool isAVL(Tree T)
         if (isAVL(T->right)==false)
             return false;
     }
+    return true;
 
 }
 void inputTree(Tree &T)
