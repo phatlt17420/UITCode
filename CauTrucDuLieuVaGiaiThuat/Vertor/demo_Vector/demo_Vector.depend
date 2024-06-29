@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1719332100 source:d:\uitcode\cautrucdulieuvagiaithuat\vertor\demo_vector\main.cpp
+	<iostream>
+	<vector>
+	<algorithm>
+
