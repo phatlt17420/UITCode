@@ -1,0 +1,209 @@
+ Danh sách liên kết kép khác đơn chỗ : node có thêm một con trỏ pre để chỉ phần tử trước đó. Nếu node là head thì pre  = NULL;
+Tương tự đơn : ta có các hàm như init, getnode, addtail, addhead và hàm add vào vị trí nếu tìm đúng số x trong danh sách liên kết:
+Với hàm add vào vị trí nếu tìm đúng số x trong danh sách liên kết: ta có addafter thêm một phần tử y  sau vị trí x tìm được, add before thêm một phần tử y trước vị trí x tìm được:
+
+/*###Begin banned keyword - each of the following line if appear in code will raise error. regex supported
+define
+include
+using
+###End banned keyword*/
+
+#include  <iostream> // Thư viện cho phép nhập xuất dữ liệu
+using namespace std; // Sử dụng không gian tên chuẩn để tránh việc phải viết std:: trước mỗi lệnh
+
+// Khai báo cấu trúc của một nút trong danh sách liên kết đôi
+struct DNode
+{
+	int info; // Giá trị của nút
+	DNode *pNext, *pPrev; // Con trỏ tới nút kế tiếp và nút trước đó
+};
+
+// Khai báo cấu trúc của danh sách liên kết đôi
+struct DList
+{
+	DNode *pHead, *pTail; // Con trỏ tới nút đầu và nút cuối của danh sách
+};
+
+//###INSERT CODE HERE - 
+// Hàm khởi tạo danh sách liên kết đôi
+void init(DList& l){
+    l.pHead = l.pTail = NULL; // Khởi tạo danh sách rỗng, cả pHead và pTail đều trỏ tới NULL
+}
+
+// Hàm tạo một nút mới với giá trị x
+DNode* getDnode(int x){
+    DNode* p = new DNode; // Cấp phát bộ nhớ cho nút mới
+    p->info = x; // Gán giá trị x cho nút
+    p->pNext = p->pPrev = NULL; // Khởi tạo con trỏ pNext và pPrev của nút mới trỏ tới NULL
+    return p; // Trả về con trỏ tới nút mới tạo
+}
+
+// Hàm thêm nút mới vào cuối danh sách
+void addTail(DList& l, int x)
+{
+    DNode* p = getDnode(x); // Tạo nút mới với giá trị x
+    if(l.pHead == NULL){ // Nếu danh sách rỗng
+        l.pHead = l.pTail = p; // Cả pHead và pTail đều trỏ tới nút mới
+    }
+    else{ // Nếu danh sách không rỗng
+        p->pPrev = l.pTail; // Nút mới trỏ tới nút cuối hiện tại
+        l.pTail->pNext = p; // Nút cuối hiện tại trỏ tới nút mới
+        l.pTail = p; // Cập nhật lại pTail trỏ tới nút mới
+    }
+}
+
+// Hàm tạo danh sách từ các giá trị nhập vào cho đến khi gặp -1
+void createList(DList& l){
+    int value;
+    while(1){
+        cin >> value; // Nhập giá trị
+        if(value == -1) break; // Nếu giá trị là -1 thì dừng
+        addTail(l, value); // Thêm giá trị vào cuối danh sách
+    }
+}
+
+// Hàm in giá trị của một nút
+void outputDnode(DNode x){
+    cout << x.info <<  " "; // In giá trị của nút
+}
+
+// Hàm in toàn bộ danh sách
+void printList(DList l){
+    if(l.pHead == NULL){
+        cout << "List is empty" << endl; // Thông báo nếu danh sách rỗng
+    }
+    else{
+DNode* p = l.pHead; // Bắt đầu từ nút đầu
+        while(p != NULL){
+            outputDnode(*p); // In giá trị của từng nút
+            p = p->pNext; // Chuyển tới nút tiếp theo
+        }
+    }
+}
+
+// Hàm thêm nút mới vào đầu danh sách
+void addHead(DList& l, int x){
+    DNode* p = getDnode(x); // Tạo nút mới với giá trị x
+    if(l.pHead == NULL){ // Nếu danh sách rỗng
+        l.pHead = l.pTail = p; // Cả pHead và pTail đều trỏ tới nút mới
+    }
+    else{ // Nếu danh sách không rỗng
+        p->pNext = l.pHead; // Nút mới trỏ tới nút đầu hiện tại
+        l.pHead->pPrev = p; // Nút đầu hiện tại trỏ tới nút mới
+        l.pHead = p; // Cập nhật lại pHead trỏ tới nút mới
+    }
+}
+
+// Hàm thêm nút mới sau một giá trị x cho trước (chỉ cho lần đầu tiên gặp)
+void addAfter(DList& l, int x, int y){
+    DNode* k = l.pHead; // Bắt đầu từ nút đầu
+    while(k != NULL){
+        if(k->info == x) break; // Nếu tìm thấy giá trị x thì dừng
+        k = k->pNext; // Chuyển tới nút tiếp theo
+    }
+    if(k == NULL) cout << "\nCan't find the value " << x; // Thông báo nếu không tìm thấy giá trị x
+    else{
+        DNode* p = getDnode(y); // Tạo nút mới với giá trị y
+        p->pNext = k->pNext; // Nút mới trỏ tới nút sau nút k
+        p->pPrev = k; // Nút mới trỏ về nút k
+        if(k == l.pTail){ // Nếu nút k là nút cuối
+            l.pTail = p; // Cập nhật lại pTail trỏ tới nút mới
+        }
+        else{
+            k->pNext->pPrev = p; // Nút sau nút k trỏ về nút mới
+        }
+        k->pNext = p; // Nút k trỏ tới nút mới
+    }
+}
+
+// Hàm thêm nút mới trước một giá trị x cho trước (chỉ cho lần đầu tiên gặp)
+void addBefore(DList& l, int x, int y){
+    DNode* k = l.pHead; // Bắt đầu từ nút đầu
+    while(k != NULL){
+        if(k->info == x) break; // Nếu tìm thấy giá trị x thì dừng
+        k = k->pNext; // Chuyển tới nút tiếp theo
+    }
+    if(k == NULL) cout << "\nCan't find the value " << x; // Thông báo nếu không tìm thấy giá trị x
+    else{
+        DNode* p = getDnode(y); // Tạo nút mới với giá trị y
+        p->pNext = k; // Nút mới trỏ tới nút k
+        p->pPrev = k->pPrev; // Nút mới trỏ về nút trước nút k
+        if(k == l.pHead){ // Nếu nút k là nút đầu
+            l.pHead = p; // Cập nhật lại pHead trỏ tới nút mới
+        }
+        else{
+            k->pPrev->pNext = p; // Nút trước nút k trỏ tới nút mới
+        }
+        k->pPrev = p; // Nút k trỏ về nút mới
+    }
+}
+
+// Hàm chính của chương trình
+int main()
+{
+    DList L; // Khai báo một danh sách liên kết đôi L
+    init(L); // Khởi tạo danh sách L
+    int x, y, choice; // Khai báo các biến để lưu giá trị nhập vào và lựa chọn của người dùng
+
+    // In ra menu lựa chọn
+    cout << "MENU:";
+cout << "\n1. Create a DList";
+    cout << "\n2. Print the DList";
+    cout << "\n3. Insert a value at the front";
+    cout << "\n4. Insert a value at the end";
+    cout << "\n5. Insert a value after a given value (only for the first value found)";
+    cout << "\n6. Insert a value before a given value (only for the first value found)";
+    cout << "\n7. Insert a value after a given value (for all the same values)";
+    cout << "\n8. Insert a value before a given value (for all the same values)";
+    cout << "\n20. Exit" << endl; // Lựa chọn thoát chương trình
+
+    while(true)
+    {
+        // Nhập lựa chọn của người dùng
+        cout << "\n\t\tPLEASE SELECT YOUR CHOICE: ";
+        cin >> choice;
+        switch(choice)
+        {
+            case 1:
+                // Tạo danh sách từ các giá trị nhập vào cho đến khi gặp -1
+                cout << "\nEnter your positive integers until you enter -1 to finish: ";
+                createList(L);
+                break;
+            case 2:
+                // In toàn bộ danh sách
+                cout << "\nYour current DList: ";
+                printList(L);
+                break;
+            case 3:
+                // Thêm nút mới vào đầu danh sách
+                cout << "\nEnter a number: ";
+                cin >> x;
+                addHead(L, x);
+                break;
+            case 4:
+                // Thêm nút mới vào cuối danh sách
+                cout << "\nEnter a number: ";
+                cin >> x;
+                addTail(L, x);
+                break;
+            case 5:
+                // Thêm nút mới sau một giá trị x cho trước (chỉ cho lần đầu tiên gặp)
+                cout << "\nEnter two numbers: ";
+                cin >> x >> y;
+                addAfter(L, x, y);
+                break;
+            case 6:
+                // Thêm nút mới trước một giá trị x cho trước (chỉ cho lần đầu tiên gặp)
+                cout << "\nEnter two numbers: ";
+                cin >> x >> y;
+                addBefore(L, x, y);
+                break;
+            case 20:
+                // Thoát chương trình
+                cout << "\nGOOD BYE";
+                return 0;
+        }
+    }
+
+    return 0; // Kết thúc hàm chính
+}

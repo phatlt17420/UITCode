@@ -12,7 +12,7 @@ private:
 // không cần dùng map
 public:
     void inputGraph(int e);
-void Progress(int n);
+    void Progress(int n);
 };
 void Graph::inputGraph(int e)
 {
