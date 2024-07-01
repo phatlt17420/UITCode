@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1719850803 source:d:\uitcode\cautrucdulieuvagiaithuat\15. simple graphs (pre-intermediate)\1_[graph] degree of vertices\main.cpp
+	<iostream>
+	<vector>
+	<map>
+
