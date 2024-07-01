@@ -1,0 +1,8 @@
+# depslib dependency file v1.0
+1719644642 source:d:\uitcode\uitcode\cautrucdulieuvagiaithuat\2024_06_29_graphhash\2_dinhcoten_kobiettruocsodinh\main.cpp
+	<iostream>
+	<vector>
+	<map>
+	<set>
+	<string>
+

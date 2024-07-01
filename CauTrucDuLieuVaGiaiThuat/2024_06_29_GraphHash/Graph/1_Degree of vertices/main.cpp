@@ -13,33 +13,36 @@ using namespace std;
 class Graph
 {
 private:
-    vector<vector<int>> maxtrix;
+    vector<vector<int>> M;
     vector<string> names;
-    map<string, int> mapping;// ánh xạ tên đỉnh sang index của đỉnh
+    map<string, int> v_indexs;// ánh xạ tên đỉnh sang index của đỉnh
 public:
-    void nhap(int v,int e);
-    void myProgress(int n);
+    void initGraph(int v)
+    {
+        M=vector<vector<int>>(v,vector<int>(v,0));
+         names  = vector<string> (v,"");
+    }
+    void inputGraph(int v,int e);
+    void myProgress(vector<vector<int>> G,int v, int n);
 };
-void Graph::nhap(int v,int e)
+void Graph::inputGraph(int v,int e)
 {
-    maxtrix= vector<vector<int>>(v,vector<int>(v,0)); // nếu sử dụng hàm push_back không viết câu này
-    names  = vector<string> (v,"");
     for (int i=0; i<v; i++)
     {
         string x;
         cin>>x; // nhập 1 tên đỉnh
         names[i]=x; // lưu x vaò vector names
         // nếu sử dụng names.push_back(x); // không set size ngay từ đầu
-        mapping[x]=i; // tạo 1 ánh xạ từ x đến y;
+        v_indexs[x]=i; // tạo 1 ánh xạ từ x đến y;
         for(int i=0; i<e; i++)
         {
             string x,y;
             cin>>x>>y;
-            maxtrix[mapping[x]][mapping[y]]=1;
+            M[v_indexs[x]][v_indexs[y]]=1;
         }
 ;}
 }
-void Graph::myProgress(int n)
+void Graph::myProgress(vector<vector<int>> G,int v, int n);
 {
     for (int i=0; i<n; i++)
     {
@@ -49,7 +52,7 @@ void Graph::myProgress(int n)
         {
             int y,z;
             cin>>y>>z; // kiểm tra z có kề với y không
-            if (Graph[y-1][z-1]==1)
+            if (G[y-1][z-1]==1)
                 cout<<"TRUE";
             else
                 cout<<"FALSE";
