@@ -34,12 +34,11 @@ public:
     {
         vector<string> nodes;
         // tìm đỉnh kề của p rồi bỏ vào vector
-        for(int i=0; i<v; i++)
-
+        for(int i=0; i<names.size(); i++)
         {
-
-        }
-
+            if(matrix[mapping[p]][i]!=0)
+                nodes.push_back(names[mapping[p]]);
+            }
         return nodes;
     }
     void DFS (string s, string g)
@@ -49,7 +48,7 @@ public:
 //
 // close: lưu lại các đỉnh đã đi qua rồi.
         map<string,string> parent;
-        vector<bool> close (v,0);
+        vector<bool> close (names.size(),0);
         stack<string> open;
         open.push(s);
         bool found=false;
@@ -72,29 +71,27 @@ public:
             {
                 if (close[mapping[q[i]]]==0)
                     open.push(q[i]); // liệu q[i] nằm trong open rồi thì có cần bỏ vào open nữa không ?
-            parent[q[i]]=p;   // có con suy ra cha
+                parent[q[i]]=p;   // có con suy ra cha
 
             }
             //2.4 vớ
 
         }
 
-
         if(found==true)
         {
-            current=g;// đỉnh hiện tại
+            string current=g;// đỉnh hiện tại
+            int lenght=0;
             while (current!=s) // khống biết lặp bao nhiêu lần
             {
                 // cout<<current;// bổ vào stack hoặc vector
-
-
-                cur=parent[cur]; // sử dụng mapping để truy xuất cha
-            llength+=trọng số của cạnh;
+                current=parent[current]; // sử dụng mapping để truy xuất cha
+                lenght += matrix[mapping[current]][i];
             }
         }
         else
         {
-            // xử lý khoung tìm thấy đường đi
+            // xử lý không tìm thấy đường đi
             cout<<"-unreachable-";
         }
     }
