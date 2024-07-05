@@ -1,6 +1,8 @@
 # depslib dependency file v1.0
-1720024883 source:d:\uitcode\cautrucdulieuvagiaithuat\17. simple graphs (pre-intermediate)\demo_dfs\main.cpp
+1720170142 source:d:\uitcode\cautrucdulieuvagiaithuat\17. simple graphs (pre-intermediate)\demo_dfs\main.cpp
 	<iostream>
 	<vector>
 	<map>
+	<stack>
+	<algorithm>
 
