@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1720250222 source:d:\uitcode\uitcode\cautrucdulieuvagiaithuat\19. ungdungcuadothi\[d&a][greedy] tsp. check complete weighted graph (step1)\main.cpp
+	<iostream>
+	<map>
+	<set>
+

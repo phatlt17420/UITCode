@@ -3,6 +3,7 @@
 #include <map>
 #include <stack>
 #include <algorithm>
+#include <queue>
 using namespace std;
 class Graph
 {
@@ -33,33 +34,35 @@ public:
 
 
 // viết hàm tìm kiếm đường đi
-    vector<string> adj_node (string p) // hàm tìm kiếm đỉnh kề
+    vector<int> adj_node (int p) // hàm tìm kiếm đỉnh kề
     {
-        vector<string>  nodes;
+        vector<int>  nodes (names.size(),0);
         for(int i=0; i<names.size(); i++)
-            if (matrix[mapping[p]][i] ==1 )
-                nodes.push_back(names[mapping[p]]);
+            if (matrix[p][i] ==1 )
+                nodes[p]=1;
 
 
         return nodes;
     }
-    void DFS (string s, string g)
+    void Dijkstra(int s, int g) // chuyển đổi sang int
     {
         //        Bước 1: Khởi tạo
         //        Open = {s};
         //        Close ={};
+        // sử dụng hàng dđợi ưu tiên
+        priority_queue<pair<int,int>, vector<pair<int,int>>, greater<pair<int,int>>> Open;
 
-        stack<string> Open;
-        Open.push(s);
+        Open.push({0,s}); // hoặc sử dụng make_pair
         vector<bool> Close (this->names.size(),0);
-        map<string, string> parent;
+        map<int, int> parent;
+        vector<int> d (names.size(),INT_MAX); // khởi tạo vector với giá trị vô cực INT_MAX là hàm có giá trị vô cực
 
 //        Bước 2: while(Open!={})
         int flag = 0;
         while(Open.empty()!=true)
         {
-//        2.1 Lấy 1 phần từ từ đầu Open (đồng thời xoá ra ở Open)
-            string p=Open.top();
+//        2.1 Lấy 1 phần từ từ đầu Open (đồng thời xoá ra ở Open)// lấy tối ưu nhất từ queue (phần tử đầu)
+            int p=Open.top().second; // lấy phần tử thứ 2 của pair.
             Open.pop();
 //        2.2 Nếu p là trạng thái kết thúc=> thoát khỏi vòng lặp, thông báo kết quả
             if(p==g)
@@ -68,21 +71,35 @@ public:
                 break;
             }
 //        2.3 Bỏ p vào Close (tập các phần tử đã đi qua)
-
-            Close[mapping[p]]=true;
+//
+            if(Close[p]==1) // nếu đã duyệt qua thì quay lại đầu vòng lặp
+                continue;
 
 
 
 //        2.4 Với mỗi đỉnh q kề với p,
 //        Nếu q không thuộc Close (tập các phần tử đã đi qua) thì thêm q vào Open.
             // tìm đỉnh kề với p ==> viết hàm riêng tìm các đỉnh kề với đỉnh cho trước.
-            vector<string> q = adj_node(p);
-            for(int i=0; i<q.size(); i++)
+            Close[p]==1;
+            vector<int> q = adj_node(p); // chuyển hàm qua dạng int
+            for(int q=0; q<names.size(); q++)
             {
-                if(Close[mapping[q[i]]]==0 && q[i] không có trong Open   ) // nếu q[i] không có trong close thì xem lại chỗ này
+                // 2.4.1
+
+
+                // 2.4.2
+                // gom 2 làm 1: cho số lớn để nhảy vào thân
+                // cách 2:
+                if(Close[q]==0 && matrix[p][q]!=0) // không có trong close
+                    // duyệt từng phần tử đồng thời xét ác phần tử có trong tập đỉnh kề.
                 {
-                    Open.push(q[i]);
-                    parent[q[i]]=p; // có con suy ra cha;
+                    int d_new=d[p]+matrix[p][q];
+                    if(d_new<d[p])
+                    {
+                        d[q]=d_new;// cập nhật giá trị mới tốt hơn
+                        parent[q]=p; // cập nhật con đường mới tốt hơn
+                        Open.push({d[q],q});// bị trùng thì vẫn bỏ vào.
+                    }
                 }
             }
 
@@ -94,21 +111,21 @@ public:
             cout<<"-unreachable"<<endl;
         else
         {
-            stack<string> walk;
+            vector<int> walk;
             int lenght=0;
-            string current =g;
-            while (current==s)
+            int current =g;
+            while (current!=s)
             {
-                walk.push(current);
-                lenght+=matrix[mapping[current]][mapping[parent[current]]];
+                walk.push_back(current);
                 current=parent[current];
             }
-            while(!walk.empty())
+            walk.push_back(s);
+            for (int i=walk.size();i>=0;i--)
             {
-                walk.top();
-                walk.pop();
+                cout<<walk[i]<<" ";
+                lenght+= matrix[walk[i][walk[i-1]];
             }
-            cout<<"Chieu dai duong di="<<lenght;
+
         }
 
     }
