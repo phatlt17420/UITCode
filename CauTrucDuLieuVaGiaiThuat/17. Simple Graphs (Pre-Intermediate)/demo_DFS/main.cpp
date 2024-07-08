@@ -38,10 +38,17 @@ public:
         vector<string>  nodes;
         for(int i=0; i<names.size(); i++)
             if (matrix[mapping[p]][i] ==1 )
-                nodes.push_back(names[mapping[p]]);
+                nodes.push_back(names[i]);
 
 
         return nodes;
+    }
+    bool kiemtraphantu(vector<string> open, string kt)
+    {
+        for(int i =0;i<open.size();i++)
+            if(open[i]==kt)
+            return true;
+        return false;
     }
     void DFS (string s, string g)
     {
@@ -79,7 +86,7 @@ public:
             vector<string> q = adj_node(p);
             for(int i=0; i<q.size(); i++)
             {
-                if(Close[mapping[q[i]]]==0 && q[i] không có trong Open   ) // nếu q[i] không có trong close thì xem lại chỗ này
+                if(Close[mapping[q[i]]]==0 &&  kiemtraphantu(q,q[i])==false ) // nếu q[i] không có trong close thì xem lại chỗ này
                 {
                     Open.push(q[i]);
                     parent[q[i]]=p; // có con suy ra cha;

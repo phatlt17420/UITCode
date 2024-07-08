@@ -1,0 +1,7 @@
+# depslib dependency file v1.0
+1720289398 source:d:\uitcode\uitcode\cautrucdulieuvagiaithuat\17. simple graphs (pre-intermediate)\dfs_thamkhao\main.cpp
+	<iostream>
+	<vector>
+	<map>
+	<stack>
+
