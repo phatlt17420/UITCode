@@ -29,8 +29,8 @@ void Init(Hash& H)
 }
 void insertElement(Hash &H, int x)
 {
-
     int index = x%H.m;
+    H.n++;
     if(H.bucket[index] == NULL)
         H.bucket[index] = createnode(x);
     else
@@ -57,58 +57,66 @@ void insertElement(Hash &H, int x)
 }
 void travesal (Hash H)
 {
-
     for (int i=0; i<H.m ; i++ )
     {
         cout<<"Bucket "<<i<<": ";
         node* p=H.bucket[i];
-        while(p!=NULL)
+        if (H.bucket[i] ==NULL)
+            cout<<endl;
+        else
         {
-            cout<<p->info<<" ";
-            p=p->next;
+            while(p!=NULL)
+            {
+                cout<<p->info<<" ";
+                p=p->next;
+            }
+            cout<<endl;
         }
-        cout<<endl;
-}
+    }
 }
 void DeleteElement(Hash &H, int x)
 {
     int index = x%H.m;
-    node* p = H.bucket[index];
-    node* q = NULL;
-    while (p!=NULL)
-    {
-        q=p;
-        if(p->info==x)
-            break;
-        p=p->next;
-    }
-    if(p==NULL)
-        cout<<"Khong co phan tu co khoa "<<x;
-//    else if (p==H.bucket[index])
-//    {
-//        cout<<"Delete "<<x;
-//        H.bucket[index] =p->next;
-//        delete p;
-//    }
+    if(H.bucket[index]==NULL)
+        cout<<"Khong co phan tu co khoa "<<x<<endl;
     else
     {
-        cout<<"Delete "<<x;
-        q->next=p->next;
-        delete p;
+        node* p = H.bucket[index];
+        node* q = NULL;
+        while (! (p == NULL || p->info == x))
+        {
+            q = p;
+            p = p->next;
+        }
+        if (p==NULL)
+            cout<<"Khong co phan tu co khoa "<<x<<endl;
+        else
+        {
+            if(p==H.bucket[index])
+            {
+                H.bucket[index]=p->next;
+                delete p;
+            }
+            else
+            {
+                q->next=p->next;
+                delete p;
+            }
+            H.n--;
+        }
     }
 }
 
 int main()
 {
     Hash H;
+
     int m; // số địa chỉ có trên hashTable
     cin>>m;
     H.m=m;
-    Init(H);
-
     int n;// số phần tử có trong hashTable
     cin>>n;
-    H.n=n;
+        Init(H);
     for (int i=0; i<n ; i++ )
     {
         int x;
