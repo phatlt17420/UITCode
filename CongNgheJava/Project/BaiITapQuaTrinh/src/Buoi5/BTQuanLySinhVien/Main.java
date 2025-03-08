@@ -14,9 +14,17 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        SinhVien sv = new SinhVien(123,"Nguyen Van A", 8.0);
-        sv.XepLoai();
-        sv.printSinhVien();
+        LopHoc lopHoc = new LopHoc("12A9");
+        System.out.println("TAo du lieu sinh vien");
+        lopHoc.initDataDSSV(null); // khoing6 có dữ liệu
+        System.out.println("In danh sach sinh vien");
+        lopHoc.XepLoaiLopHoc();
+        lopHoc.printDSSV();
+        System.out.println("Tim diem trung binh lon nhat");
+        lopHoc.diemTBlonNhat();
+        System.out.println("Tim sinh vien theo maSV");
+        lopHoc.FindSV();
+        
     }
-    
+
 }
