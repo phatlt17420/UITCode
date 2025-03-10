@@ -31,12 +31,17 @@ public class SinhVien {
     public void XepLoai() {
         if (this.diemTB >= 8) {
             this.xepLoai = "Gioi";
-        } else if (this.diemTB >= 5) {
+        } else if (this.diemTB >= 6 && this.diemTB < 8) {
             this.xepLoai = "Kha";
         } else {
-            this.xepLoai = "Trung Binh";
+            this.xepLoai = "Chua xep loai";
         }
 
+    }
+
+    @Override
+    public String toString() {
+        return "[%d,%s,%f,%s]".formatted(this.maSV, this.hoTen, this.diemTB, this.xepLoai);
     }
 
     public void printSinhVien() {
