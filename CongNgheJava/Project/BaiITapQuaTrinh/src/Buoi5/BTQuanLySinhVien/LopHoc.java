@@ -25,11 +25,11 @@ public class LopHoc {
     // 1. Khởi tạo sinh viên
     public int initDataDSSV(ArrayList<SinhVien> ds) {
         if (this.ds.isEmpty()) {
-            this.ds.add(new SinhVien(123, "Nguyen VAn A", 7.8));
-            this.ds.add(new SinhVien(124, "Nguyen VAn B", 9.0));
-            this.ds.add(new SinhVien(125, "Nguyen VAn C", 9.5));
-            this.ds.add(new SinhVien(126, "Nguyen VAn D", 5.0));
-            this.ds.add(new SinhVien(127, "Nguyen VAn E", 6.5));
+            this.ds.add(new SinhVien(123, "Nguyen Van A", 7.8));
+            this.ds.add(new SinhVien(124, "Nguyen Van B", 9.0));
+            this.ds.add(new SinhVien(125, "Nguyen Van C", 9.5));
+            this.ds.add(new SinhVien(126, "Nguyen Van D", 5.0));
+            this.ds.add(new SinhVien(127, "Nguyen Van E", 6.5));
         } else if (!this.ds.isEmpty()) {
             this.ds.addAll(ds); // sao chép toàn bộ dữ liệu. Tìm hiểu
         }
@@ -66,12 +66,29 @@ public class LopHoc {
         boolean k = false;
         for (SinhVien i : ds){
             if(i.maSV==MaSVCanTim){
-                System.err.println(i);
-                // làm tiếp
+                System.out.println(i);
+                k=true;
             }
-            else
-                System.out.println("Khong tim thay");
+
         }
+        if (k==false)
+            System.out.println("Khong tim thay");
+    }
+
+    void FindHoTen() {
+        Scanner ip = new Scanner(System.in);
+        System.out.println("Nhap ho va ten sinh vien can tim: ");
+        String HoTenSVCanTim = ip.nextLine();
+        boolean k = false;
+        for (SinhVien i : ds){
+            if(i.hoTen.equals(HoTenSVCanTim)){
+                System.out.println(i);
+                k=true;
+            }
+
+        }
+        if (k==false)
+            System.out.println("Khong tim thay");
     }
 
 }

@@ -24,6 +24,8 @@ public class Main {
         lopHoc.diemTBlonNhat();
         System.out.println("Tim sinh vien theo maSV");
         lopHoc.FindSV();
+        System.out.println("Tim sinh vien theo ho ten sinh vien:");
+        lopHoc.FindHoTen();
         
     }
 

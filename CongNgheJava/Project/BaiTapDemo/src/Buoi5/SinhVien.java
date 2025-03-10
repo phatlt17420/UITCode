@@ -12,7 +12,7 @@ public class SinhVien {
     // Thuộc tính
     public int MaSV;
     public String hoTen;
-    public Double diemTB;
+    public double diemTB;
       
     // Constructor: phương thức đặc biệt, phương thức khởi tạo.
     public SinhVien(){
@@ -21,7 +21,7 @@ public class SinhVien {
         diemTB = 8.6;
     }
 
-    public SinhVien(int MaSV, String hoTen, Double diemTB) {
+    public SinhVien(int MaSV, String hoTen, double diemTB) {
         this.MaSV = MaSV;
         this.hoTen = hoTen;
         this.diemTB = diemTB;
