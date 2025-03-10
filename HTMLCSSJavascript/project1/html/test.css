@@ -1,0 +1,8 @@
+tbody {
+    font-style: italic;
+
+}
+tfoot {
+    color: blue;
+    grid-row-start: span;
+}
