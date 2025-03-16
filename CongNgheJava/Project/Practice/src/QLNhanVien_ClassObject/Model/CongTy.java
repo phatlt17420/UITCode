@@ -13,7 +13,7 @@ public class CongTy {
          DSNV=new ArrayList<>();
     }
     public void initDSNV(){
-        DSNV.add()
+        DSNV.add();
     }
     public void tinhLuong() {
         // TODO implement here
