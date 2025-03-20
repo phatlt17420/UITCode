@@ -17,7 +17,7 @@ public class Testing {
         A a = new A(1, 2, 3);
         
         a.methodC();
-        a.methodA();
+        a.methodB();
         
     }
     

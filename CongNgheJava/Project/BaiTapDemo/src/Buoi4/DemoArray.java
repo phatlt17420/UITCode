@@ -21,3 +21,4 @@ public class DemoArray {
         arr2[1] = 2;
         System.out.println(arr1[1]);
     }
+}
