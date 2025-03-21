@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package Buoi7_QLNhanVienClass_KeThua;
+package Buoi11_QLNhanVienClass_KeThua_TruuTuong;
 
 import Buoi11_QLNhanVienClass_KeThua_TruuTuong_FullTruuTuong.NhanVien;
 
@@ -35,6 +35,11 @@ public class NVVanPhong extends NhanVien {
     @Override
     public double tinhluongHT() {
         return luongCB + soNgay * 150000;
+    }
+
+    @Override
+    public double xetThuong() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
 }

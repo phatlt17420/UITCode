@@ -2,11 +2,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package Buoi8_BT_SinhVien_VB2;
+package Buoi8_BT_SinhVien_VB2_DaHinh;
 
-import Buoi8_BT_SinhVien_VB2_DaHinh.SV1;
-import Buoi8_BT_SinhVien_VB2_DaHinh.SinhVien;
-import Buoi8_BT_SinhVien_VB2_DaHinh.VB2;
 import java.util.ArrayList;
 
 /**

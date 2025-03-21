@@ -2,9 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package Buoi8_BT_SinhVien_VB2;
+package Buoi11_QLySinhVien_FullTruuTuong;
 
-import Buoi8_BT_SinhVien_VB2_DaHinh.SinhVien;
+
 
 /**
  *
@@ -28,7 +28,8 @@ public class SV1 extends SinhVien {
         return "SV1: " + super.toString();
     }
 
-    public void xetTN_SV1() {
+    @Override
+    public void xetTN() {
         if (this.getDiemTL() >= 5 && this.getSoTC() >= 120 && this.diemRL >= 60 && this.getngoaiNgu()) {
             this.setTtTotNghiep(true);
 

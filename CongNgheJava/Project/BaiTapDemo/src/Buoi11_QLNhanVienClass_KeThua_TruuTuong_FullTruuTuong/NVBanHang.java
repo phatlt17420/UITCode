@@ -2,9 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package Buoi7_QLNhanVienClass_KeThua;
-
-import Buoi11_QLNhanVienClass_KeThua_TruuTuong_FullTruuTuong.NhanVien;
+package Buoi11_QLNhanVienClass_KeThua_TruuTuong_FullTruuTuong;
 
 /**
  *
@@ -28,14 +26,10 @@ public class NVBanHang extends NhanVien {
         return "NVBH: [%d, %s, %9.2f, %9.2f, %d]".formatted(maNV, hoTen, luongCB, luongHT, soSP);
     }
 
-    public void tinhLuongBH() {
-        luongHT = luongCB + soSP * 150000;
-
-    }
-
     @Override
-    public double tinhluongHT() {
-        return luongCB + soSP * 150000;
+    public double tinhLuongHT() {
+        return luongHT = luongCB + soSP * 150000;
+
     }
 
 }

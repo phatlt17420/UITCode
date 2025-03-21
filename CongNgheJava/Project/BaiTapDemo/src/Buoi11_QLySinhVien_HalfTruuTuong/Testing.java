@@ -2,9 +2,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
  */
-package Buoi8_BT_SinhVien_VB2;
+package Buoi11_QLySinhVien_HalfTruuTuong;
 
-import Buoi8_BT_SinhVien_VB2_DaHinh.TotNghiep;
+import Buoi11_QLySinhVien_FullTruuTuong.TotNghiep;
+
+
 
 /**
  *

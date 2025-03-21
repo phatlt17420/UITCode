@@ -2,13 +2,13 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package Buoi7_QLNhanVienClass_KeThua;
+package Buoi11_QLNhanVienClass_KeThua_TruuTuong;
 
 /**
  *
  * @author phatlt17420
  */
-public class NhanVien {
+public abstract class NhanVien {
 
     protected int maNV;
     protected String hoTen;
@@ -30,9 +30,7 @@ public class NhanVien {
         return "NV: [%d, %s, %9.2f, %9.2f]".formatted(maNV, hoTen, luongCB, luongHT);
     }
 
-    public double tinhluongHT() {
-        
-        return luongHT;
-    }
+    public abstract double tinhluongHT();
+    public abstract double xetThuong();
 
 }

@@ -2,11 +2,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package Buoi8_BT_SinhVien_VB2;
+package Buoi11_QLySinhVien_HalfTruuTuong;
 
-import Buoi8_BT_SinhVien_VB2_DaHinh.SV1;
-import Buoi8_BT_SinhVien_VB2_DaHinh.SinhVien;
-import Buoi8_BT_SinhVien_VB2_DaHinh.VB2;
+
+import Buoi11_QLySinhVien_FullTruuTuong.VB2;
+import Buoi11_QLySinhVien_FullTruuTuong.SV1;
+import Buoi11_QLySinhVien_FullTruuTuong.SinhVien;
 import java.util.ArrayList;
 
 /**
@@ -45,10 +46,10 @@ public class TotNghiep {
     public  void xetTNDSSV(){
         for(SinhVien i : ds){
             if (i instanceof SV1){
-                ((SV1) i).xetTN_SV1();
+                ((SV1) i).xetTN();
             }
             else if (i instanceof VB2){
-                ((VB2) i).xetTNVB2();
+                ((VB2) i).xetTN();
             }
         }
     }

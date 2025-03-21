@@ -2,18 +2,15 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package Buoi7_QLNhanVienClass_KeThua;
+package Buoi11_QLNhanVienClass_KeThua_TruuTuong_FullTruuTuong;
 
-import Buoi11_QLNhanVienClass_KeThua_TruuTuong_FullTruuTuong.NVBanHang;
-import Buoi11_QLNhanVienClass_KeThua_TruuTuong_FullTruuTuong.NhanVien;
-import Buoi11_QLNhanVienClass_KeThua_TruuTuong_FullTruuTuong.NVVanPhong;
 import java.util.ArrayList;
 
 /**
  *
  * @author phatlt17420
  */
-public class CongTy {
+public class CongTy extends AbsCongTy{
 
     protected String tenCty;
     protected ArrayList<NhanVien> DSNV;
@@ -45,12 +42,13 @@ public class CongTy {
         }
     }
 
+    @Override
     public void tinhLuongDSNV() {
         for (Object i : DSNV) {
             if (i instanceof NVBanHang) {
-                ((NVBanHang) i).tinhLuongBH();
+                ((NVBanHang) i).tinhLuongHT();
             } else {
-                ((NVVanPhong) i).tinhLuongVP();
+                ((NVVanPhong) i).tinhLuongHT();
             }
 
         }
@@ -63,6 +61,7 @@ public class CongTy {
         }
     }
 
+    @Override
     public Object timNVtheomaNV(int maNV) {
 
         for (Object i : DSNV) {
@@ -74,6 +73,7 @@ public class CongTy {
         return null;
     }
 
+    @Override
     public ArrayList timNVLuongMax_1() {
 // Bước 1: tìm lương hàng tháng cao nhất
         double m = ((NhanVien) this.DSNV.get(0)).luongHT;
@@ -91,6 +91,16 @@ public class CongTy {
 
         return dsNVLuongMax;
     }
+
+    @Override
+    public double timluongHTMax() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+
+
+
+
 
 
 ////////
