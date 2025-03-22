@@ -4,9 +4,9 @@
  */
 package Buoi11_QLNhanVienClass_KeThua_TruuTuong;
 
-import Buoi11_QLNhanVienClass_KeThua_TruuTuong_FullTruuTuong.NVBanHang;
-import Buoi11_QLNhanVienClass_KeThua_TruuTuong_FullTruuTuong.NhanVien;
-import Buoi11_QLNhanVienClass_KeThua_TruuTuong_FullTruuTuong.NVVanPhong;
+import Buoi12_QLNhanVienClass_KeThua_TruuTuong_Interface.NVBanHang;
+import Buoi12_QLNhanVienClass_KeThua_TruuTuong_Interface.NhanVien;
+import Buoi12_QLNhanVienClass_KeThua_TruuTuong_Interface.NVVanPhong;
 import java.util.ArrayList;
 
 /**

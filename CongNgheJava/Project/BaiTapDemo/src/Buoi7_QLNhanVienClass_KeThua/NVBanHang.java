@@ -4,7 +4,7 @@
  */
 package Buoi7_QLNhanVienClass_KeThua;
 
-import Buoi11_QLNhanVienClass_KeThua_TruuTuong_FullTruuTuong.NhanVien;
+import Buoi12_QLNhanVienClass_KeThua_TruuTuong_Interface.NhanVien;
 
 /**
  *

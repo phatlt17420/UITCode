@@ -2,19 +2,15 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package Buoi11_QLNhanVienClass_KeThua_TruuTuong_FullTruuTuong;
+package Buoi12_QLNhanVienClass_KeThua_TruuTuong_Interface;
 
-import Buoi12_QLNhanVienClass_KeThua_TruuTuong_Interface.AbsCongTy;
-import Buoi12_QLNhanVienClass_KeThua_TruuTuong_Interface.NVBanHang;
-import Buoi12_QLNhanVienClass_KeThua_TruuTuong_Interface.NVVanPhong;
-import Buoi12_QLNhanVienClass_KeThua_TruuTuong_Interface.NhanVien;
 import java.util.ArrayList;
 
 /**
  *
  * @author phatlt17420
  */
-public class CongTy extends AbsCongTy{
+public class CongTy implements InterfaceCty{
 
     protected String tenCty;
     protected ArrayList<NhanVien> DSNV;
@@ -65,7 +61,7 @@ public class CongTy extends AbsCongTy{
         }
     }
 
-    @Override
+
     public Object timNVtheomaNV(int maNV) {
 
         for (Object i : DSNV) {
@@ -77,7 +73,7 @@ public class CongTy extends AbsCongTy{
         return null;
     }
 
-    @Override
+
     public ArrayList timNVLuongMax_1() {
 // Bước 1: tìm lương hàng tháng cao nhất
         double m = ((NhanVien) this.DSNV.get(0)).luongHT;
@@ -96,7 +92,7 @@ public class CongTy extends AbsCongTy{
         return dsNVLuongMax;
     }
 
-    @Override
+
     public double timluongHTMax() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }

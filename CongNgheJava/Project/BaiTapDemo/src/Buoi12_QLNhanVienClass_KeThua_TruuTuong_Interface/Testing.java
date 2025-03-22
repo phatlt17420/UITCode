@@ -2,11 +2,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
  */
-package Buoi11_QLNhanVienClass_KeThua_TruuTuong_FullTruuTuong;
+package Buoi12_QLNhanVienClass_KeThua_TruuTuong_Interface;
 
-import Buoi12_QLNhanVienClass_KeThua_TruuTuong_Interface.CongTy;
-import Buoi12_QLNhanVienClass_KeThua_TruuTuong_Interface.NVBanHang;
-import Buoi12_QLNhanVienClass_KeThua_TruuTuong_Interface.NVVanPhong;
 import java.util.ArrayList;
 
 /**
