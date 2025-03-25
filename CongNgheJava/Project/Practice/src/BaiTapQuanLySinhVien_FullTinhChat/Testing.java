@@ -5,6 +5,7 @@
 package BaiTapQuanLySinhVien_FullTinhChat;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  *
@@ -17,7 +18,7 @@ public class Testing {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        Lop lh=new Lop();
+        Lop lh = new Lop();
         lh.initDSSV(null);
         lh.printDSSV();
         System.out.println("Xep loai hoc luc");
@@ -25,12 +26,13 @@ public class Testing {
         lh.printDSSV();
         System.out.println("Tim diem trung binh cao nhat");
         System.out.println(lh.diemTBMax());
-        System.out.println("DS sinhvien trung binh cao nhat");
-        
-        ArrayList<SinhVien> dsSVMax= lh.findListSV_diemTBMax();
-        for(SinhVien i: dsSVMax){
+        System.out.println("DS list 5SV co diem trung binh cao nhat");
+
+        ArrayList<SinhVien> dsSVMax = lh.findList5SV_diemTBMax();
+        for (SinhVien i : dsSVMax) {
             System.out.println(i);
         }
+
     }
-    
+
 }

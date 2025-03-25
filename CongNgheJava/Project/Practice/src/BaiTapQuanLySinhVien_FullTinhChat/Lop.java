@@ -5,6 +5,7 @@
 package BaiTapQuanLySinhVien_FullTinhChat;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 
 /**
  *
@@ -70,6 +71,15 @@ public class Lop {
         }
 
         return danhsach;
+    }
+
+    public ArrayList<SinhVien> findList5SV_diemTBMax() {
+        ArrayList<SinhVien> ds = new ArrayList<>(this.DSSV);
+        ds.sort(Comparator.comparingDouble(SinhVien::getDiemTB).reversed());
+        int limit = Math.min(10, ds.size());
+
+        return new ArrayList<SinhVien>(ds.subList(0, limit));
+
     }
 
 }

@@ -43,6 +43,14 @@ public class SinhVien extends AbsSinhVien {
     public String toString() {
         return String.format("[%d, %s, %.2f, %s]", maSV,hoTen,diemTB,hocLuc);
     }
+
+    public double getDiemTB() {
+        return diemTB;
+    }
+
+    public String getHoTen() {
+        return hoTen;
+    }
     
 
 
