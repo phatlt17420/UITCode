@@ -4,12 +4,9 @@
  */
 package Buoi11_QLNhanVienClass_KeThua_TruuTuong_FullTruuTuong;
 
-import Buoi12_QLNhanVienClass_KeThua_TruuTuong_Interface.AbsCongTy;
-import Buoi12_QLNhanVienClass_KeThua_TruuTuong_Interface.NVBanHang;
-import Buoi12_QLNhanVienClass_KeThua_TruuTuong_Interface.NVVanPhong;
-import Buoi12_QLNhanVienClass_KeThua_TruuTuong_Interface.NhanVien;
-import java.util.ArrayList;
 
+import java.util.ArrayList;
+import 
 /**
  *
  * @author phatlt17420

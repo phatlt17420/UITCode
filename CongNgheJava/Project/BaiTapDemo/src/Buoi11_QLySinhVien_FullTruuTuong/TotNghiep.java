@@ -5,9 +5,7 @@
 package Buoi11_QLySinhVien_FullTruuTuong;
 
 
-import Buoi12_QLySinhVien_interface.VB2;
-import Buoi12_QLySinhVien_interface.SinhVien;
-import Buoi12_QLySinhVien_interface.SV1;
+
 import java.util.ArrayList;
 
 /**

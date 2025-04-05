@@ -4,7 +4,6 @@
  */
 package Buoi11_QLySinhVien_HalfTruuTuong;
 
-import Buoi12_QLySinhVien_interface.TotNghiep;
 
 
 

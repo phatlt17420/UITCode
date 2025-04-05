@@ -4,7 +4,7 @@
  */
 package Buoi11_QLySinhVien_FullTruuTuong;
 
-import Buoi12_QLySinhVien_interface.SinhVien;
+
 
 
 
