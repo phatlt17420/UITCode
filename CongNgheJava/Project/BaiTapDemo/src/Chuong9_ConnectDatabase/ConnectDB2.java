@@ -30,11 +30,11 @@ public class ConnectDB2 {
 
             Statement stmt = con.createStatement(); // tạo câu truy vấn
 
-            String SQL = "select * from CHUYENNGANH";
+            String SQL = "select * from GIAOVIEN";
             ResultSet rs = stmt.executeQuery(SQL);
 
             while (rs.next()) {
-                System.out.println(rs.getString("MSCN") + " " + rs.getString("TENCN"));
+                System.out.println(rs.getString("MSGV") + " " + rs.getString("TENGV"));
             }
 
         } catch (SQLException ex) {
