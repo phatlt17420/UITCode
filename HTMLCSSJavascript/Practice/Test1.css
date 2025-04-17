@@ -1,0 +1,15 @@
+tbody {
+  font-size: 95%;
+  font-style: italic;
+}
+tfoot {
+  font-weight: bold;
+}
+table {
+  border-style: double;
+  border-color: black;
+}
+td {
+  border-color: bisque;
+  border-style: dotted;
+}
