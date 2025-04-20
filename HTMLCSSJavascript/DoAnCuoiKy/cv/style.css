@@ -67,6 +67,10 @@ th,
 td {
   border: 1px solid #999;
   padding: 0.5rem;
+  text-align: justify;
+}
+th {
+  text-align: center;
 }
 footer {
   font-size: 0.9rem;
