@@ -1,0 +1,91 @@
+/* General setup */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0 auto;
+  min-width: 1000px;
+  max-width: 1400px;
+}
+
+/* Layout */
+
+section {
+  float: left;
+  width: 50%;
+}
+
+aside {
+  float: left;
+  width: 30%;
+}
+
+nav {
+  float: left;
+  width: 20%;
+}
+
+footer {
+  clear: both;
+}
+
+header,
+section,
+aside,
+nav,
+footer {
+  padding: 20px;
+}
+
+/* header and footer */
+
+header,
+footer {
+  border-top: 5px solid #a66;
+  border-bottom: 5px solid #a66;
+}
+
+/* WRITE YOUR CODE BELOW HERE */
+@font-face {
+  font-family: "MelonCamp", Arial, Helvetica, sans-serif;
+  src: url("Melon Camp.ttf");
+}
+body {
+  font-family: "MelonCamp", Arial, Helvetica, sans-serif;
+  font-size: 10px;
+  line-height: 1.05rem;
+  word-spacing: 1.5px;
+  letter-spacing: 1.5px;
+}
+h1 {
+  text-align: center;
+  font-size: 1.5rem;
+  word-spacing: 1.5px;
+  letter-spacing: 1.5px;
+}
+h2 {
+  font-size: 1.2rem;
+  word-spacing: 1.5px;
+}
+section p:first-of-type {
+  padding-left: 20px;
+}
+/* xử lý các liên kết */
+a {
+  outline: none;
+}
+a:link a:visited {
+  color: #a66;
+  border-bottom: 1px solid #a66;
+}
+a:focus a:hover {
+  color: #a66;
+}
+a:active {
+  color: transparent;
+  text-shadow: 0px 0px 1px #f00, 0px 0px 2px #f00, 0px 0px 3px black,
+    0px 0px 4px black;
+}
+/* làmối  đây */
