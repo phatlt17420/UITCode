@@ -89,3 +89,29 @@ a:active {
     0px 0px 4px black;
 }
 /* làmối  đây */
+nav ul li a {
+  border: 1px solid black;
+  text-align: center;
+  line-height: 3rem;
+  width: 100%;
+  font-weight: 3;
+  display: inline-block;
+  margin: 2px;
+  background-color: #0099ff;
+  border-radius: 5px;
+  color: white;
+}
+nav li a:hover,
+nav li a:focus {
+  background-color: #00ffff;
+}
+nav ul li {
+  list-style-type: none;
+}
+a[href^="http"] {
+  background-image: url(external-link-52.png);
+  background-size: 10px;
+  background-repeat: no-repeat;
+  position: relative;
+  background-position: right;
+}
