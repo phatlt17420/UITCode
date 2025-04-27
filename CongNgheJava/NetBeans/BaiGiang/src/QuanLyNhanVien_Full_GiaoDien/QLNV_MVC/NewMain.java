@@ -19,7 +19,7 @@ public class NewMain {
         View v=new View();
         Controller c = new Controller(v, m);
         c.connectDBinitData();
-        
+        c.tinhLuongHT();
         
         
     }

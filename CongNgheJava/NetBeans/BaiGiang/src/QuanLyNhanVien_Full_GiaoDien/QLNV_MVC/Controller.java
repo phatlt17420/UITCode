@@ -4,7 +4,7 @@
  */
 package QuanLyNhanVien_Full_GiaoDien.QLNV_MVC;
 
-import QuanLyNhanVien_Full_GiaoDien.QLNV_ConnectDB.ConnectDB2;
+import QuanLyNhanVien_Full_GiaoDien.QLNV_ConnectDB.Database;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.table.DefaultTableModel;
@@ -31,6 +31,7 @@ public class Controller {
             public void actionPerformed(ActionEvent e) {
 
                 // 1. kết nối cơ sở dữ liệu.(chưa chuẩn bị nên sử dụng dự liệu mặc định.
+               // m.ConnectDataseDSNV();
                 //2. Có được dữ liệu kết nối thì sẽ init Luong
                 m.cty.initDSNV(null);
                 //3. lấy danh sách nhân viên hiển thị qua view (cụ thể là table)
@@ -43,6 +44,14 @@ public class Controller {
 
     // tính lương
     public void tinhLuongHT() {
+        v.btnTinhLuongActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                //m.cty.initDSNV(null);
+                m.cty.tinhLuongDSNV();
+                v.setTableNVTinhLuong(m.cty.ds);
+            }
 
+        });
     }
 }

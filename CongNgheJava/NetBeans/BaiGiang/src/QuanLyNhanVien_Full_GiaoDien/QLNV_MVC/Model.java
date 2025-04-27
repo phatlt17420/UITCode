@@ -4,6 +4,7 @@
  */
 package QuanLyNhanVien_Full_GiaoDien.QLNV_MVC;
 
+import QuanLyNhanVien_Full_GiaoDien.QLNV_ConnectDB.Database;
 import QuanLyNhanVien_Full_GiaoDien.QLNhanVien_Final.CongTy;
 
 /**
@@ -17,5 +18,7 @@ public class Model {
     public Model() {
         this.cty = new CongTy();
     }
+
+            
 
 }
