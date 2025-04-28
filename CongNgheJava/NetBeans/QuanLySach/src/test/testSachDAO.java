@@ -17,9 +17,18 @@ public class testSachDAO {
 //        Sach sach1 = new Sach("1", "Lap trinh java", 12000, 2022);
 //        Sach sach2 = new Sach("2", "Lap trinh python", 18000, 2024);
 //        SachDAO.getInstance().insert(sach2);
-        for (int i = 0; i < 1000; i++) {
-            Sach sach = new Sach("LT" +i, "Lap trinh java" +i, 12000, 2025);
-            SachDAO.getInstance().insert(sach);
+//        for (int i = 0; i < 1000; i++) {
+//            Sach sach = new Sach("LT" +i, "Lap trinh java" +i, 12000, 2025);
+//            SachDAO.getInstance().insert(sach);
+//        }
+        // test update 
+        Sach sach2 = new Sach("LT1", "Lap trinh python", 100000, 2024);
+        SachDAO.getInstance().delete(sach2);
+        
+        for (int i = 0; i < 990; i++) {
+            Sach sach = new Sach("LT"+i, "Lap trinh python", 100000, 2024);
+            SachDAO.getInstance().delete(sach);
+            
         }
         
     }
