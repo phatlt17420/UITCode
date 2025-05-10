@@ -1,8 +1,0 @@
-INDEX VERSION 1.134+D:\UITCode\UITCode\CongNgheJava\eclipse-workspace\.metadata\.plugins\org.eclipse.jdt.core
-1950909119.index
-3980514053.index
-2636851082.index
-1865797976.index
-165959948.index
-55554601.index
-3942768431.index
