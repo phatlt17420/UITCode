@@ -58,13 +58,13 @@ public class SinhVien {
 	public String tenKhoa() {
 		return this.lop.getTenKhoa();
 	}
-	public boolean kiemTraThiDat () {
-		return this.diemTrungBinh>=5;
+
+	public boolean kiemTraThiDat() {
+		return this.diemTrungBinh >= 5;
 	}
-	public boolean kiemTraCungNgaySinh (SinhVien sv) {
-		
+
+	public boolean kiemTraCungNgaySinh(SinhVien sv) {
+		return this.ngaySinh.equals(sv.ngaySinh);
 	}
-	
-	
-	
+
 }
