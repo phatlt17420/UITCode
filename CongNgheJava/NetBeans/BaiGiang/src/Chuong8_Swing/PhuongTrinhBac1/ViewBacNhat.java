@@ -85,6 +85,11 @@ public class ViewBacNhat extends javax.swing.JFrame {
         jLabel4.setText("Kết quả");
 
         btn_GiaiPhuongTrinh2.setText("Giải Phương trình 2");
+        btn_GiaiPhuongTrinh2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_GiaiPhuongTrinh2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -159,6 +164,10 @@ public class ViewBacNhat extends javax.swing.JFrame {
         double nghiem = -b / a;
         area_KetQua.setText(String.valueOf(nghiem));
     }//GEN-LAST:event_btn_GiaiPhuongTrinhActionPerformed
+
+    private void btn_GiaiPhuongTrinh2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_GiaiPhuongTrinh2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_GiaiPhuongTrinh2ActionPerformed
 
     /**
      * @param args the command line arguments

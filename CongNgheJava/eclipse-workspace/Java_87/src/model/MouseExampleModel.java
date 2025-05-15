@@ -6,10 +6,10 @@ public class MouseExampleModel {
 	private String checkIn; // kiểm tra nằm trong chương trình
 
 	public MouseExampleModel() {
-		this.x=0;
-		this.y=0;
-		this.count=0;
-		this.checkIn="No";
+		this.x = 0;
+		this.y = 0;
+		this.count = 0;
+		this.checkIn = "No";
 
 	}
 
@@ -44,8 +44,15 @@ public class MouseExampleModel {
 	public void setCheckIn(String checkIn) {
 		this.checkIn = checkIn;
 	}
-	public void click() {
+
+	public void addClick() {
 		this.count++;
 	}
 
+	public void enter() {
+this.checkIn="Yes";
+	}
+	public void exit() {
+		this.checkIn="No";
+	}
 }

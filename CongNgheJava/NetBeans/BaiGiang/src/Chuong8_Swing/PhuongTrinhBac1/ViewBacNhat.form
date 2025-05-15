@@ -147,6 +147,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Gi&#x1ea3;i Ph&#x1b0;&#x1a1;ng tr&#xec;nh 2"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_GiaiPhuongTrinh2ActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>
