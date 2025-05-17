@@ -1,5 +1,6 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.Objects;
 
 public class Tinh {
@@ -45,4 +46,22 @@ public class Tinh {
 		return maTinh == other.maTinh && Objects.equals(tenTinh, other.tenTinh);
 	}
 
+	public static ArrayList<Tinh> getDSTinh() {
+		String[] arr_Tinh = { "Hà Nội", "Huế", "Lai Châu", "Điện Biên", "Sơn La", "Lạng Sơn", "Quảng Ninh", "Thanh Hóa",
+				"Nghệ An", "Hà Tĩnh", "Cao Bằng" };
+		int i = 0;
+		ArrayList<Tinh> listTinh = new ArrayList<Tinh>();
+		for (String tenTinh : arr_Tinh) {
+			Tinh t = new Tinh(i, tenTinh);
+			listTinh.add(t);
+		}
+		return listTinh;
+	}
+
+
+
+	public static Tinh getTinhById(int queQuan) {
+		
+		return Tinh.getDSTinh().get(queQuan);
+	}
 }
