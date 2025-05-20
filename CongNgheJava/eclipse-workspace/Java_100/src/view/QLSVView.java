@@ -13,6 +13,7 @@ import model.Tinh;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JSeparator;
 import java.awt.Font;
 import javax.swing.JDesktopPane;
@@ -35,6 +36,7 @@ import controller.QLSVController;
 import javax.swing.JRadioButton;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Date;
 import java.awt.event.ActionEvent;
 
 public class QLSVView extends JFrame {
@@ -53,6 +55,8 @@ public class QLSVView extends JFrame {
 	public ButtonGroup btn_gioiTinh;
 	public JComboBox comboBox_ThongTinThiSinh_queQuan;
 	public JComboBox comboBox_queQuan;
+	public JRadioButton jRadio_Nam;
+	public JRadioButton jRadio_Nu;
 
 	/**
 	 * Launch the application.
@@ -120,21 +124,21 @@ public class QLSVView extends JFrame {
 		contentPane.add(label_QueQuan);
 
 		JLabel lblMThSinh = new JLabel("Mã Thí Sinh");
-		lblMThSinh.setBounds(539, 22, 171, 44);
+		lblMThSinh.setBounds(394, 22, 171, 44);
 		lblMThSinh.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		contentPane.add(lblMThSinh);
 
 		textField_maThiSinh = new JTextField();
 		textField_maThiSinh.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		textField_maThiSinh.setBounds(666, 22, 406, 44);
+		textField_maThiSinh.setBounds(521, 22, 206, 44);
 		textField_maThiSinh.setColumns(10);
 		contentPane.add(textField_maThiSinh);
 
-		JButton jButton_filter = new JButton("Filter");
-		jButton_filter.addActionListener(ac);
-		jButton_filter.setBounds(1099, 22, 147, 44);
-		jButton_filter.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		contentPane.add(jButton_filter);
+		JButton btnHuyTim = new JButton("Hủy");
+		btnHuyTim.addActionListener(ac);
+		btnHuyTim.setBounds(1060, 22, 147, 44);
+		btnHuyTim.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		contentPane.add(btnHuyTim);
 
 		comboBox_queQuan = new JComboBox();
 		comboBox_queQuan.addItem("");
@@ -143,7 +147,7 @@ public class QLSVView extends JFrame {
 			comboBox_queQuan.addItem(tinh.getTenTinh());
 		}
 		comboBox_queQuan.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		comboBox_queQuan.setBounds(158, 22, 329, 44);
+		comboBox_queQuan.setBounds(158, 22, 226, 44);
 		contentPane.add(comboBox_queQuan);
 
 		JSeparator separator_1 = new JSeparator();
@@ -161,14 +165,10 @@ public class QLSVView extends JFrame {
 
 		table = new JTable();
 		table.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		table.setModel(new DefaultTableModel(
-				new Object[][] { { null, null, null, null, null, null, null, null },
-						{ null, null, null, null, null, null, null, null },
-						{ null, null, null, null, null, null, null, null }, },
-				new String[] { "STT", "M\u00E3 th\u00ED sinh", "H\u1ECD t\u00EAn", "Qu\u00EA qu\u00E1n",
+		table.setModel(new DefaultTableModel(new Object[][] {},
+				new String[] { "M\u00E3 th\u00ED sinh", "H\u1ECD t\u00EAn", "Qu\u00EA qu\u00E1n", "Ng\u00E0y sinh",
 						"Gi\u1EDBi t\u00EDnh", "\u0110i\u1EC3m 1", "\u0110i\u1EC3m 2", "\u0110i\u1EC3m 3" }));
-		table.getColumnModel().getColumn(0).setPreferredWidth(38);
-		table.getColumnModel().getColumn(1).setPreferredWidth(136);
+		table.getColumnModel().getColumn(0).setPreferredWidth(136);
 		scrollPane.setViewportView(table);
 
 		JLabel label_QueQuan_1_1 = new JLabel("Thông tin thí sinh");
@@ -257,12 +257,12 @@ public class QLSVView extends JFrame {
 		label_ID_1.setBounds(666, 457, 105, 44);
 		contentPane.add(label_ID_1);
 
-		JRadioButton jRadio_Nam = new JRadioButton("Nam");
+		jRadio_Nam = new JRadioButton("Nam");
 		jRadio_Nam.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		jRadio_Nam.setBounds(818, 460, 67, 33);
 		contentPane.add(jRadio_Nam);
 
-		JRadioButton jRadio_Nu = new JRadioButton("Nữ");
+		jRadio_Nu = new JRadioButton("Nữ");
 		jRadio_Nu.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		jRadio_Nu.setBounds(973, 460, 51, 33);
 		contentPane.add(jRadio_Nu);
@@ -314,6 +314,12 @@ public class QLSVView extends JFrame {
 		JSeparator separator_1_1 = new JSeparator();
 		separator_1_1.setBounds(39, 776, 1207, 8);
 		contentPane.add(separator_1_1);
+
+		JButton btnTim = new JButton("Tìm");
+		btnTim.addActionListener(ac);
+		btnTim.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		btnTim.setBounds(874, 22, 147, 44);
+		contentPane.add(btnTim);
 	}
 
 	public void xoaForm() {
@@ -329,13 +335,142 @@ public class QLSVView extends JFrame {
 		btn_gioiTinh.clearSelection();
 	}
 
-	public void themThiSinh(ThiSinh ts) {
-		// TODO Auto-generated method stub
-		
+	public void themHoacCapNhatThiSinh(ThiSinh ts) {
+		DefaultTableModel model_Table = (DefaultTableModel) table.getModel();
+		if (!this.model.kiemTraTonTai(ts)) {
+			this.model.insert(ts);
+
+			model_Table.addRow(new Object[] { ts.getMaThiSinh() + "", ts.getTenThiSinh(), ts.getQueQuan().getTenTinh(),
+					ts.getNgaySinh().toString(), (ts.isGioiTinh() ? "Nam" : "Nữ"), ts.getDiemMon1() + "",
+					ts.getDiemMon2() + "", ts.getDiemMon3() + "" });
+		} else {
+			this.model.update(ts);
+			int soLuongDong = model_Table.getRowCount();
+			for (int i = 0; i < soLuongDong; i++) {
+				String id = model_Table.getValueAt(i, 0) + "";
+				if (id.equals(ts.getMaThiSinh() + "")) {
+					model_Table.setValueAt(ts.getMaThiSinh() + "", i, 0);
+					model_Table.setValueAt(ts.getTenThiSinh(), i, 1);
+					model_Table.setValueAt(ts.getQueQuan().getTenTinh(), i, 2);
+					model_Table.setValueAt(ts.getNgaySinh().toString(), i, 3);
+					model_Table.setValueAt((ts.isGioiTinh() ? "Nam" : "Nữ"), i, 4);
+					model_Table.setValueAt(ts.getDiemMon1() + "", i, 5);
+					model_Table.setValueAt(ts.getDiemMon2() + "", i, 6);
+					model_Table.setValueAt(ts.getDiemMon3() + "", i, 7);
+				}
+			}
+
+		}
+
 	}
 
-	public void capNhatThiSinh(ThiSinh ts) {
+	public ThiSinh getThiSinhDangChon() {
+		DefaultTableModel model_Table = (DefaultTableModel) table.getModel();
+		int i_row = table.getSelectedRow();
+
+		int maThiSinh = Integer.valueOf((String) model_Table.getValueAt(i_row, 0));
+		String tenThiSinh = (String) model_Table.getValueAt(i_row, 1);
+
+		Tinh tinh = Tinh.getTinhByTen(model_Table.getValueAt(i_row, 2) + "");
+		String s_ngaySinh = model_Table.getValueAt(i_row, 3) + "";
+		String textGioiTinh = (String) model_Table.getValueAt(i_row, 4);
+		boolean gioiTinh = textGioiTinh.equals("Nam");
+
+		float diemMon1 = Float.valueOf((String) model_Table.getValueAt(i_row, 5));
+		float diemMon2 = Float.valueOf((String) model_Table.getValueAt(i_row, 6));
+		float diemMon3 = Float.valueOf((String) model_Table.getValueAt(i_row, 7));
+
+		this.textField_ThongTinThiSinh_ID.setText(maThiSinh + "");
+		this.textField_ThongTinThiSinh_hoVaTen.setText(tenThiSinh + "");
+		this.comboBox_queQuan.setSelectedItem(tinh.getTenTinh());
+		this.textField_ThongTinThiSinh_ngaySinh.setText(s_ngaySinh);
+		// this.btn_gioiTinh.setSelected(null, gioiTinh);
+		this.textField_ThongTinThiSinh_mon1.setText(diemMon1 + "");
+		this.textField_ThongTinThiSinh_mon2.setText(diemMon2 + "");
+		this.textField_ThongTinThiSinh_mon3.setText(diemMon3 + "");
+
+		ThiSinh ts = new ThiSinh(maThiSinh, tenThiSinh, tinh, null, gioiTinh, diemMon1, diemMon2, diemMon3);
+		return ts;
+	}
+
+	public void hienThiThongTinThiSinhDaChon() {
+
+		ThiSinh ts = getThiSinhDangChon();
+
+		DefaultTableModel model_Table = (DefaultTableModel) table.getModel();
+		int i_row = table.getSelectedRow();
+
+		this.textField_ThongTinThiSinh_ID.setText(ts.getMaThiSinh() + "");
+		this.textField_ThongTinThiSinh_hoVaTen.setText(ts.getTenThiSinh() + "");
+		this.comboBox_queQuan.setSelectedItem(ts.getQueQuan().getTenTinh());
+		this.textField_ThongTinThiSinh_ngaySinh.setText(ts.getNgaySinh() + "");
+		// this.btn_gioiTinh.setSelected(null, gioiTinh);
+		if (ts.isGioiTinh()) {
+			jRadio_Nam.setSelected(true);
+		} else {
+			jRadio_Nu.setSelected(true);
+		}
+		this.textField_ThongTinThiSinh_mon1.setText(ts.getDiemMon1() + "");
+		this.textField_ThongTinThiSinh_mon2.setText(ts.getDiemMon2() + "");
+		this.textField_ThongTinThiSinh_mon3.setText(ts.getDiemMon3() + "");
+
+	}
+
+	public void thucHienXoa() {
+		DefaultTableModel model_table = (DefaultTableModel) table.getModel();
+		int i_row = table.getSelectedRow();
+		int luaChon = JOptionPane.showConfirmDialog(this, "Bạn có chắc chắn xóa dòng đã chọn  ?");
+		if (luaChon == JOptionPane.YES_OPTION) {
+			ThiSinh ts = getThiSinhDangChon();
+			this.model.delete(ts);
+			model_table.removeRow(i_row);
+		}
+
+	}
+
+	public void thuHienThemThiSinh() {
+		// get dữ liệu
+		int maThiSinh = Integer.valueOf(this.textField_ThongTinThiSinh_ID.getText());
+		String tenThiSinh = this.textField_ThongTinThiSinh_hoVaTen.getText();
+		int queQuan = this.comboBox_ThongTinThiSinh_queQuan.getSelectedIndex() - 1;
+		Tinh tinh = Tinh.getTinhById(queQuan);
+
+		Date ngaySinh = new Date(this.textField_ThongTinThiSinh_ngaySinh.getText());
+
+		boolean gioiTinh = true;
+		if (this.jRadio_Nam.isSelected()) {
+			gioiTinh = true;
+		} else if (this.jRadio_Nu.isSelected()) {
+			gioiTinh = false;
+			;
+		}
+		float diemMon1 = Float.valueOf(this.textField_ThongTinThiSinh_mon1.getText());
+		float diemMon2 = Float.valueOf(this.textField_ThongTinThiSinh_mon2.getText());
+		float diemMon3 = Float.valueOf(this.textField_ThongTinThiSinh_mon3.getText());
+		ThiSinh ts = new ThiSinh(maThiSinh, tenThiSinh, tinh, ngaySinh, gioiTinh, diemMon1, diemMon2, diemMon3);
+		this.themHoacCapNhatThiSinh(ts);
+
+	}
+
+	public void thucHienTim() {
+		int queQuan = this.comboBox_ThongTinThiSinh_queQuan.getSelectedIndex() - 1;
+		Tinh tinhDaChon = Tinh.getTinhById(queQuan);
+		DefaultTableModel model_Table = (DefaultTableModel) table.getModel();
+		int soLuongDong = table.getRowCount();
+		if (queQuan >= 0) {
+			for (int i = 0; i < soLuongDong; i++) {
+				String tenTinh = model_Table.getValueAt(i, 2) + "";
+				if (!tenTinh.equals(tinhDaChon)) {
+
+				}
+
+			}
+		}
+
+	}
+
+	public void huyTimKiem() {
 		// TODO Auto-generated method stub
-		
+
 	}
 }

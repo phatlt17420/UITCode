@@ -28,6 +28,7 @@ public class QLSVModel {
 	}
 
 	public void delete(ThiSinh ts) {
+
 		this.dsThiSinh.remove(ts);
 	}
 
@@ -42,6 +43,14 @@ public class QLSVModel {
 
 	public void setLuaChon(String luaChon) {
 		this.luaChon = luaChon;
+	}
+
+	public boolean kiemTraTonTai(ThiSinh ts) {
+		for (ThiSinh thiSinh:dsThiSinh) {
+			if(thiSinh.getMaThiSinh()==ts.getMaThiSinh())
+				return true;
+		}
+		return false;
 	}
 
 }

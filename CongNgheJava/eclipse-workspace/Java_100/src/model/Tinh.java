@@ -58,10 +58,18 @@ public class Tinh {
 		return listTinh;
 	}
 
-
-
 	public static Tinh getTinhById(int queQuan) {
-		
+
 		return Tinh.getDSTinh().get(queQuan);
 	}
+
+	public static Tinh getTinhByTen(String tenTinh) {
+		ArrayList<Tinh> listTinh = Tinh.getDSTinh();
+		for (Tinh tinh : listTinh) {
+			if (tinh.tenTinh.equals(tenTinh))
+				return tinh;
+		}
+		return null;
+	}
+
 }
