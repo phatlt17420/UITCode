@@ -5,15 +5,17 @@ import java.util.Objects;
 public class SanPham {
 	private String maSanPham;
 	private String tenSanPham;
+	private String tenLoaiSanPham;
 	private String donViTinh;
 	private String chiTiet;
 
 	public SanPham() {
 	}
 
-	public SanPham(String maSanPham, String tenSanPham, String donViTinh, String chiTiet) {
+	public SanPham(String maSanPham, String tenSanPham, String tenLoaiSanPham, String donViTinh, String chiTiet) {
 		this.maSanPham = maSanPham;
 		this.tenSanPham = tenSanPham;
+		this.tenLoaiSanPham = tenLoaiSanPham;
 		this.donViTinh = donViTinh;
 		this.chiTiet = chiTiet;
 	}
@@ -34,6 +36,14 @@ public class SanPham {
 		this.tenSanPham = tenSanPham;
 	}
 
+	public String getTenLoaiSanPham() {
+		return tenLoaiSanPham;
+	}
+
+	public void setTenLoaiSanPham(String tenLoaiSanPham) {
+		this.tenLoaiSanPham = tenLoaiSanPham;
+	}
+
 	public String getDonViTinh() {
 		return donViTinh;
 	}
@@ -48,25 +58,6 @@ public class SanPham {
 
 	public void setChiTiet(String chiTiet) {
 		this.chiTiet = chiTiet;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		SanPham other = (SanPham) obj;
-		return Objects.equals(chiTiet, other.chiTiet) && Objects.equals(donViTinh, other.donViTinh)
-				&& Objects.equals(maSanPham, other.maSanPham) && Objects.equals(tenSanPham, other.tenSanPham);
-	}
-
-	@Override
-	public String toString() {
-		return "SanPham [maSanPham=" + maSanPham + ", tenSanPham=" + tenSanPham + ", donViTinh=" + donViTinh
-				+ ", chiTiet=" + chiTiet + "]";
 	}
 
 }

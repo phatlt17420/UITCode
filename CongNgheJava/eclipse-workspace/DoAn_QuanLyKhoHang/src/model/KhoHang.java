@@ -3,15 +3,15 @@ package model;
 public class KhoHang {
 	private String maKhoHang;
 	private String tenKhoHang;
-	private double soLuong;
+	private String diaChi;
 
 	public KhoHang() {
 	}
 
-	public KhoHang(String maKhoHang, String tenKhoHang, double soLuong) {
+	public KhoHang(String maKhoHang, String tenKhoHang, String diaChi) {
 		this.maKhoHang = maKhoHang;
 		this.tenKhoHang = tenKhoHang;
-		this.soLuong = soLuong;
+		this.diaChi = diaChi;
 	}
 
 	public String getMaKhoHang() {
@@ -30,17 +30,12 @@ public class KhoHang {
 		this.tenKhoHang = tenKhoHang;
 	}
 
-	public double getSoLuong() {
-		return soLuong;
+	public String getDiaChi() {
+		return diaChi;
 	}
 
-	public void setSoLuong(double soLuong) {
-		this.soLuong = soLuong;
-	}
-
-	@Override
-	public String toString() {
-		return "KhoHang [maKhoHang=" + maKhoHang + ", tenKhoHang=" + tenKhoHang + ", soLuong=" + soLuong + "]";
+	public void setDiaChi(String diaChi) {
+		this.diaChi = diaChi;
 	}
 
 }
