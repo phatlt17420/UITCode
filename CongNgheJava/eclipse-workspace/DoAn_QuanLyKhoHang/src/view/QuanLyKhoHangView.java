@@ -62,7 +62,7 @@ public class QuanLyKhoHangView extends JFrame {
 	 */
 	public QuanLyKhoHangView() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 1236, 874);
+		setBounds(100, 100, 800, 600);
 		
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
