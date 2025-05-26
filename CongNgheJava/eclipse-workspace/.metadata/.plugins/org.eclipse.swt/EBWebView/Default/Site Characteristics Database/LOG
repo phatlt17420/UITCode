@@ -1,3 +1,9 @@
+<<<<<<< HEAD
 2025/05/26-21:33:29.665 3150 Reusing MANIFEST F:\UITCode\CongNgheJava\eclipse-workspace\.metadata\.plugins\org.eclipse.swt\EBWebView\Default\Site Characteristics Database/MANIFEST-000001
 2025/05/26-21:33:29.666 3150 Recovering log #3
 2025/05/26-21:33:29.667 3150 Reusing old log F:\UITCode\CongNgheJava\eclipse-workspace\.metadata\.plugins\org.eclipse.swt\EBWebView\Default\Site Characteristics Database/000003.log 
+=======
+2025/05/24-12:54:06.257 1748 Reusing MANIFEST D:\UITCode\CongNgheJava\eclipse-workspace\.metadata\.plugins\org.eclipse.swt\EBWebView\Default\Site Characteristics Database/MANIFEST-000001
+2025/05/24-12:54:06.283 1748 Recovering log #3
+2025/05/24-12:54:06.283 1748 Reusing old log D:\UITCode\CongNgheJava\eclipse-workspace\.metadata\.plugins\org.eclipse.swt\EBWebView\Default\Site Characteristics Database/000003.log 
+>>>>>>> 65a54e08944861ff1f80ae013e37781eb014441b
