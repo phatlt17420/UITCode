@@ -132,7 +132,7 @@ public class SachDAO implements DAOInterface<Sach> {
 			// Bước 2: tạo đối tượng statement
 			Statement st = con.createStatement();
 			// Bước 3: thực thi câu lệnh SQL
-			String sql = "select * from Sach where id = '"+t.getId()+"'" ;
+			String sql = "select * from Sach where id = '" + t.getId() + "'";
 			System.out.println(sql);
 			ResultSet rs = st.executeQuery(sql);
 			// Bước 4: xử lý kết quả
@@ -142,7 +142,7 @@ public class SachDAO implements DAOInterface<Sach> {
 				double giaBan = rs.getFloat("giaBan");
 				int namXuatBan = rs.getInt("namXuatBan");
 				Sach sach = new Sach(id, tenSach, giaBan, namXuatBan);
-				ketQua= new Sach(id,tenSach,giaBan,namXuatBan);
+				ketQua = new Sach(id, tenSach, giaBan, namXuatBan);
 
 			}
 
@@ -157,8 +157,35 @@ public class SachDAO implements DAOInterface<Sach> {
 
 	@Override
 	public ArrayList<Sach> selectByCondition(String condition) {
-		// TODO Auto-generated method stub
-		return null;
+		ArrayList<Sach> ketQua= new ArrayList<Sach>();
+
+		try {
+			// Bước 1: tạo kết nối database
+			Connection con = JDBCUtil.getConnection();
+			// Bước 2: tạo đối tượng statement
+			Statement st = con.createStatement();
+			// Bước 3: thực thi câu lệnh SQL
+			String sql = "select * from Sach where " + condition ;
+			System.out.println(sql);
+			ResultSet rs = st.executeQuery(sql);
+			// Bước 4: xử lý kết quả
+			while (rs.next()) {
+				String id = rs.getString("id");
+				String tenSach = rs.getString("tenSach");
+				double giaBan = rs.getFloat("giaBan");
+				int namXuatBan = rs.getInt("namXuatBan");
+				Sach sach = new Sach(id, tenSach, giaBan, namXuatBan);
+				ketQua.add (sach);
+
+			}
+
+			// Bước 5: ngắt kết nối
+			JDBCUtil.closeConnection(con);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return ketQua;
 	}
 
 }

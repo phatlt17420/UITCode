@@ -18,5 +18,11 @@ public class TestSachDAO {
 		
 		System.out.println(sach2);
 		
+		System.out.println("----------------------------");
+		ArrayList<Sach> list2 = SachDAO.getInstance().selectByCondition("giaban > 2000");
+		for (Sach sach : list2) {
+			System.out.println(sach.toString());
+		}
+		
 	}
 }
