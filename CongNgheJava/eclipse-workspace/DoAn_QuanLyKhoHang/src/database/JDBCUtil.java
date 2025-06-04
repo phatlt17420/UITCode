@@ -32,16 +32,4 @@ public class JDBCUtil {
 		}
 	}
 
-	public static void printInfo (Connection c) {
-		try {
-			if (c!=null ) {
-				System.out.println(c.getMetaData().toString());
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-	
-	
 }

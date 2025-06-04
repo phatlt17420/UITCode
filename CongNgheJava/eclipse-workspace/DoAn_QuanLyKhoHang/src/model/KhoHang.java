@@ -38,4 +38,9 @@ public class KhoHang {
 		this.diaChi = diaChi;
 	}
 
+	@Override
+	public String toString() {
+		return "KhoHang [maKhoHang=" + maKhoHang + ", tenKhoHang=" + tenKhoHang + ", diaChi=" + diaChi + "]";
+	}
+
 }

@@ -1,15 +1,17 @@
 package model;
 
+import java.time.LocalDate;
+
 public class DonNhapHang {
 	private String maDonNhap;
-	private String ngayTao;
+	private LocalDate ngayTao;
 	private double tongGiaTri;
 
 	public DonNhapHang() {
 
 	}
 
-	public DonNhapHang(String maDonNhap, String ngayTao, double tongGiaTri) {
+	public DonNhapHang(String maDonNhap, LocalDate ngayTao, double tongGiaTri) {
 		this.maDonNhap = maDonNhap;
 		this.ngayTao = ngayTao;
 		this.tongGiaTri = tongGiaTri;
@@ -23,11 +25,11 @@ public class DonNhapHang {
 		this.maDonNhap = maDonNhap;
 	}
 
-	public String getNgayTao() {
+	public LocalDate getNgayTao() {
 		return ngayTao;
 	}
 
-	public void setNgayTao(String ngayTao) {
+	public void setNgayTao(LocalDate ngayTao) {
 		this.ngayTao = ngayTao;
 	}
 
