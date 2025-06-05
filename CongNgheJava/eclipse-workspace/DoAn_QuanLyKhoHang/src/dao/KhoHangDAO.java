@@ -74,14 +74,14 @@ public class KhoHangDAO implements DAOInterface<KhoHang> {
 		try {
 			// Bước 1: tạo connection
 			Connection conn = JDBCUtil.getConnection();
-			//Bước 2: tao câu lệnh SQL
+			// Bước 2: tao câu lệnh SQL
 			String sql = "DELETE FROM KhoHang WHERE maKhoHang = ?";
-			//Bước 3: tạo PreparedStatement
+			// Bước 3: tạo PreparedStatement
 			PreparedStatement pst = conn.prepareStatement(sql);
 			pst.setString(1, t.getMaKhoHang());
 			// Bước 4: thực thi + xứ lý kết quả
 			ketQua = pst.executeUpdate();
-			//Bước 5: Đóng connection
+			// Bước 5: Đóng connection
 			JDBCUtil.closeConnection(conn);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

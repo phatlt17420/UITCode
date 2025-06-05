@@ -1,5 +1,7 @@
 package model;
 
+import java.util.ArrayList;
+
 public class KhoHang {
 	private String maKhoHang;
 	private String tenKhoHang;
@@ -41,6 +43,20 @@ public class KhoHang {
 	@Override
 	public String toString() {
 		return "KhoHang [maKhoHang=" + maKhoHang + ", tenKhoHang=" + tenKhoHang + ", diaChi=" + diaChi + "]";
+	}
+
+	// hàm kiểm tra mã kho hàng đã tồn tại trong ArrayList chưa
+	public static boolean checkExit(ArrayList<KhoHang> list, String maKhoCanKiemTra) {
+		if (list == null || list.isEmpty()) {
+			return false; // Trả về false nếu danh sách rỗng hoặc null
+		}
+		for (KhoHang kho : list) {
+
+			if (kho.getMaKhoHang().equals(maKhoCanKiemTra)) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 }

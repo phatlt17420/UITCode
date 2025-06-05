@@ -9,6 +9,8 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
+
 import java.awt.Label;
 import java.awt.Font;
 import javax.swing.JButton;
@@ -25,6 +27,7 @@ import javax.swing.table.DefaultTableModel;
 
 import controller.QuanLyKhoHangController;
 import dao.KhoHangDAO;
+import database.JDBCUtil;
 import model.KhoHang;
 
 public class QuanLyKhoHangView extends JFrame {
@@ -32,9 +35,9 @@ public class QuanLyKhoHangView extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private CardLayout cardLayout;
-	private JTextField textField_KhoHang_maKhoHang;
-	private JTextField textField_KhoHang_tenKhoHang;
-	private JTextField textField_KhoHang_diaChi;
+	public JTextField textField_KhoHang_maKhoHang;
+	public JTextField textField_KhoHang_tenKhoHang;
+	public JTextField textField_KhoHang_diaChi;
 	private JTextField textField_5;
 	private JTextField textField_6;
 	private JTextField textField_7;
@@ -45,7 +48,7 @@ public class QuanLyKhoHangView extends JFrame {
 	private JTextField textField_12;
 	private JTextField textField_13;
 	private JTextField textField_14;
-	private JTable table_KhoHang;
+	public JTable table_KhoHang;
 	private JTable table_1;
 	private JTable table_2;
 
@@ -158,22 +161,30 @@ public class QuanLyKhoHangView extends JFrame {
 		panel_3.add(jButton_KhoHang_Insert);
 
 		JButton jButton_KhoHang_Edit = new JButton("Edit");
+		jButton_KhoHang_Edit.addActionListener(quanLyKhoHangController);
+		jButton_KhoHang_Edit.setActionCommand("KhoHang_Edit");
 		jButton_KhoHang_Edit.setFont(new Font("Segoe UI", Font.PLAIN, 18));
 		jButton_KhoHang_Edit.setBounds(237, 10, 152, 52);
 		panel_3.add(jButton_KhoHang_Edit);
 
 		JButton jButton_KhoHang_Delete = new JButton("Delete");
+		jButton_KhoHang_Delete.addActionListener(quanLyKhoHangController);
+		jButton_KhoHang_Delete.setActionCommand("KhoHang_Delete");
 		jButton_KhoHang_Delete.setFont(new Font("Segoe UI", Font.PLAIN, 18));
 		jButton_KhoHang_Delete.setBounds(417, 10, 152, 52);
 		panel_3.add(jButton_KhoHang_Delete);
 
 		JButton JButton_KhoHang_Save = new JButton("Save");
+		JButton_KhoHang_Save.addActionListener(quanLyKhoHangController);
+		JButton_KhoHang_Save.setActionCommand("KhoHang_Save");
 		JButton_KhoHang_Save.setFont(new Font("Segoe UI", Font.PLAIN, 18));
 		JButton_KhoHang_Save.setBackground(UIManager.getColor("Button.light"));
 		JButton_KhoHang_Save.setBounds(600, 10, 152, 52);
 		panel_3.add(JButton_KhoHang_Save);
 
 		JButton jButton_KhoHang_Cancel = new JButton("Cancel");
+		jButton_KhoHang_Cancel.addActionListener(quanLyKhoHangController);
+		jButton_KhoHang_Cancel.setActionCommand("KhoHang_Cancel");
 		jButton_KhoHang_Cancel.setFont(new Font("Segoe UI", Font.PLAIN, 18));
 		jButton_KhoHang_Cancel.setBounds(777, 10, 152, 52);
 		panel_3.add(jButton_KhoHang_Cancel);
@@ -455,5 +466,36 @@ public class QuanLyKhoHangView extends JFrame {
 		lblNewLabel_4_2.setBounds(442, 1, 93, 25);
 		window_XuatHang.add(lblNewLabel_4_2);
 		this.setVisible(true);
+	}
+// tạo phương thức show giúp cập nhật
+	public void showKhoHang() {
+		DefaultTableModel model_KhoHang=(DefaultTableModel) table_KhoHang.getModel();
+		int i_row = table_KhoHang.getSelectedRow();
+		String maKhoHang = model_KhoHang.getValueAt(i_row, 0).toString();
+        String tenKhoHang = model_KhoHang.getValueAt(i_row, 1).toString();
+        String diaChi = model_KhoHang.getValueAt(i_row, 2).toString();
+
+        // Đặt các giá trị này vào các JTextField tương ứng trong giao diện của bạn
+        this.textField_KhoHang_maKhoHang.setText(maKhoHang);
+        this.textField_KhoHang_tenKhoHang.setText(tenKhoHang);
+        this.textField_KhoHang_diaChi.setText(diaChi);	
+	}
+// tạo phương thức delete kho hàng
+	public void deleteKhoHang() {
+		DefaultTableModel model_KhoHang=(DefaultTableModel) table_KhoHang.getModel();
+		int i_row = table_KhoHang.getSelectedRow();
+		String maKhoHang = model_KhoHang.getValueAt(i_row, 0).toString();
+        String tenKhoHang = model_KhoHang.getValueAt(i_row, 1).toString();
+        String diaChi = model_KhoHang.getValueAt(i_row, 2).toString();
+        int luaChon = JOptionPane.showConfirmDialog(contentPane, "Bạn có chắc muốn xóa");
+        if (luaChon==JOptionPane.YES_OPTION) {
+            KhoHangDAO.getInstance().delete(new KhoHang(maKhoHang, tenKhoHang,diaChi));
+        }
+        
+        
+
+        
+		
+		
 	}
 }
