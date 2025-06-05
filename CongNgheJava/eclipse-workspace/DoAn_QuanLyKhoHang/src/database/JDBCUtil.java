@@ -11,11 +11,11 @@ public class JDBCUtil {
 		Connection c = null;
 		try {
 			DriverManager.registerDriver(new SQLServerDriver());
-			String connectionUrl = "jdbc:sqlserver://DESKTOP-SG\\SQLEXPRESS:1433;" + "databaseName=QuanLyKhoHang;"
+			String connectionUrl = "jdbc:sqlserver://LAPASUSTOP\\SQLEXPRESS:1433;" + "databaseName=QuanLyKhoHang;"
 					+ "user=sa;" + "password=sa";
 			c = DriverManager.getConnection(connectionUrl);
 		} catch (SQLException e) {
-			System.out.println("Lỗi kết nối SQL");
+			System.out.println("Lỗi kết nối Database");
 			e.printStackTrace();
 		}
 

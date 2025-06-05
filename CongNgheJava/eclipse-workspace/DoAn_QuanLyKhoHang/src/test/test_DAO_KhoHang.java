@@ -3,13 +3,12 @@ package test;
 import java.util.ArrayList;
 
 import dao.KhoHangDAO;
+import database.JDBCUtil;
 import model.KhoHang;
 
 public class test_DAO_KhoHang {
-public static void main(String[] args) {
-	ArrayList<KhoHang> list = KhoHangDAO.getInstance().selectAll();
-	for(KhoHang k:list) {
-		System.out.println(k);
+	public static void main(String[] args) {
+		KhoHang khoHang = new KhoHang("K03", "Kho 5", "Láng Hạ, Hồ Chí Minh");
+		KhoHangDAO.getInstance().delete(khoHang);
 	}
-}
 }

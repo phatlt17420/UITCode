@@ -23,6 +23,7 @@ import javax.swing.JSeparator;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
+import controller.QuanLyKhoHangController;
 import dao.KhoHangDAO;
 import model.KhoHang;
 
@@ -31,9 +32,9 @@ public class QuanLyKhoHangView extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private CardLayout cardLayout;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
+	private JTextField textField_KhoHang_maKhoHang;
+	private JTextField textField_KhoHang_tenKhoHang;
+	private JTextField textField_KhoHang_diaChi;
 	private JTextField textField_5;
 	private JTextField textField_6;
 	private JTextField textField_7;
@@ -69,7 +70,7 @@ public class QuanLyKhoHangView extends JFrame {
 	 */
 	public QuanLyKhoHangView() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
+		QuanLyKhoHangController quanLyKhoHangController = new QuanLyKhoHangController(this);
 		setBounds(100, 100, 1024, 768);
 
 		JMenuBar menuBar = new JMenuBar();
@@ -148,45 +149,42 @@ public class QuanLyKhoHangView extends JFrame {
 		panel_3.setBounds(0, 605, 1000, 72);
 		window_KhoHang.add(panel_3);
 
-		JButton jButton_Insert = new JButton("Insert");
-		jButton_Insert.setFont(new Font("Segoe UI", Font.PLAIN, 18));
-		jButton_Insert.setBackground(UIManager.getColor("Button.background"));
-		jButton_Insert.setBounds(61, 10, 152, 52);
-		panel_3.add(jButton_Insert);
+		JButton jButton_KhoHang_Insert = new JButton("Insert");
+		jButton_KhoHang_Insert.addActionListener(quanLyKhoHangController);
+		jButton_KhoHang_Insert.setActionCommand("KhoHang_Insert");
+		jButton_KhoHang_Insert.setFont(new Font("Segoe UI", Font.PLAIN, 18));
+		jButton_KhoHang_Insert.setBackground(UIManager.getColor("Button.background"));
+		jButton_KhoHang_Insert.setBounds(61, 10, 152, 52);
+		panel_3.add(jButton_KhoHang_Insert);
 
-		JButton jButton_Edit = new JButton("Edit");
-		jButton_Edit.setFont(new Font("Segoe UI", Font.PLAIN, 18));
-		jButton_Edit.setBounds(237, 10, 152, 52);
-		panel_3.add(jButton_Edit);
+		JButton jButton_KhoHang_Edit = new JButton("Edit");
+		jButton_KhoHang_Edit.setFont(new Font("Segoe UI", Font.PLAIN, 18));
+		jButton_KhoHang_Edit.setBounds(237, 10, 152, 52);
+		panel_3.add(jButton_KhoHang_Edit);
 
-		JButton jButton_Delete = new JButton("Delete");
-		jButton_Delete.setFont(new Font("Segoe UI", Font.PLAIN, 18));
-		jButton_Delete.setBounds(417, 10, 152, 52);
-		panel_3.add(jButton_Delete);
+		JButton jButton_KhoHang_Delete = new JButton("Delete");
+		jButton_KhoHang_Delete.setFont(new Font("Segoe UI", Font.PLAIN, 18));
+		jButton_KhoHang_Delete.setBounds(417, 10, 152, 52);
+		panel_3.add(jButton_KhoHang_Delete);
 
-		JButton JButton_Save = new JButton("Save");
-		JButton_Save.setFont(new Font("Segoe UI", Font.PLAIN, 18));
-		JButton_Save.setBackground(UIManager.getColor("Button.light"));
-		JButton_Save.setBounds(600, 10, 152, 52);
-		panel_3.add(JButton_Save);
+		JButton JButton_KhoHang_Save = new JButton("Save");
+		JButton_KhoHang_Save.setFont(new Font("Segoe UI", Font.PLAIN, 18));
+		JButton_KhoHang_Save.setBackground(UIManager.getColor("Button.light"));
+		JButton_KhoHang_Save.setBounds(600, 10, 152, 52);
+		panel_3.add(JButton_KhoHang_Save);
 
-		JButton jButton_Cancel = new JButton("Cancel");
-		jButton_Cancel.setFont(new Font("Segoe UI", Font.PLAIN, 18));
-		jButton_Cancel.setBounds(777, 10, 152, 52);
-		panel_3.add(jButton_Cancel);
+		JButton jButton_KhoHang_Cancel = new JButton("Cancel");
+		jButton_KhoHang_Cancel.setFont(new Font("Segoe UI", Font.PLAIN, 18));
+		jButton_KhoHang_Cancel.setBounds(777, 10, 152, 52);
+		panel_3.add(jButton_KhoHang_Cancel);
 
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(0, 36, 1000, 364);
 		window_KhoHang.add(scrollPane);
 
 		table_KhoHang = new JTable();
-		table_KhoHang.setModel(new DefaultTableModel(
-			new Object[][] {
-			},
-			new String[] {
-				"M\u00E3 kho h\u00E0ng", "T\u00EAn kho h\u00E0ng", "\u0110\u1ECBa ch\u1EC9"
-			}
-		));
+		table_KhoHang.setModel(new DefaultTableModel(new Object[][] {},
+				new String[] { "M\u00E3 kho h\u00E0ng", "T\u00EAn kho h\u00E0ng", "\u0110\u1ECBa ch\u1EC9" }));
 		table_KhoHang.getColumnModel().getColumn(0).setPreferredWidth(90);
 		table_KhoHang.getColumnModel().getColumn(1).setPreferredWidth(182);
 		table_KhoHang.getColumnModel().getColumn(2).setPreferredWidth(357);
@@ -203,33 +201,33 @@ public class QuanLyKhoHangView extends JFrame {
 		lblNewLabel.setBounds(0, 0, 145, 30);
 		panel_1_1.add(lblNewLabel);
 
-		textField = new JTextField();
-		textField.setFont(new Font("Segoe UI", Font.PLAIN, 18));
-		textField.setColumns(10);
-		textField.setBounds(136, 0, 329, 30);
-		panel_1_1.add(textField);
+		textField_KhoHang_maKhoHang = new JTextField();
+		textField_KhoHang_maKhoHang.setFont(new Font("Segoe UI", Font.PLAIN, 18));
+		textField_KhoHang_maKhoHang.setColumns(10);
+		textField_KhoHang_maKhoHang.setBounds(136, 0, 329, 30);
+		panel_1_1.add(textField_KhoHang_maKhoHang);
 
 		JLabel lblNewLabel_1 = new JLabel("Tên kho hàng:");
 		lblNewLabel_1.setFont(new Font("Segoe UI", Font.PLAIN, 18));
 		lblNewLabel_1.setBounds(0, 40, 145, 30);
 		panel_1_1.add(lblNewLabel_1);
 
-		textField_1 = new JTextField();
-		textField_1.setFont(new Font("Segoe UI", Font.PLAIN, 18));
-		textField_1.setColumns(10);
-		textField_1.setBounds(136, 40, 329, 30);
-		panel_1_1.add(textField_1);
+		textField_KhoHang_tenKhoHang = new JTextField();
+		textField_KhoHang_tenKhoHang.setFont(new Font("Segoe UI", Font.PLAIN, 18));
+		textField_KhoHang_tenKhoHang.setColumns(10);
+		textField_KhoHang_tenKhoHang.setBounds(136, 40, 329, 30);
+		panel_1_1.add(textField_KhoHang_tenKhoHang);
 
 		JLabel lblNewLabel_1_1 = new JLabel("Địa chỉ:");
 		lblNewLabel_1_1.setFont(new Font("Segoe UI", Font.PLAIN, 18));
 		lblNewLabel_1_1.setBounds(0, 80, 145, 30);
 		panel_1_1.add(lblNewLabel_1_1);
 
-		textField_2 = new JTextField();
-		textField_2.setFont(new Font("Segoe UI", Font.PLAIN, 18));
-		textField_2.setColumns(10);
-		textField_2.setBounds(136, 80, 329, 30);
-		panel_1_1.add(textField_2);
+		textField_KhoHang_diaChi = new JTextField();
+		textField_KhoHang_diaChi.setFont(new Font("Segoe UI", Font.PLAIN, 18));
+		textField_KhoHang_diaChi.setColumns(10);
+		textField_KhoHang_diaChi.setBounds(136, 80, 329, 30);
+		panel_1_1.add(textField_KhoHang_diaChi);
 
 		JLabel lblNewLabel_4 = new JLabel("Kho Hàng");
 		lblNewLabel_4.setFont(new Font("Segoe UI", Font.BOLD, 18));

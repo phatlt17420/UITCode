@@ -57,7 +57,7 @@ public class UserDAO implements DAOInterface<User> {
 			// Bước 2: tạo đối tượng statement
 			
 			// Bước 3: thực thi câu lệnh SQL
-			String sql = "update User set password = ?, hoVaTen= ?, where username=?";
+			String sql = "update User set password = ?, hoVaTen= ? where username=?";
 						
 			PreparedStatement pst = con.prepareStatement(sql);
 			pst.setString(1, t.getPassword());

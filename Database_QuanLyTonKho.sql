@@ -85,3 +85,8 @@ GO
 --KhoHang
 insert into KhoHang values ('K1','Kho 1',N'164 Ngô Gia Tự, Phường 16, QUận 8, Tp.HCM');
 insert into KhoHang values ('K2','Kho 2',N'169 Ngô Gia Tự, Phường 16, QUận 8, Tp.HCM');
+
+
+
+-----------------------------
+select* from KhoHang

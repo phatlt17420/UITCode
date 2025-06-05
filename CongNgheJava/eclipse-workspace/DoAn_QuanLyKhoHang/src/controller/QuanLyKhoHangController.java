@@ -14,7 +14,8 @@ public class QuanLyKhoHangController implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
+		String pressButton = e.getActionCommand();
+		System.out.println(pressButton);
 
 	}
 
