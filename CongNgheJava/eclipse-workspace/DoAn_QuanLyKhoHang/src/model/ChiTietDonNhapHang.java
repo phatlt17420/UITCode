@@ -1,25 +1,35 @@
 package model;
 
 public class ChiTietDonNhapHang {
-	private String maChiTietDonNhapHang;
+	private String maDonNhap;
+	private String maSanPham;
 	private double soLuong;
 	private double donGia;
 
 	public ChiTietDonNhapHang() {
 	}
 
-	public ChiTietDonNhapHang(String maChiTietDonNhapHang, double soLuong, double donGia) {
-		this.maChiTietDonNhapHang = maChiTietDonNhapHang;
+	public ChiTietDonNhapHang(String maDonNhap, String maSanPham, double soLuong, double donGia) {
+		this.maDonNhap = maDonNhap;
+		this.maSanPham = maSanPham;
 		this.soLuong = soLuong;
 		this.donGia = donGia;
 	}
 
-	public String getMaChiTietDonNhapHang() {
-		return maChiTietDonNhapHang;
+	public String getMaDonNhap() {
+		return maDonNhap;
 	}
 
-	public void setMaChiTietDonNhapHang(String maChiTietDonNhapHang) {
-		this.maChiTietDonNhapHang = maChiTietDonNhapHang;
+	public void setMaDonNhap(String maDonNhap) {
+		this.maDonNhap = maDonNhap;
+	}
+
+	public String getMaSanPham() {
+		return maSanPham;
+	}
+
+	public void setMaSanPham(String maSanPham) {
+		this.maSanPham = maSanPham;
 	}
 
 	public double getSoLuong() {
@@ -40,8 +50,8 @@ public class ChiTietDonNhapHang {
 
 	@Override
 	public String toString() {
-		return "ChiTietDonNhapHang [maChiTietDonNhapHang=" + maChiTietDonNhapHang + ", soLuong=" + soLuong + ", donGia="
-				+ donGia + "]";
+		return "ChiTietDonNhapHang [maDonNhap=" + maDonNhap + ", maSanPham=" + maSanPham + ", soLuong=" + soLuong
+				+ ", donGia=" + donGia + "]";
 	}
 
 }

@@ -4,16 +4,16 @@ import java.time.LocalDate;
 
 public class DonXuatHang {
 	private String maDonXuat;
+	private String tenNguoiMua;
 	private LocalDate ngayTao; // tạm thời sử dụng string ==> sau chuyển thành Date
 	private double tongGiaTri;
 
 	public DonXuatHang() {
-
 	}
 
-	public DonXuatHang(String maDonXuat, LocalDate ngayTao, double tongGiaTri) {
-
+	public DonXuatHang(String maDonXuat, String tenNguoiMua, LocalDate ngayTao, double tongGiaTri) {
 		this.maDonXuat = maDonXuat;
+		this.tenNguoiMua = tenNguoiMua;
 		this.ngayTao = ngayTao;
 		this.tongGiaTri = tongGiaTri;
 	}
@@ -24,6 +24,14 @@ public class DonXuatHang {
 
 	public void setMaDonXuat(String maDonXuat) {
 		this.maDonXuat = maDonXuat;
+	}
+
+	public String getTenNguoiMua() {
+		return tenNguoiMua;
+	}
+
+	public void setTenNguoiMua(String tenNguoiMua) {
+		this.tenNguoiMua = tenNguoiMua;
 	}
 
 	public LocalDate getNgayTao() {
@@ -44,7 +52,8 @@ public class DonXuatHang {
 
 	@Override
 	public String toString() {
-		return "DonXuatHang [maDonXuat=" + maDonXuat + ", ngayTao=" + ngayTao + ", tongGiaTri=" + tongGiaTri + "]";
+		return "DonXuatHang [maDonXuat=" + maDonXuat + ", tenNguoiMua=" + tenNguoiMua + ", ngayTao=" + ngayTao
+				+ ", tongGiaTri=" + tongGiaTri + "]";
 	}
 
 }

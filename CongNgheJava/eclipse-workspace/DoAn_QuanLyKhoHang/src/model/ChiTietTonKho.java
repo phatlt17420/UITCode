@@ -1,7 +1,6 @@
 package model;
 
 public class ChiTietTonKho {
-	private String maChiTietTonKho;
 	private String maSanPham;
 	private String maKhoHang;
 	private double soLuongTonKho;
@@ -9,19 +8,10 @@ public class ChiTietTonKho {
 	public ChiTietTonKho() {
 	}
 
-	public ChiTietTonKho(String maChiTietTonKho, String maSanPham, String maKhoHang, double soLuongTonKho) {
-		this.maChiTietTonKho = maChiTietTonKho;
+	public ChiTietTonKho(String maSanPham, String maKhoHang, double soLuongTonKho) {
 		this.maSanPham = maSanPham;
 		this.maKhoHang = maKhoHang;
 		this.soLuongTonKho = soLuongTonKho;
-	}
-
-	public String getMaChiTietTonKho() {
-		return maChiTietTonKho;
-	}
-
-	public void setMaChiTietTonKho(String maChiTietTonKho) {
-		this.maChiTietTonKho = maChiTietTonKho;
 	}
 
 	public String getMaSanPham() {
