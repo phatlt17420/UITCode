@@ -15,7 +15,7 @@ import dao.ChiTietDonXuatHangDAO;
 import dao.ChiTietTonKhoDAO;
 import dao.DonNhapHangDAO;
 import dao.DonXuatHangDAO;
-import dao.HangHoaTaiKhoHangDAO;
+
 import dao.KhoHangDAO;
 import dao.SanPhamDAO;
 import database.JDBCUtil;
@@ -150,7 +150,7 @@ public class QuanLyKhoHangController implements ActionListener {
 				// -------- 2. Nhập liệu SanPham vào DAtaBase----------//
 
 				for (ThongTinDonNhapHang nh : thongTinDonNhapHang) {
-					// kiểm tra mã đơn hàng đã tồn tại chưa
+					// kiểm tra mã sản phẩm đã tồn tại chưa
 					ArrayList<SanPham> listSanPhamDB = SanPhamDAO.getInstance().selectAll(); // lấy dữ liệu từ Database
 
 					String maSanPhamCanTim = nh.getDonNhapHang_maSanPham();
@@ -170,7 +170,8 @@ public class QuanLyKhoHangController implements ActionListener {
 						// chuyển đoạn sau sang dang show dialog hiện thông báo
 						System.out.println(
 								"Mã sản phẩm đã tồn tại. Không thêm mã sản phẩm" + maSanPhamCanTim + " vào Database");
-
+						JOptionPane.showMessageDialog(quanLyKhoHangView,
+								"Mã sản phẩm " + maSanPhamCanTim + " đã tồn tại.");
 					} else {
 						// không tìm thấy thì thêm vào Database
 						SanPhamDAO.getInstance()
@@ -179,7 +180,7 @@ public class QuanLyKhoHangController implements ActionListener {
 										nh.getDonNhapHang_chiTiet()));
 					}
 				}
-				// -------- 3. Nhập liệu Chi tiết đơn hàng vào DAtaBase----------//
+				// -------- 3. Nhập liệu Chi tiết đơn hàng vào DataBase----------//
 
 				// duyệt từng hàng trong table lấy dữ liệu chuyển vào database. dữ liệu đã được
 				// lưu trong thongTinDonNhapHang. còn mã đơn nhập thì trong textField
@@ -188,42 +189,45 @@ public class QuanLyKhoHangController implements ActionListener {
 							.insert(new ChiTietDonNhapHang(maDonNhap, ttdnh.getDonNhapHang_maSanPham(),
 									ttdnh.getDonNhapHang_soLuong(), ttdnh.getDonNhapHang_donGia()));
 				}
-				// 4. Update Chi tiết tồn kho
+				// ---------------4. Update Chi tiết tồn kho-----------------------------
 				for (ThongTinDonNhapHang ttdnh : thongTinDonNhapHang) {
-					// nếu mã sản phẩm và mã kho hàng có trong ChiTietTonKho rồi thì 
-					
-			        // Hai chuỗi bạn muốn kiểm tra
-			        String maSanPhamFind = ttdnh.getDonNhapHang_maSanPham().toString();
-			        String maKhoHangFind =  ttdnh.getDonNhapHang_maKhoHang().toString();
-double soLuongSanPham = ttdnh.getDonNhapHang_soLuong();
+					// nếu mã sản phẩm và mã kho hàng có trong ChiTietTonKho rồi thì
 
-			        boolean found = false; // Biến cờ để lưu kết quả
-			       ArrayList<ChiTietTonKho> listDSTonKho= ChiTietTonKhoDAO.getInstance().selectAll();
-			        for (ChiTietTonKho tonKho : listDSTonKho) {
-			            // Kiểm tra nếu ID của sản phẩm khớp VÀ Tên của sản phẩm cũng khớp
-			            if (tonKho.getMaSanPham().equals(maSanPhamFind) && tonKho.getMaKhoHang().equals(maKhoHang)) {
-			                found = true; // Đặt cờ thành true
-			                break;       // Tìm thấy, không cần duyệt tiếp, thoát vòng lặp
-			            }
-			        }
+					// Hai chuỗi bạn muốn kiểm tra
+					String maSanPhamFind = ttdnh.getDonNhapHang_maSanPham().toString();
+					String maKhoHangFind = ttdnh.getDonNhapHang_maKhoHang().toString();
+					String tenSanPhamind = SanPhamDAO.getInstance().getTenSanPhamByID(maSanPhamFind);
+					double soLuongSanPham = ttdnh.getDonNhapHang_soLuong();
 
-			        if (found) {
-			            // thực hiện + số lượng vào SoLuongTonKho
-			        	ChiTietTonKhoDAO.getInstance().update(maSanPhamFind, maKhoHangFind, soLuongSanPham);
-			        } else {
-			        	//nếu khồng tìm thấy thì thực hiện thêm vào bảng chi tiết tồn kho
-			            ChiTietTonKhoDAO.getInstance().insert(new ChiTietTonKho(maSanPhamFind, maKhoHangFind, soLuongSanPham));
-			        }
-					
+					boolean found = false; // Biến cờ để lưu kết quả
+					ArrayList<ChiTietTonKho> listDSTonKho = ChiTietTonKhoDAO.getInstance().selectAll();
+					for (ChiTietTonKho tonKho : listDSTonKho) {
+						// Kiểm tra nếu ID của sản phẩm khớp VÀ id của kho cũng khớp thì mới đưa vào
+						if (tonKho.getMaSanPham().equals(maSanPhamFind)
+								&& tonKho.getMaKhoHang().equals(maKhoHangFind)) {
+							found = true; // Đặt cờ thành true
+							break; // Tìm thấy, không cần duyệt tiếp, thoát vòng lặp
+						}
+					}
+
+					if (found) {
+						// thực hiện + số lượng vào SoLuongTonKho
+						ChiTietTonKhoDAO.getInstance().update(maSanPhamFind, maKhoHangFind, soLuongSanPham);
+					} else {
+						// nếu khồng tìm thấy thì thực hiện thêm vào bảng chi tiết tồn kho
+						ChiTietTonKhoDAO.getInstance()
+								.insert(new ChiTietTonKho(maKhoHangFind, maSanPhamFind, tenSanPhamind, soLuongSanPham));
+					}
+
 				}
 
 			}
 		} else if (pressButton.equals("HangHoa_KiemTraHang")) {
 			// viết truy vấn dữ liệu và tạo hiện lên table_HangHoa
-			ArrayList<HangHoaTaiKhoHang> listHangHoaTaiKhoHang = HangHoaTaiKhoHangDAO.getInstance()
+			ArrayList<ChiTietTonKho> listChiTietTonKho = ChiTietTonKhoDAO.getInstance()
 					.selectAll(quanLyKhoHangView.comboBox_ThongKeKhoHang_KhoHang.getSelectedItem().toString());
 			// cập nhật vào table Hàng hoá trong view. tạo hàm trong view
-			this.quanLyKhoHangView.showTable_HangHoa(listHangHoaTaiKhoHang);
+			this.quanLyKhoHangView.showTable_HangHoa(listChiTietTonKho);
 
 		} else if (pressButton.equals("HangHoa_ThemHangHoaVaoDonXuat")) {
 			// viết chức năng khi ấn thêm vào đơn xuất tại HangHoa.
@@ -231,37 +235,26 @@ double soLuongSanPham = ttdnh.getDonNhapHang_soLuong();
 			DefaultTableModel model_HangHoa = (DefaultTableModel) quanLyKhoHangView.table_HangHoa.getModel();
 			int i_row = quanLyKhoHangView.table_HangHoa.getSelectedRow();
 			String table_HangHoa_maKhoHang = model_HangHoa.getValueAt(i_row, 0).toString();
-			String table_HangHoa_maDonNhap = model_HangHoa.getValueAt(i_row, 1).toString();
+			String table_HangHoa_maSanPham = model_HangHoa.getValueAt(i_row, 1).toString();
 			String table_HangHoa_tenSanPham = model_HangHoa.getValueAt(i_row, 2).toString();
-			String table_HangHoa_maSanPham = model_HangHoa.getValueAt(i_row, 3).toString();
-			String table_HangHoa_tenLoaiSanPham = model_HangHoa.getValueAt(i_row, 4).toString();
-			String table_HangHoa_donViTinh = model_HangHoa.getValueAt(i_row, 5).toString();
-			String table_HangHoa_chiTiet = model_HangHoa.getValueAt(i_row, 6).toString();
-			double table_HangHoa_donGia = Double.parseDouble(quanLyKhoHangView.textField_HangHoa_donGiaXuat.getText());
-			double table_HangHoa_soLuong = Double
+			double table_HangHoa_soLuongXuatKho = Double
 					.parseDouble(quanLyKhoHangView.textField_HangHoa_soLuongXuat.getText());
-			LocalDate table_HangHoa_ngayTao = null;
-			String preNgayTao = model_HangHoa.getValueAt(i_row, 9).toString();
-
-			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-			try {
-				table_HangHoa_ngayTao = LocalDate.parse(preNgayTao, formatter);
-			} catch (DateTimeParseException e1) {
-				System.err.println("Lỗi định dạng ngày: " + e1.getMessage());
-				JOptionPane.showMessageDialog(quanLyKhoHangView,
-						"Ngày nhập không hợp lệ. Vui lòng nhập ngày theo định dạng dd/MM/yyyy.");
-			}
-			HangHoaTaiKhoHang itemAddVaoDonXuat = new HangHoaTaiKhoHang(table_HangHoa_maKhoHang,
-					table_HangHoa_maDonNhap, table_HangHoa_tenSanPham, table_HangHoa_maSanPham,
-					table_HangHoa_tenLoaiSanPham, table_HangHoa_donViTinh, table_HangHoa_chiTiet, table_HangHoa_donGia,
-					table_HangHoa_soLuong, table_HangHoa_ngayTao);
-			int luaChon = JOptionPane.showConfirmDialog(quanLyKhoHangView, "Bạn muốn chuyển: " + table_HangHoa_soLuong
-					+ table_HangHoa_tenSanPham + "với giá: " + table_HangHoa_donGia + "vào Đơn xuất");
+			double table_HangHoa_donGiaXuatKho = Double
+					.parseDouble(quanLyKhoHangView.textField_HangHoa_donGiaXuat.getText());
+			
+			
+			ThongTinDonXuatHang itemAddVaoDonXuat = new ThongTinDonXuatHang(table_HangHoa_maKhoHang, table_HangHoa_maSanPham, table_HangHoa_tenSanPham, table_HangHoa_soLuongXuatKho, table_HangHoa_donGiaXuatKho);
+			int luaChon = JOptionPane.showConfirmDialog(quanLyKhoHangView,
+					"Bạn muốn chuyển: " + table_HangHoa_soLuongXuatKho+" " + table_HangHoa_tenSanPham + "với giá: "
+							+ "vào Đơn xuất");
 			if (luaChon == JOptionPane.YES_OPTION) {
-				this.quanLyKhoHangView.addItemVaoDonXuat(itemAddVaoDonXuat, thongTinDonXuatHang);
+				thongTinDonXuatHang.add(itemAddVaoDonXuat);
+				this.quanLyKhoHangView.addItemVaoDonXuat(itemAddVaoDonXuat);
 			}
 
 		} else if (pressButton.equals("XuatHang_DuyetXuatHang")) {
+			/*
+			
 			// làm duyệt xuất hàng
 			// tính toán tổng giá trị đơn hàng
 			double tongGiaTriDonHang = 0;
@@ -308,6 +301,12 @@ double soLuongSanPham = ttdnh.getDonNhapHang_soLuong();
 
 			}
 
+			
+			
+			
+			
+			
+			*/
 		}
 
 	}

@@ -28,6 +28,7 @@ import javax.swing.table.DefaultTableModel;
 import controller.QuanLyKhoHangController;
 import dao.KhoHangDAO;
 import database.JDBCUtil;
+import model.ChiTietTonKho;
 import model.HangHoaTaiKhoHang;
 import model.KhoHang;
 import model.ThongTinDonNhapHang;
@@ -784,36 +785,32 @@ public class QuanLyKhoHangView extends JFrame {
 
 	}
 
-	public void showTable_HangHoa(ArrayList<HangHoaTaiKhoHang> listHangHoaTaiKhoHang) {
-		String[] columnName = { "Mã Kho Hàng", "Mã Đơn Nhập", "Tên Sản Phẩm", "Mã Sản Phẩm", "Tên Loại Sản Phẩm",
-				"Đơn vị tính", "Chi tiết", "Đơn giá", "Số lượng", "Ngày nhập" };
+	public void showTable_HangHoa(ArrayList<ChiTietTonKho> listChiTietTonKho) {
+		
+
+		
+		String[] columnName = { "Mã Kho Hàng", "Mã Sản Phẩm","Tên Sản Phẩm",  "Số lượng tồn kho" };
 		DefaultTableModel model_HangHoa = new DefaultTableModel(columnName, 0);
-		for (HangHoaTaiKhoHang hh : listHangHoaTaiKhoHang) {
-			model_HangHoa.addRow(new Object[] { hh.getMaKhoHang(), hh.getMaDonNhap(), hh.getTenSanPham(),
-					hh.getMaSanPham(), hh.getTenLoaiSanPham(), hh.getDonViTinh(), hh.getChiTiet(), hh.getDonGia(),
-					hh.getSoLuong(), hh.getNgayTao() });
+		for (ChiTietTonKho hh : listChiTietTonKho) {
+			model_HangHoa.addRow(new Object[] { hh.getMaKhoHang(), hh.getMaSanPham(), hh.getTenSanPHam(),
+										hh.getSoLuongTonKho() });
 		}
 		table_HangHoa.setModel(model_HangHoa);
 
 	}
 
-	public void addItemVaoDonXuat(HangHoaTaiKhoHang itemAddVaoDonXuat, ArrayList<ThongTinDonXuatHang> listDonXuatHang) {
+	public void addItemVaoDonXuat(ThongTinDonXuatHang item) {
 
-		String[] columnName = { "Mã Kho Hàng", "Mã Đơn Nhập", "Tên Sản Phẩm", "Mã Sản Phẩm", "Tên Loại Sản Phẩm",
-				"Đơn vị tính", "Chi tiết", "Đơn giá", "Số lượng", "Ngày nhập" };
+		String[] columnName = { "Mã Kho Hàng", "Mã Sản Phẩm","Tên Sản Phẩm",  "Số lượng xuất kho", "Đơn giá xuất kho" };
 		DefaultTableModel model_XuatHang = new DefaultTableModel(columnName, 0);
-		listDonXuatHang.add(new ThongTinDonXuatHang(itemAddVaoDonXuat.getMaKhoHang(), itemAddVaoDonXuat.getMaDonNhap(),
-				itemAddVaoDonXuat.getTenSanPham(), itemAddVaoDonXuat.getMaSanPham(),
-				itemAddVaoDonXuat.getTenLoaiSanPham(), itemAddVaoDonXuat.getDonViTinh(), itemAddVaoDonXuat.getChiTiet(),
-				itemAddVaoDonXuat.getDonGia(), itemAddVaoDonXuat.getSoLuong()));
 
-		for (ThongTinDonXuatHang k : listDonXuatHang) {
-			model_XuatHang.addRow(new Object[] { itemAddVaoDonXuat.getMaKhoHang(), itemAddVaoDonXuat.getMaDonNhap(),
-					itemAddVaoDonXuat.getTenSanPham(), itemAddVaoDonXuat.getMaSanPham(),
-					itemAddVaoDonXuat.getTenLoaiSanPham(), itemAddVaoDonXuat.getDonViTinh(),
-					itemAddVaoDonXuat.getChiTiet(), itemAddVaoDonXuat.getDonGia(), itemAddVaoDonXuat.getSoLuong(),
-					itemAddVaoDonXuat.getNgayTao() });
-		}
+		
+
+			model_XuatHang.addRow(new Object[] { item.getDonXuatHang_maKhoHang(), item.getDonXuatHang_maSanPham(),
+					item.getDonXuatHang_tenSanPham(), 					
+					 item.getDonXuatHang_soLuongXuatKho(),item.getDonXuatHang_donGia()
+					 });
+		
 
 		table_XuatHang.setModel(model_XuatHang);
 	}

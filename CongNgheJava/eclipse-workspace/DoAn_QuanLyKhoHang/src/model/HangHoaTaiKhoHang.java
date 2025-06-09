@@ -3,26 +3,22 @@ package model;
 import java.time.LocalDate;
 
 public class HangHoaTaiKhoHang {
-	private String maKhoHang, maDonNhap, TenSanPham, maSanPham, tenLoaiSanPham, donViTinh, chiTiet;
-	private double donGia;
-	private double soLuong;
-	private LocalDate NgayTao;
+	private String maKhoHang, maSanPham, tenSanPham, donViTinh;
+
+	private double soLuongTonKho;
 
 	public HangHoaTaiKhoHang() {
+
 	}
 
-	public HangHoaTaiKhoHang(String maKhoHang, String maDonNhap, String tenSanPham, String maSanPham,
-			String tenLoaiSanPham, String donViTinh, String chiTiet, double donGia, double soLuong, LocalDate ngayTao) {
+	public HangHoaTaiKhoHang(String maKhoHang, String maSanPham, String tenSanPham, String donViTinh,
+			double soLuongTonKho) {
+
 		this.maKhoHang = maKhoHang;
-		this.maDonNhap = maDonNhap;
-		TenSanPham = tenSanPham;
 		this.maSanPham = maSanPham;
-		this.tenLoaiSanPham = tenLoaiSanPham;
+		this.tenSanPham = tenSanPham;
 		this.donViTinh = donViTinh;
-		this.chiTiet = chiTiet;
-		this.donGia = donGia;
-		this.soLuong = soLuong;
-		NgayTao = ngayTao;
+		this.soLuongTonKho = soLuongTonKho;
 	}
 
 	public String getMaKhoHang() {
@@ -33,22 +29,6 @@ public class HangHoaTaiKhoHang {
 		this.maKhoHang = maKhoHang;
 	}
 
-	public String getMaDonNhap() {
-		return maDonNhap;
-	}
-
-	public void setMaDonNhap(String maDonNhap) {
-		this.maDonNhap = maDonNhap;
-	}
-
-	public String getTenSanPham() {
-		return TenSanPham;
-	}
-
-	public void setTenSanPham(String tenSanPham) {
-		TenSanPham = tenSanPham;
-	}
-
 	public String getMaSanPham() {
 		return maSanPham;
 	}
@@ -57,12 +37,12 @@ public class HangHoaTaiKhoHang {
 		this.maSanPham = maSanPham;
 	}
 
-	public String getTenLoaiSanPham() {
-		return tenLoaiSanPham;
+	public String getTenSanPham() {
+		return tenSanPham;
 	}
 
-	public void setTenLoaiSanPham(String tenLoaiSanPham) {
-		this.tenLoaiSanPham = tenLoaiSanPham;
+	public void setTenSanPham(String tenSanPham) {
+		this.tenSanPham = tenSanPham;
 	}
 
 	public String getDonViTinh() {
@@ -73,43 +53,19 @@ public class HangHoaTaiKhoHang {
 		this.donViTinh = donViTinh;
 	}
 
-	public String getChiTiet() {
-		return chiTiet;
+	public double getSoLuongTonKho() {
+		return soLuongTonKho;
 	}
 
-	public void setChiTiet(String chiTiet) {
-		this.chiTiet = chiTiet;
-	}
-
-	public double getDonGia() {
-		return donGia;
-	}
-
-	public void setDonGia(double donGia) {
-		this.donGia = donGia;
-	}
-
-	public double getSoLuong() {
-		return soLuong;
-	}
-
-	public void setSoLuong(double soLuong) {
-		this.soLuong = soLuong;
-	}
-
-	public LocalDate getNgayTao() {
-		return NgayTao;
-	}
-
-	public void setNgayTao(LocalDate ngayTao) {
-		NgayTao = ngayTao;
+	public void setSoLuongTonKho(double soLuongTonKho) {
+		this.soLuongTonKho = soLuongTonKho;
 	}
 
 	@Override
 	public String toString() {
-		return "HangHoaTaiKhoHang [maKhoHang=" + maKhoHang + ", maDonNhap=" + maDonNhap + ", TenSanPham=" + TenSanPham
-				+ ", maSanPham=" + maSanPham + ", tenLoaiSanPham=" + tenLoaiSanPham + ", donViTinh=" + donViTinh
-				+ ", chiTiet=" + chiTiet + ", donGia=" + donGia + ", soLuong=" + soLuong + ", NgayTao=" + NgayTao + "]";
+		return "HangHoaTaiKhoHang [maKhoHang=" + maKhoHang + ", maSanPham=" + maSanPham + ", tenSanPham=" + tenSanPham
+				+ ", donViTinh=" + donViTinh + ", soLuongTonKho=" + soLuongTonKho + "]";
 	}
+
 
 }

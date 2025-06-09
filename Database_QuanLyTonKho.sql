@@ -34,8 +34,10 @@ CREATE TABLE DonNhapHang (
 -- Tạo bảng ChiTietTonKho
 CREATE TABLE ChiTietTonKho (
     MaChiTietTonKho int not null identity(1,1) PRIMARY KEY,
+	MaKhoHang NVARCHAR(100) FOREIGN KEY REFERENCES KhoHang(MaKhoHang),
     MaSanPham NVARCHAR(100) FOREIGN KEY REFERENCES SanPham(MaSanPham),
-    MaKhoHang NVARCHAR(100) FOREIGN KEY REFERENCES KhoHang(MaKhoHang),
+	TenSanPham NVARCHAR(100),
+
     SoLuongTonKho float
 );
 
@@ -84,6 +86,9 @@ select* from DonNhapHang;
 select* from DonXuatHang;
 select* from SanPham;
 select* from ChiTietTonKho;
+delete from DonNhapHang where MaDonNhap='DN1'
+	SELECT MaKhoHang,MaSanPham,TenSanPham,SoLuongTonKho FROM ChiTietTonKho WHERE MaKhoHang = 'Kho HCM';
+	TRUNCATE TABLE KhoHang;
 select* from ChiTietDonNhapHang;
 select* from ChiTietDonXuatHang;
 ---------------------
@@ -125,3 +130,28 @@ GROUP BY
     ChiTiet
 ORDER BY 
     DonNhapHang.MaKhoHang;
+
+
+	-------------------------
+	SELECT
+    ChiTietTonKho.MaKhoHang,
+    DonNhapHang.MaDonNhap,
+    SanPham.TenSanPham,
+    SanPham.MaSanPham,
+    SanPham.TenLoaiSanPham,
+    SanPham.DonViTinh,
+   SanPham.ChiTiet,
+    ChiTietDonNhapHang.DonGia,
+    ChiTietDonNhapHang.SoLuong, -- Lưu ý: SoLuong này là từ ChiTietDonNhapHang, không phải SoLuongTonKho
+    DonNhapHang.NgayTao -- Lấy ngày tạo của đơn nhập hàng làm ngày nhập
+FROM
+    ChiTietTonKho
+JOIN
+    SanPham ON  ChiTietTonKho.MaSanPham = SanPham.MaSanPham
+JOIN
+    ChiTietDonNhapHang ON ChiTietTonKho.MaSanPham = ChiTietDonNhapHang.MaSanPham
+JOIN
+    DonNhapHang ON ChiTietDonNhapHang.MaDonNhap = DonNhapHang.MaDonNhap
+WHERE
+    ChiTietTonKho.MaKhoHang = 'Kho HCM';
+

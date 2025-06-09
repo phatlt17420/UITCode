@@ -2,31 +2,21 @@ package model;
 
 public class ThongTinDonXuatHang {
 	public String donXuatHang_maKhoHang;
-	public String donXuatHang_maDonXuat;
-	public String donXuatHang_tenSanPham;
 	public String donXuatHang_maSanPham;
-	public String donXuatHang_tenLoaiSanPham;
-	public String donXuatHang_donViTinh;
-	public String donXuatHang_chiTiet;
-	public double donXuatHang_soLuong;
+	public String donXuatHang_tenSanPham;
+	public double donXuatHang_soLuongXuatKho;
 	public double donXuatHang_donGia;
 
 	public ThongTinDonXuatHang() {
 
 	}
 
-	public ThongTinDonXuatHang(String donXuatHang_maKhoHang, String donXuatHang_maDonXuat,
-			String donXuatHang_tenSanPham, String donXuatHang_maSanPham, String donXuatHang_tenLoaiSanPham,
-			String donXuatHang_donViTinh, String donXuatHang_chiTiet, double donXuatHang_soLuong,
-			double donXuatHang_donGia) {
+	public ThongTinDonXuatHang(String donXuatHang_maKhoHang, String donXuatHang_maSanPham,
+			String donXuatHang_tenSanPham, double donXuatHang_soLuongXuatKho, double donXuatHang_donGia) {
 		this.donXuatHang_maKhoHang = donXuatHang_maKhoHang;
-		this.donXuatHang_maDonXuat = donXuatHang_maDonXuat;
-		this.donXuatHang_tenSanPham = donXuatHang_tenSanPham;
 		this.donXuatHang_maSanPham = donXuatHang_maSanPham;
-		this.donXuatHang_tenLoaiSanPham = donXuatHang_tenLoaiSanPham;
-		this.donXuatHang_donViTinh = donXuatHang_donViTinh;
-		this.donXuatHang_chiTiet = donXuatHang_chiTiet;
-		this.donXuatHang_soLuong = donXuatHang_soLuong;
+		this.donXuatHang_tenSanPham = donXuatHang_tenSanPham;
+		this.donXuatHang_soLuongXuatKho = donXuatHang_soLuongXuatKho;
 		this.donXuatHang_donGia = donXuatHang_donGia;
 	}
 
@@ -38,12 +28,12 @@ public class ThongTinDonXuatHang {
 		this.donXuatHang_maKhoHang = donXuatHang_maKhoHang;
 	}
 
-	public String getDonXuatHang_maDonXuat() {
-		return donXuatHang_maDonXuat;
+	public String getDonXuatHang_maSanPham() {
+		return donXuatHang_maSanPham;
 	}
 
-	public void setDonXuatHang_maDonXuat(String donXuatHang_maDonXuat) {
-		this.donXuatHang_maDonXuat = donXuatHang_maDonXuat;
+	public void setDonXuatHang_maSanPham(String donXuatHang_maSanPham) {
+		this.donXuatHang_maSanPham = donXuatHang_maSanPham;
 	}
 
 	public String getDonXuatHang_tenSanPham() {
@@ -54,44 +44,12 @@ public class ThongTinDonXuatHang {
 		this.donXuatHang_tenSanPham = donXuatHang_tenSanPham;
 	}
 
-	public String getDonXuatHang_maSanPham() {
-		return donXuatHang_maSanPham;
+	public double getDonXuatHang_soLuongXuatKho() {
+		return donXuatHang_soLuongXuatKho;
 	}
 
-	public void setDonXuatHang_maSanPham(String donXuatHang_maSanPham) {
-		this.donXuatHang_maSanPham = donXuatHang_maSanPham;
-	}
-
-	public String getDonXuatHang_tenLoaiSanPham() {
-		return donXuatHang_tenLoaiSanPham;
-	}
-
-	public void setDonXuatHang_tenLoaiSanPham(String donXuatHang_tenLoaiSanPham) {
-		this.donXuatHang_tenLoaiSanPham = donXuatHang_tenLoaiSanPham;
-	}
-
-	public String getDonXuatHang_donViTinh() {
-		return donXuatHang_donViTinh;
-	}
-
-	public void setDonXuatHang_donViTinh(String donXuatHang_donViTinh) {
-		this.donXuatHang_donViTinh = donXuatHang_donViTinh;
-	}
-
-	public String getDonXuatHang_chiTiet() {
-		return donXuatHang_chiTiet;
-	}
-
-	public void setDonXuatHang_chiTiet(String donXuatHang_chiTiet) {
-		this.donXuatHang_chiTiet = donXuatHang_chiTiet;
-	}
-
-	public double getDonXuatHang_soLuong() {
-		return donXuatHang_soLuong;
-	}
-
-	public void setDonXuatHang_soLuong(double donXuatHang_soLuong) {
-		this.donXuatHang_soLuong = donXuatHang_soLuong;
+	public void setDonXuatHang_soLuongXuatKho(double donXuatHang_soLuongXuatKho) {
+		this.donXuatHang_soLuongXuatKho = donXuatHang_soLuongXuatKho;
 	}
 
 	public double getDonXuatHang_donGia() {
@@ -104,12 +62,10 @@ public class ThongTinDonXuatHang {
 
 	@Override
 	public String toString() {
-		return "ThongTinDonXuatHang [donXuatHang_maKhoHang=" + donXuatHang_maKhoHang + ", donXuatHang_maDonXuat="
-				+ donXuatHang_maDonXuat + ", donXuatHang_tenSanPham=" + donXuatHang_tenSanPham
-				+ ", donXuatHang_maSanPham=" + donXuatHang_maSanPham + ", donXuatHang_tenLoaiSanPham="
-				+ donXuatHang_tenLoaiSanPham + ", donXuatHang_donViTinh=" + donXuatHang_donViTinh
-				+ ", donXuatHang_chiTiet=" + donXuatHang_chiTiet + ", donXuatHang_soLuong=" + donXuatHang_soLuong
-				+ ", donXuatHang_donGia=" + donXuatHang_donGia + "]";
+		return "ThongTinDonXuatHang [donXuatHang_maKhoHang=" + donXuatHang_maKhoHang + ", donXuatHang_maSanPham="
+				+ donXuatHang_maSanPham + ", donXuatHang_tenSanPham=" + donXuatHang_tenSanPham
+				+ ", donXuatHang_soLuongXuatKho=" + donXuatHang_soLuongXuatKho + ", donXuatHang_donGia="
+				+ donXuatHang_donGia + "]";
 	}
 
 	

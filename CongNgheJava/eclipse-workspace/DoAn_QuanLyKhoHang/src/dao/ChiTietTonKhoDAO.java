@@ -10,6 +10,7 @@ import java.util.ArrayList;
 
 import database.JDBCUtil;
 import model.ChiTietTonKho;
+import model.HangHoaTaiKhoHang;
 import model.SanPham;
 
 public class ChiTietTonKhoDAO implements DAOInterface<ChiTietTonKho> {
@@ -25,11 +26,12 @@ public class ChiTietTonKhoDAO implements DAOInterface<ChiTietTonKho> {
 			Connection conn = JDBCUtil.getConnection();
 
 			// Bước 2: câu lệnh SQL
-			String sql = "INSERT INTO ChiTietTonKho VALUES (?,?,?)";
+			String sql = "INSERT INTO ChiTietTonKho VALUES (?,?,?,?)";
 			PreparedStatement pst = conn.prepareStatement(sql);
-			pst.setString(1, t.getMaSanPham());
-			pst.setString(2, t.getMaKhoHang());
-			pst.setDouble(3, t.getSoLuongTonKho());
+			pst.setString(1, t.getMaKhoHang());
+			pst.setString(2, t.getMaSanPham());
+			pst.setString(3, t.getTenSanPHam());
+			pst.setDouble(4, t.getSoLuongTonKho());
 			// xử lý LocalDate để lưu vào SQL
 			ketQua = pst.executeUpdate();
 			// Bước 3: Thực thi SQL
@@ -72,8 +74,9 @@ public class ChiTietTonKhoDAO implements DAOInterface<ChiTietTonKho> {
 			while (rs.next()) {
 				String maSanPham = rs.getString("MaSanPham");
 				String maKhoHang = rs.getString("MaKhoHang");
+				String tenSanPham = rs.getString("TenSanPham");
 				double soLuongTonKho = rs.getDouble("SoLuongTonKho");
-				ChiTietTonKho tonKho = new ChiTietTonKho(maSanPham, maKhoHang, soLuongTonKho);
+				ChiTietTonKho tonKho = new ChiTietTonKho(maKhoHang, maSanPham, tenSanPham, soLuongTonKho);
 				list.add(tonKho);
 			}
 
@@ -86,6 +89,39 @@ public class ChiTietTonKhoDAO implements DAOInterface<ChiTietTonKho> {
 		return list;
 	}
 
+	public ArrayList<ChiTietTonKho> selectAll(String maKhoHangFind) {
+		ArrayList<ChiTietTonKho> listChiTietTonKho = new ArrayList<ChiTietTonKho>();
+		try {
+			// Bước 1: Tạo connection
+			Connection conn = JDBCUtil.getConnection();
+
+			// Bước 2: câu lệnh SQL
+			String sql = "SELECT MaKhoHang,MaSanPham,TenSanPham,SoLuongTonKho FROM ChiTietTonKho WHERE MaKhoHang = ?;";
+			PreparedStatement pst = conn.prepareStatement(sql);
+			pst.setString(1, maKhoHangFind);
+			// Bước 3: Thực thi SQL
+			ResultSet rs = pst.executeQuery();
+			// Bước 4: xử lý SQL
+			while (rs.next()) {
+
+				String maKhoHang = rs.getString("MaKhoHang");
+				String maSanPham = rs.getString("MaSanPham");
+				String tenSanPham = rs.getString("TenSanPham");
+				double soLuongTonKho = rs.getDouble("SoLuongTonKho");
+				ChiTietTonKho sp = new ChiTietTonKho(maSanPham, maKhoHang, tenSanPham, soLuongTonKho);
+				listChiTietTonKho.add(sp);
+
+			}
+
+			// Bước 5: close connection
+			JDBCUtil.closeConnection(conn);
+		} catch (SQLException e) {
+			System.out.println("Lỗi truy vấn SQL_DAO_KhoHang");
+			e.printStackTrace();
+		}
+		return listChiTietTonKho;
+	}
+
 	public void update(String maSanPhamFind, String maKhoHangFind, double soLuongSanPham) {
 
 		int ketQua;
@@ -94,7 +130,7 @@ public class ChiTietTonKhoDAO implements DAOInterface<ChiTietTonKho> {
 			Connection conn = JDBCUtil.getConnection();
 
 			// Bước 2: câu lệnh SQL
-			String sql = "UPDATE ChiTietKhoHang SET SoLuongTonKho =SoLuongTonKho + ? WHERE MaSanPham = ? and maKhoHang = ?";
+			String sql = "UPDATE ChiTietTonKho SET SoLuongTonKho =SoLuongTonKho + ? WHERE MaSanPham = ? and maKhoHang = ?";
 			PreparedStatement pst = conn.prepareStatement(sql);
 			pst.setDouble(1, soLuongSanPham);
 			pst.setString(2, maSanPhamFind);

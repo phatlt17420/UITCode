@@ -87,5 +87,25 @@ public class SanPhamDAO implements DAOInterface<SanPham> {
 		}
 		return list;
 	}
+	public String getTenSanPhamByID(String maSanPham) {
+		String tenSanPham="";
+		try {Connection conn = JDBCUtil.getConnection();
+        
+        String sql = "SELECT TenSanPham FROM SanPham WHERE MaSanPham = ?";
+        PreparedStatement pst = conn.prepareStatement(sql);
+        pst = conn.prepareStatement(sql);
+        pst.setString(1, maSanPham);
 
+      ResultSet rs = pst.executeQuery();
+
+        if (rs.next()) {
+            tenSanPham = rs.getString("TenSanPham");
+        }
+			JDBCUtil.closeConnection(conn);
+		} catch (SQLException e) {
+			System.out.println("Lỗi truy vấn getTenSanPhamByID");
+			e.printStackTrace();
+		}
+		return tenSanPham;
+	}
 }
