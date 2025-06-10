@@ -3,6 +3,8 @@ package dao;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -64,6 +66,30 @@ public class DonNhapHangDAO implements DAOInterface<DonNhapHang> {
 	public ArrayList<DonNhapHang> selectAll() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	public double getTongGiaTriDonNhap(LocalDate tuNgay, LocalDate denNgay) {
+		double tongGiaTriDonNhap = 0;
+		try {
+			Connection conn = JDBCUtil.getConnection();
+
+			String sql = "SELECT SUM(TongGiaTri) AS TONG FROM DonNhapHang WHERE NgayTao BETWEEN ? AND ?;";
+			PreparedStatement pst = conn.prepareStatement(sql);
+
+			pst.setDate(1, Date.valueOf(tuNgay));
+			pst.setDate(2, Date.valueOf(denNgay));
+			ResultSet rs = pst.executeQuery();
+
+			if (rs.next()) {
+				tongGiaTriDonNhap = rs.getDouble("TONG");
+			}
+			JDBCUtil.closeConnection(conn);
+		} catch (SQLException e) {
+			System.out.println("Lỗi truy vấn getTenSanPhamByID");
+			e.printStackTrace();
+		}
+
+		return tongGiaTriDonNhap;
 	}
 
 }

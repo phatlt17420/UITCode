@@ -86,7 +86,10 @@ select* from DonNhapHang;
 select* from DonXuatHang;
 select* from SanPham;
 select* from ChiTietTonKho;
-delete from DonNhapHang where MaDonNhap='DN1'
+select* from ChiTietDonXuatHang;
+
+--------------------------------------
+delete from DonXuatHang where MaDonXuat='DX1'
 	SELECT MaKhoHang,MaSanPham,TenSanPham,SoLuongTonKho FROM ChiTietTonKho WHERE MaKhoHang = 'Kho HCM';
 	TRUNCATE TABLE KhoHang;
 select* from ChiTietDonNhapHang;

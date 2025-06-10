@@ -7,6 +7,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -90,7 +91,7 @@ public class QuanLyKhoHangController implements ActionListener {
 			String maKhoHang = quanLyKhoHangView.comboBox_KhoHang.getSelectedItem().toString();
 			String maDonNhap = quanLyKhoHangView.textField_NhapHang_maDonNhap.getText();
 			String tenSanPham = quanLyKhoHangView.textField_NhapHang_tenSanPham.getText();
-			String maSanPham = quanLyKhoHangView.textField_NhapHang_maSanPham.getText();
+			String maSanPham = quanLyKhoHangView.textField_NhapHang_maSanPham.getText().toUpperCase();
 			String tenLoaiSanPham = quanLyKhoHangView.textField_NhapHang_loaiSanPham.getText();
 
 			String donViTinh = quanLyKhoHangView.textField_NhapHang_donViTinh.getText();
@@ -220,7 +221,7 @@ public class QuanLyKhoHangController implements ActionListener {
 					}
 
 				}
-
+				thongTinDonNhapHang.clear();
 			}
 		} else if (pressButton.equals("HangHoa_KiemTraHang")) {
 			// viết truy vấn dữ liệu và tạo hiện lên table_HangHoa
@@ -241,32 +242,31 @@ public class QuanLyKhoHangController implements ActionListener {
 					.parseDouble(quanLyKhoHangView.textField_HangHoa_soLuongXuat.getText());
 			double table_HangHoa_donGiaXuatKho = Double
 					.parseDouble(quanLyKhoHangView.textField_HangHoa_donGiaXuat.getText());
-			
-			
-			ThongTinDonXuatHang itemAddVaoDonXuat = new ThongTinDonXuatHang(table_HangHoa_maKhoHang, table_HangHoa_maSanPham, table_HangHoa_tenSanPham, table_HangHoa_soLuongXuatKho, table_HangHoa_donGiaXuatKho);
-			int luaChon = JOptionPane.showConfirmDialog(quanLyKhoHangView,
-					"Bạn muốn chuyển: " + table_HangHoa_soLuongXuatKho+" " + table_HangHoa_tenSanPham + "với giá: "
-							+ "vào Đơn xuất");
+
+			ThongTinDonXuatHang itemAddVaoDonXuat = new ThongTinDonXuatHang(table_HangHoa_maKhoHang,
+					table_HangHoa_maSanPham, table_HangHoa_tenSanPham, table_HangHoa_soLuongXuatKho,
+					table_HangHoa_donGiaXuatKho);
+			int luaChon = JOptionPane.showConfirmDialog(quanLyKhoHangView, "Bạn muốn chuyển: "
+					+ table_HangHoa_soLuongXuatKho + " " + table_HangHoa_tenSanPham + "với giá: " + "vào Đơn xuất");
 			if (luaChon == JOptionPane.YES_OPTION) {
-				thongTinDonXuatHang.add(itemAddVaoDonXuat);
-				this.quanLyKhoHangView.addItemVaoDonXuat(itemAddVaoDonXuat);
+				thongTinDonXuatHang.add(itemAddVaoDonXuat); // thêm vào model, ArrayList để lưu xử lý
+				this.quanLyKhoHangView.showThongTinDonXuatHang(thongTinDonXuatHang); // thêm vào giao diện
 			}
 
 		} else if (pressButton.equals("XuatHang_DuyetXuatHang")) {
-			/*
-			
+
 			// làm duyệt xuất hàng
 			// tính toán tổng giá trị đơn hàng
-			double tongGiaTriDonHang = 0;
+			double tongGiaTriDonHangXuat = 0;
 			for (ThongTinDonXuatHang k : thongTinDonXuatHang) {
-				tongGiaTriDonHang += (k.getDonXuatHang_donGia() * k.getDonXuatHang_soLuong());
+				tongGiaTriDonHangXuat += (k.getDonXuatHang_donGia() * k.getDonXuatHang_soLuongXuatKho());
 			}
 			// hiện thông tin lên để xác nhận
-			this.quanLyKhoHangView.JLabel_NhapHang_tongGiaTri.setText(tongGiaTriDonHang + "");
+			this.quanLyKhoHangView.JLabel_NhapHang_tongGiaTri.setText(tongGiaTriDonHangXuat + "");
 
 			// hiển thị thông tin để show bảng xác nhận
 			int luaChon = JOptionPane.showConfirmDialog(quanLyKhoHangView,
-					"Tổng giá trị Đơn hàng xuất: " + tongGiaTriDonHang + ". Bạn có muốn xuất đơn hàng?");
+					"Tổng giá trị Đơn hàng xuất: " + tongGiaTriDonHangXuat + ". Bạn có muốn xuất đơn hàng?");
 			if (luaChon == JOptionPane.YES_OPTION) {
 				// Cập nhật dữ liệu vào Database
 				// ------- 1. Nhập liệu Đơn Xuất Hàng vào DAtaBase--------//////
@@ -285,7 +285,7 @@ public class QuanLyKhoHangController implements ActionListener {
 							"Ngày nhập không hợp lệ. Vui lòng nhập ngày theo định dạng dd/MM/yyyy.");
 				}
 				DonXuatHangDAO.getInstance()
-						.insert(new DonXuatHang(maDonXuat, tenNguoiMua, ngayTao, tongGiaTriDonHang));
+						.insert(new DonXuatHang(maDonXuat, tenNguoiMua, ngayTao, tongGiaTriDonHangXuat));
 
 				// -------- 2. Nhập liệu Chi tiết đơn xuất hàng vào DAtaBase----------//
 
@@ -295,18 +295,53 @@ public class QuanLyKhoHangController implements ActionListener {
 
 					ChiTietDonXuatHangDAO.getInstance()
 							.insert(new ChiTietDonXuatHang(maDonXuat, ttdxh.getDonXuatHang_maSanPham(),
-									ttdxh.getDonXuatHang_soLuong(), ttdxh.getDonXuatHang_donGia()));
+									ttdxh.getDonXuatHang_soLuongXuatKho(), ttdxh.getDonXuatHang_donGia()));
 				}
-				// thực hiện giảm sản phẩm ở ChiTietDonNhapHang
+				// Thực hiện cập nhật ở ChiTietTonKho
+				for (ThongTinDonXuatHang ttdxh : thongTinDonXuatHang) {
+					// tìm mã kho và mã sản phẩm trung sau đó thực hiện điều chỉnh
+					ArrayList<ChiTietTonKho> listDSTonKho = ChiTietTonKhoDAO.getInstance().selectAll();
+					for (ChiTietTonKho tonKho : listDSTonKho) {
+						// Kiểm tra nếu ID của sản phẩm khớp VÀ id của kho cũng khớp thì mới đưa vào
+						if (tonKho.getMaSanPham().equals(ttdxh.getDonXuatHang_maSanPham())
+								&& tonKho.getMaKhoHang().equals(ttdxh.getDonXuatHang_maKhoHang())) {
 
+							ChiTietTonKhoDAO.getInstance().updateXuatKho(ttdxh.getDonXuatHang_maSanPham(), // hàm thực
+																											// hiện
+																											// update
+																											// xuat kho
+									ttdxh.getDonXuatHang_maKhoHang(), ttdxh.getDonXuatHang_soLuongXuatKho());
+						}
+					}
+				}
+				thongTinDonXuatHang.clear();
 			}
+		} else if (pressButton.equals("XuatHang_XoaSanPham")) {
+			this.quanLyKhoHangView.deleteTable_XuatHang(thongTinDonXuatHang);
+		} else if (pressButton.equals("ThongKe_ThongKe")) {
+			// lấy dự liệu ngày từ các textFields
+			String preTuNgay = quanLyKhoHangView.textField_ThongKe_tuNgay.getText();
+			LocalDate tuNgay = null;
+			String preDenNgay = quanLyKhoHangView.textField_ThongKe_denNgay.getText();
+			LocalDate denNgay = null;
 
-			
-			
-			
-			
-			
-			*/
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+			try {
+				tuNgay = LocalDate.parse(preTuNgay, formatter);
+				denNgay = LocalDate.parse(preDenNgay, formatter);
+			} catch (DateTimeParseException e1) {
+				System.err.println("Lỗi định dạng ngày: " + e1.getMessage());
+				JOptionPane.showMessageDialog(quanLyKhoHangView,
+						"Ngày nhập không hợp lệ. Vui lòng nhập ngày theo định dạng dd/MM/yyyy.");
+			}
+			double tongGiaTriNhapHang = DonNhapHangDAO.getInstance().getTongGiaTriDonNhap(tuNgay, denNgay);
+			double tongGiaTriXuatHang = DonXuatHangDAO.getInstance().getTongGiaTriDonXuat(tuNgay, denNgay);
+			double chenhLech = tongGiaTriXuatHang - tongGiaTriNhapHang;
+
+			quanLyKhoHangView.jLabel_ThongKe_GiaTriHangNhapKho.setText(String.format("%,.0f VND", tongGiaTriNhapHang));
+			quanLyKhoHangView.jLabel_ThongKe_GiaTriHangXuatKho.setText(String.format("%,.0f VND", tongGiaTriXuatHang));
+			quanLyKhoHangView.jLabel_ThongKe_ChenhLech.setText(String.format("%,.0f VND", chenhLech));
+
 		}
 
 	}

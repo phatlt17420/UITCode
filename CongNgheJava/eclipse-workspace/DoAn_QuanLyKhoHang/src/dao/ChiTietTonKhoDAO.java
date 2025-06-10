@@ -108,7 +108,7 @@ public class ChiTietTonKhoDAO implements DAOInterface<ChiTietTonKho> {
 				String maSanPham = rs.getString("MaSanPham");
 				String tenSanPham = rs.getString("TenSanPham");
 				double soLuongTonKho = rs.getDouble("SoLuongTonKho");
-				ChiTietTonKho sp = new ChiTietTonKho(maSanPham, maKhoHang, tenSanPham, soLuongTonKho);
+				ChiTietTonKho sp = new ChiTietTonKho(maKhoHang,maSanPham, tenSanPham, soLuongTonKho);
 				listChiTietTonKho.add(sp);
 
 			}
@@ -149,5 +149,31 @@ public class ChiTietTonKhoDAO implements DAOInterface<ChiTietTonKho> {
 		}
 
 	}
+	public void updateXuatKho(String maSanPhamFind, String maKhoHangFind, double soLuongSanPhamXuatKho) {
 
+		int ketQua;
+		try {
+			// Bước 1: Tạo connection
+			Connection conn = JDBCUtil.getConnection();
+
+			// Bước 2: câu lệnh SQL
+			String sql = "UPDATE ChiTietTonKho SET SoLuongTonKho =SoLuongTonKho - ? WHERE MaSanPham = ? and maKhoHang = ?";
+			PreparedStatement pst = conn.prepareStatement(sql);
+			pst.setDouble(1, soLuongSanPhamXuatKho);
+			pst.setString(2, maSanPhamFind);
+			pst.setString(3, maKhoHangFind);
+
+			ketQua = pst.executeUpdate();
+			// Bước 3: Thực thi SQL
+
+			// Bước 4: xử lý SQL
+
+			// Bước 5: close connection
+			JDBCUtil.closeConnection(conn);
+		} catch (Exception e) {
+			System.out.println("Lỗi truy vấn SQL_DAO chi tiet ton kho");
+			e.printStackTrace();
+		}
+
+	}
 }
