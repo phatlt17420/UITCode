@@ -83,8 +83,6 @@ public class QuanLyKhoHangController implements ActionListener {
 //				}
 //				quanLyKhoHangView.table_KhoHang.setModel(model);
 			}
-		} else if (pressButton.equals("KhoHang_Cancel")) {
-
 		} else if (pressButton.equals("NhapHang_themSP")) {
 
 			// thêm sản phẩm vào table_nhập hàng
@@ -246,8 +244,9 @@ public class QuanLyKhoHangController implements ActionListener {
 			ThongTinDonXuatHang itemAddVaoDonXuat = new ThongTinDonXuatHang(table_HangHoa_maKhoHang,
 					table_HangHoa_maSanPham, table_HangHoa_tenSanPham, table_HangHoa_soLuongXuatKho,
 					table_HangHoa_donGiaXuatKho);
-			int luaChon = JOptionPane.showConfirmDialog(quanLyKhoHangView, "Bạn muốn chuyển: "
-					+ table_HangHoa_soLuongXuatKho + " " + table_HangHoa_tenSanPham + "với giá: " + "vào Đơn xuất");
+			int luaChon = JOptionPane.showConfirmDialog(quanLyKhoHangView,
+					"Bạn muốn chuyển: " + table_HangHoa_soLuongXuatKho + " " + table_HangHoa_tenSanPham + " với giá: "
+							+ table_HangHoa_donGiaXuatKho + " vào Đơn xuất");
 			if (luaChon == JOptionPane.YES_OPTION) {
 				thongTinDonXuatHang.add(itemAddVaoDonXuat); // thêm vào model, ArrayList để lưu xử lý
 				this.quanLyKhoHangView.showThongTinDonXuatHang(thongTinDonXuatHang); // thêm vào giao diện
@@ -342,6 +341,11 @@ public class QuanLyKhoHangController implements ActionListener {
 			quanLyKhoHangView.jLabel_ThongKe_GiaTriHangXuatKho.setText(String.format("%,.0f VND", tongGiaTriXuatHang));
 			quanLyKhoHangView.jLabel_ThongKe_ChenhLech.setText(String.format("%,.0f VND", chenhLech));
 
+		} else if (pressButton.equals("jButton_XuatHang_HuyBo")) {
+			
+			DefaultTableModel model = (DefaultTableModel) quanLyKhoHangView.table_XuatHang.getModel();
+			model.setRowCount(0);
+			thongTinDonXuatHang.clear();
 		}
 
 	}

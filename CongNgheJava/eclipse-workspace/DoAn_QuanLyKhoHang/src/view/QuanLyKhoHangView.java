@@ -13,6 +13,9 @@ import javax.swing.JOptionPane;
 
 import java.awt.Label;
 import java.awt.Font;
+import java.awt.Image;
+
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.UIManager;
 import javax.swing.JScrollPane;
@@ -36,6 +39,8 @@ import model.ThongTinDonXuatHang;
 
 import javax.swing.JList;
 import javax.swing.JComboBox;
+import java.awt.SystemColor;
+import java.awt.Color;
 
 public class QuanLyKhoHangView extends JFrame {
 
@@ -96,16 +101,42 @@ public class QuanLyKhoHangView extends JFrame {
 	public QuanLyKhoHangView() {
 		this.setTitle("QUẢN LÝ KHO HÀNG");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setLocationRelativeTo(null);
 		QuanLyKhoHangController quanLyKhoHangController = new QuanLyKhoHangController(this);
-		setBounds(100, 100, 1024, 768);
+		setBounds(100, 100, 1024, 750);
 
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
 
-		JMenu Menu_File = new JMenu("File");
-		Menu_File.setFont(new Font("Segoe UI", Font.PLAIN, 18));
-		menuBar.add(Menu_File);
-
+		JMenu mnHThng = new JMenu("Hệ thống");
+		mnHThng.setFont(new Font("Segoe UI", Font.PLAIN, 18));
+		menuBar.add(mnHThng);
+//tạo các icon
+        ImageIcon buttonIcon = new ImageIcon(QuanLyKhoHangView.class.getResource("/icon/plus.png"));
+        Image scaledImage = buttonIcon.getImage().getScaledInstance(25, 25, Image.SCALE_SMOOTH);
+        ImageIcon addButtonIcon = new ImageIcon(scaledImage);
+		
+        ImageIcon buttonIcon1 = new ImageIcon(QuanLyKhoHangView.class.getResource("/icon/edit.png"));
+        Image scaledImage1 = buttonIcon1.getImage().getScaledInstance(25, 25, Image.SCALE_SMOOTH);
+        ImageIcon addButtonIcon1 = new ImageIcon(scaledImage1);
+		
+        ImageIcon buttonIcon2 = new ImageIcon(QuanLyKhoHangView.class.getResource("/icon/delete.png"));
+        Image scaledImage2 = buttonIcon2.getImage().getScaledInstance(25, 25, Image.SCALE_SMOOTH);
+        ImageIcon addButtonIcon2 = new ImageIcon(scaledImage2);
+        
+        ImageIcon buttonIcon3 = new ImageIcon(QuanLyKhoHangView.class.getResource("/icon/save.png"));
+        Image scaledImage3 = buttonIcon3.getImage().getScaledInstance(25, 25, Image.SCALE_SMOOTH);
+        ImageIcon addButtonIcon3 = new ImageIcon(scaledImage3);
+        
+        ImageIcon buttonIcon4 = new ImageIcon(QuanLyKhoHangView.class.getResource("/icon/check.png"));
+        Image scaledImage4 = buttonIcon4.getImage().getScaledInstance(25, 25, Image.SCALE_SMOOTH);
+        ImageIcon addButtonIcon4 = new ImageIcon(scaledImage4);
+        
+        ImageIcon buttonIcon5 = new ImageIcon(QuanLyKhoHangView.class.getResource("/icon/analytics.png"));
+        Image scaledImage5 = buttonIcon5.getImage().getScaledInstance(25, 25, Image.SCALE_SMOOTH);
+        ImageIcon addButtonIcon5 = new ImageIcon(scaledImage5);
+        
+		//---------------------------
 		JMenuItem Menu_File_KhoHang = new JMenuItem("Kho Hàng");
 		Menu_File_KhoHang.setFont(new Font("Segoe UI", Font.PLAIN, 18));
 		Menu_File_KhoHang.addActionListener(new ActionListener() {
@@ -124,7 +155,7 @@ public class QuanLyKhoHangView extends JFrame {
 				table_KhoHang.setModel(model);
 			}
 		});
-		Menu_File.add(Menu_File_KhoHang);
+		mnHThng.add(Menu_File_KhoHang);
 
 		JMenuItem mntmNewMenuItem_1 = new JMenuItem("Nhập Hàng");
 		mntmNewMenuItem_1.setFont(new Font("Segoe UI", Font.PLAIN, 18));
@@ -141,8 +172,8 @@ public class QuanLyKhoHangView extends JFrame {
 		});
 
 		JSeparator separator = new JSeparator();
-		Menu_File.add(separator);
-		Menu_File.add(mntmNewMenuItem_1);
+		mnHThng.add(separator);
+		mnHThng.add(mntmNewMenuItem_1);
 
 		JMenuItem mntmNewMenuItem_2 = new JMenuItem("Xuất Hàng");
 		mntmNewMenuItem_2.setFont(new Font("Segoe UI", Font.PLAIN, 18));
@@ -168,33 +199,35 @@ public class QuanLyKhoHangView extends JFrame {
 			}
 		});
 		mntmNewMenuItem.setFont(new Font("Segoe UI", Font.PLAIN, 18));
-		Menu_File.add(mntmNewMenuItem);
-		Menu_File.add(mntmNewMenuItem_2);
+		mnHThng.add(mntmNewMenuItem);
+		mnHThng.add(mntmNewMenuItem_2);
 
 		JSeparator separator_1 = new JSeparator();
-		Menu_File.add(separator_1);
+		mnHThng.add(separator_1);
 
 		JMenuItem mntmNewMenuItem_3 = new JMenuItem("Thu-Chi");
 		mntmNewMenuItem_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				cardLayout.show(contentPane, "name_362929623415800");
-				
-				
-				
-				
+
 			}
 		});
 
 		mntmNewMenuItem_3.setFont(new Font("Segoe UI", Font.PLAIN, 18));
-		Menu_File.add(mntmNewMenuItem_3);
+		mnHThng.add(mntmNewMenuItem_3);
 
 		JSeparator separator_2 = new JSeparator();
-		Menu_File.add(separator_2);
+		mnHThng.add(separator_2);
 
 		JMenuItem mntmNewMenuItem_4 = new JMenuItem("Exit");
-		
+		mntmNewMenuItem_4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.exit(0);
+			}
+		});
+
 		mntmNewMenuItem_4.setFont(new Font("Segoe UI", Font.PLAIN, 18));
-		Menu_File.add(mntmNewMenuItem_4);
+		mnHThng.add(mntmNewMenuItem_4);
 		cardLayout = new CardLayout();
 		contentPane = new JPanel(cardLayout);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -207,58 +240,58 @@ public class QuanLyKhoHangView extends JFrame {
 
 		JPanel panel_3 = new JPanel();
 		panel_3.setLayout(null);
-		panel_3.setBounds(0, 605, 1000, 72);
+		panel_3.setBounds(0, 541, 1000, 72);
 		window_KhoHang.add(panel_3);
 
 		JButton jButton_KhoHang_Insert = new JButton("Thêm");
+//-----------------------------------------------------------
+
+		// Gán icon đã thay đổi kích thước cho JButton
+		jButton_KhoHang_Insert.setIcon(addButtonIcon);
+
+		// ----------------------------------------------------
 		jButton_KhoHang_Insert.addActionListener(quanLyKhoHangController);
 		jButton_KhoHang_Insert.setActionCommand("KhoHang_Insert");
 		jButton_KhoHang_Insert.setFont(new Font("Segoe UI", Font.PLAIN, 18));
 		jButton_KhoHang_Insert.setBackground(UIManager.getColor("Button.background"));
-		jButton_KhoHang_Insert.setBounds(61, 10, 152, 52);
+		jButton_KhoHang_Insert.setBounds(163, 10, 152, 52);
 		panel_3.add(jButton_KhoHang_Insert);
 
 		JButton jButton_KhoHang_Edit = new JButton("Sửa");
+		jButton_KhoHang_Edit.setIcon(addButtonIcon1);
 		jButton_KhoHang_Edit.addActionListener(quanLyKhoHangController);
 		jButton_KhoHang_Edit.setActionCommand("KhoHang_Edit");
 		jButton_KhoHang_Edit.setFont(new Font("Segoe UI", Font.PLAIN, 18));
-		jButton_KhoHang_Edit.setBounds(237, 10, 152, 52);
+		jButton_KhoHang_Edit.setBounds(339, 10, 152, 52);
 		panel_3.add(jButton_KhoHang_Edit);
 
 		JButton jButton_KhoHang_Delete = new JButton("Xoá");
+		jButton_KhoHang_Delete.setIcon(addButtonIcon2);
+		
 		jButton_KhoHang_Delete.addActionListener(quanLyKhoHangController);
 		jButton_KhoHang_Delete.setActionCommand("KhoHang_Delete");
 		jButton_KhoHang_Delete.setFont(new Font("Segoe UI", Font.PLAIN, 18));
-		jButton_KhoHang_Delete.setBounds(417, 10, 152, 52);
+		jButton_KhoHang_Delete.setBounds(519, 10, 152, 52);
 		panel_3.add(jButton_KhoHang_Delete);
 
 		JButton JButton_KhoHang_Save = new JButton("Lưu");
+		JButton_KhoHang_Save.setIcon(addButtonIcon3);
 		JButton_KhoHang_Save.addActionListener(quanLyKhoHangController);
 		JButton_KhoHang_Save.setActionCommand("KhoHang_Save");
 		JButton_KhoHang_Save.setFont(new Font("Segoe UI", Font.PLAIN, 18));
 		JButton_KhoHang_Save.setBackground(UIManager.getColor("Button.light"));
-		JButton_KhoHang_Save.setBounds(600, 10, 152, 52);
+		JButton_KhoHang_Save.setBounds(702, 10, 152, 52);
 		panel_3.add(JButton_KhoHang_Save);
 
-		JButton jButton_KhoHang_Cancel = new JButton("Huỷ bỏ");
-		jButton_KhoHang_Cancel.addActionListener(quanLyKhoHangController);
-		jButton_KhoHang_Cancel.setActionCommand("KhoHang_Cancel");
-		jButton_KhoHang_Cancel.setFont(new Font("Segoe UI", Font.PLAIN, 18));
-		jButton_KhoHang_Cancel.setBounds(777, 10, 152, 52);
-		panel_3.add(jButton_KhoHang_Cancel);
 
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(0, 95, 1000, 305);
 		window_KhoHang.add(scrollPane);
 
 		table_KhoHang = new JTable();
+		table_KhoHang.setRowHeight(30);
 		table_KhoHang.setFont(new Font("Segoe UI", Font.PLAIN, 18));
-		table_KhoHang.setModel(new DefaultTableModel(
-			new Object[][] {
-			},
-			new String[] {
-			}
-		));
+		table_KhoHang.setModel(new DefaultTableModel(new Object[][] {}, new String[] {}));
 		scrollPane.setViewportView(table_KhoHang);
 
 		JPanel panel_1_1 = new JPanel();
@@ -318,26 +351,17 @@ public class QuanLyKhoHangView extends JFrame {
 		JButton_NhapHang_Save.setActionCommand("NhapHang_Save");
 		JButton_NhapHang_Save.setFont(new Font("Segoe UI", Font.PLAIN, 18));
 		JButton_NhapHang_Save.setBackground(UIManager.getColor("Button.light"));
-		JButton_NhapHang_Save.setBounds(289, 10, 187, 52);
+		JButton_NhapHang_Save.setBounds(401, 10, 187, 52);
 		panel_3_1.add(JButton_NhapHang_Save);
-
-		JButton jButton_NhapHang_Cancel = new JButton("Huỷ bỏ");
-		jButton_NhapHang_Cancel.setFont(new Font("Segoe UI", Font.PLAIN, 18));
-		jButton_NhapHang_Cancel.setBounds(512, 10, 187, 52);
-		panel_3_1.add(jButton_NhapHang_Cancel);
 
 		JScrollPane scrollPane_1 = new JScrollPane();
 		scrollPane_1.setBounds(0, 145, 1000, 255);
 		window_NhapHang.add(scrollPane_1);
 
 		table_NhapHang = new JTable();
+		table_NhapHang.setRowHeight(30);
 		table_NhapHang.setFont(new Font("Segoe UI", Font.PLAIN, 18));
-		table_NhapHang.setModel(new DefaultTableModel(
-			new Object[][] {
-			},
-			new String[] {
-			}
-		));
+		table_NhapHang.setModel(new DefaultTableModel(new Object[][] {}, new String[] {}));
 		scrollPane_1.setViewportView(table_NhapHang);
 
 		JPanel panel_1_1_1 = new JPanel();
@@ -412,6 +436,7 @@ public class QuanLyKhoHangView extends JFrame {
 		panel_1_1_1.add(textField_NhapHang_loaiSanPham);
 
 		JButton jButton_themSP = new JButton("Thêm SP");
+		jButton_themSP.setIcon(addButtonIcon);
 		jButton_themSP.addActionListener(quanLyKhoHangController);
 		jButton_themSP.setActionCommand("NhapHang_themSP");
 		jButton_themSP.setFont(new Font("Segoe UI", Font.PLAIN, 18));
@@ -420,6 +445,7 @@ public class QuanLyKhoHangView extends JFrame {
 		panel_1_1_1.add(jButton_themSP);
 
 		JButton jButton_xoaSP = new JButton("Xóa SP");
+		jButton_xoaSP.setIcon(addButtonIcon2);
 		jButton_xoaSP.addActionListener(quanLyKhoHangController);
 		jButton_xoaSP.setActionCommand("NhapHang_xoaSP");
 		jButton_xoaSP.setFont(new Font("Segoe UI", Font.PLAIN, 18));
@@ -518,12 +544,10 @@ public class QuanLyKhoHangView extends JFrame {
 		JButton_Save_2.setBackground(UIManager.getColor("Button.light"));
 		JButton_Save_2.setBounds(246, 10, 228, 52);
 		panel_3_2.add(JButton_Save_2);
-		
+
 		JButton JButton_Save_2_1 = new JButton("Huỷ bỏ");
-		JButton_Save_2_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
+		JButton_Save_2_1.addActionListener(quanLyKhoHangController);
+		JButton_Save_2_1.setActionCommand("jButton_XuatHang_HuyBo");
 		JButton_Save_2_1.setFont(new Font("Segoe UI", Font.PLAIN, 18));
 		JButton_Save_2_1.setBackground(UIManager.getColor("Button.light"));
 		JButton_Save_2_1.setBounds(507, 10, 228, 52);
@@ -534,6 +558,7 @@ public class QuanLyKhoHangView extends JFrame {
 		window_XuatHang.add(scrollPane_2);
 
 		table_XuatHang = new JTable();
+		table_XuatHang.setRowHeight(30);
 		table_XuatHang.setFont(new Font("Segoe UI", Font.PLAIN, 18));
 		table_XuatHang.setModel(new DefaultTableModel(new Object[][] { {}, {}, }, new String[] {}));
 		scrollPane_2.setViewportView(table_XuatHang);
@@ -543,22 +568,18 @@ public class QuanLyKhoHangView extends JFrame {
 		panel_1_1_2.setBounds(10, 523, 998, 72);
 		window_XuatHang.add(panel_1_1_2);
 
+		JButton jButton_XuatHang_XoaSanPham = new JButton("Xoá sản phẩm");
+		jButton_XuatHang_XoaSanPham.setIcon(addButtonIcon2);
+		jButton_XuatHang_XoaSanPham.addActionListener(quanLyKhoHangController);
+		jButton_XuatHang_XoaSanPham.setActionCommand("XuatHang_XoaSanPham");
+		jButton_XuatHang_XoaSanPham.setBounds(770, 10, 189, 52);
+		panel_1_1_2.add(jButton_XuatHang_XoaSanPham);
 
-		
+		jButton_XuatHang_XoaSanPham.setFont(new Font("Segoe UI", Font.PLAIN, 18));
 
-		
-				JButton jButton_XuatHang_XoaSanPham = new JButton("Xoá sản phẩm");
-				jButton_XuatHang_XoaSanPham.addActionListener(quanLyKhoHangController);
-				jButton_XuatHang_XoaSanPham.setActionCommand("XuatHang_XoaSanPham");
-				jButton_XuatHang_XoaSanPham.setBounds(807, 10, 152, 52);
-				panel_1_1_2.add(jButton_XuatHang_XoaSanPham);
-
-
-				jButton_XuatHang_XoaSanPham.setFont(new Font("Segoe UI", Font.PLAIN, 18));
-
-		JLabel lblNewLabel_4_2 = new JLabel("Xuất Hàng");
+		JLabel lblNewLabel_4_2 = new JLabel("ĐƠN XUẤT HÀNG");
 		lblNewLabel_4_2.setFont(new Font("Segoe UI", Font.BOLD, 18));
-		lblNewLabel_4_2.setBounds(442, 1, 93, 25);
+		lblNewLabel_4_2.setBounds(426, 1, 171, 25);
 		window_XuatHang.add(lblNewLabel_4_2);
 
 		JPanel panel_2_1 = new JPanel();
@@ -604,44 +625,40 @@ public class QuanLyKhoHangView extends JFrame {
 		contentPane.add(window_HangHoaTaiKhoHang, "name_58824523322500");
 
 		JScrollPane scrollPane_1_1 = new JScrollPane();
-		scrollPane_1_1.setBounds(0, 145, 1000, 411);
+		scrollPane_1_1.setBounds(0, 145, 1000, 356);
 		window_HangHoaTaiKhoHang.add(scrollPane_1_1);
 
 		table_HangHoa = new JTable();
+		table_HangHoa.setRowHeight(30);
 		table_HangHoa.setFont(new Font("Segoe UI", Font.PLAIN, 18));
-		table_HangHoa.setModel(new DefaultTableModel(
-			new Object[][] {
-			},
-			new String[] {
-			}
-		));
+		table_HangHoa.setModel(new DefaultTableModel(new Object[][] {}, new String[] {}));
 		scrollPane_1_1.setViewportView(table_HangHoa);
 
 		JPanel panel_1_1_1_1 = new JPanel();
 		panel_1_1_1_1.setLayout(null);
-		panel_1_1_1_1.setBounds(10, 563, 990, 117);
+		panel_1_1_1_1.setBounds(10, 508, 990, 100);
 		window_HangHoaTaiKhoHang.add(panel_1_1_1_1);
 
 		JLabel lblNewLabel_1_2_1_2 = new JLabel("Số lượng xuất: ");
 		lblNewLabel_1_2_1_2.setFont(new Font("Segoe UI", Font.BOLD, 18));
-		lblNewLabel_1_2_1_2.setBounds(250, 30, 145, 30);
+		lblNewLabel_1_2_1_2.setBounds(250, 10, 145, 30);
 		panel_1_1_1_1.add(lblNewLabel_1_2_1_2);
 
 		textField_HangHoa_soLuongXuat = new JTextField();
 		textField_HangHoa_soLuongXuat.setFont(new Font("Segoe UI", Font.PLAIN, 18));
 		textField_HangHoa_soLuongXuat.setColumns(10);
-		textField_HangHoa_soLuongXuat.setBounds(386, 30, 329, 30);
+		textField_HangHoa_soLuongXuat.setBounds(386, 10, 329, 30);
 		panel_1_1_1_1.add(textField_HangHoa_soLuongXuat);
 
 		JLabel lblNewLabel_1_2_1_1_2 = new JLabel("Đơn giá xuất:");
 		lblNewLabel_1_2_1_1_2.setFont(new Font("Segoe UI", Font.BOLD, 18));
-		lblNewLabel_1_2_1_1_2.setBounds(250, 70, 145, 30);
+		lblNewLabel_1_2_1_1_2.setBounds(250, 50, 145, 30);
 		panel_1_1_1_1.add(lblNewLabel_1_2_1_1_2);
 
 		textField_HangHoa_donGiaXuat = new JTextField();
 		textField_HangHoa_donGiaXuat.setFont(new Font("Segoe UI", Font.PLAIN, 18));
 		textField_HangHoa_donGiaXuat.setColumns(10);
-		textField_HangHoa_donGiaXuat.setBounds(386, 70, 329, 30);
+		textField_HangHoa_donGiaXuat.setBounds(386, 50, 329, 30);
 		panel_1_1_1_1.add(textField_HangHoa_donGiaXuat);
 
 		JLabel JLabel_NhapHang_tongGiaTri_1 = new JLabel("");
@@ -650,11 +667,12 @@ public class QuanLyKhoHangView extends JFrame {
 		panel_1_1_1_1.add(JLabel_NhapHang_tongGiaTri_1);
 
 		JButton jButton_HangHoa_ThemVaoDonXuat = new JButton("Thêm vào Đơn xuất");
+		jButton_HangHoa_ThemVaoDonXuat.setIcon(addButtonIcon);
 		jButton_HangHoa_ThemVaoDonXuat.addActionListener(quanLyKhoHangController);
 		jButton_HangHoa_ThemVaoDonXuat.setActionCommand("HangHoa_ThemHangHoaVaoDonXuat");
 		jButton_HangHoa_ThemVaoDonXuat.setFont(new Font("Segoe UI", Font.PLAIN, 18));
 		jButton_HangHoa_ThemVaoDonXuat.setBackground(UIManager.getColor("Button.background"));
-		jButton_HangHoa_ThemVaoDonXuat.setBounds(762, 34, 218, 52);
+		jButton_HangHoa_ThemVaoDonXuat.setBounds(746, 14, 234, 52);
 		panel_1_1_1_1.add(jButton_HangHoa_ThemVaoDonXuat);
 
 		JLabel lblNewLabel_4_1_1 = new JLabel("HÀNG HOÁ TẠI CÁC KHO");
@@ -678,87 +696,92 @@ public class QuanLyKhoHangView extends JFrame {
 		panel_1.add(comboBox_ThongKeKhoHang_KhoHang);
 
 		JButton jButton_HangHoa_KiemTraHang = new JButton("Kiểm tra hàng");
+		jButton_HangHoa_KiemTraHang.setIcon(addButtonIcon4);
 		jButton_HangHoa_KiemTraHang.addActionListener(quanLyKhoHangController);
 		jButton_HangHoa_KiemTraHang.setActionCommand("HangHoa_KiemTraHang");
 		jButton_HangHoa_KiemTraHang.setFont(new Font("Segoe UI", Font.PLAIN, 18));
 		jButton_HangHoa_KiemTraHang.setBackground(UIManager.getColor("Button.background"));
-		jButton_HangHoa_KiemTraHang.setBounds(552, 1, 152, 52);
+		jButton_HangHoa_KiemTraHang.setBounds(552, 1, 201, 52);
 		panel_1.add(jButton_HangHoa_KiemTraHang);
-		
+
 		JPanel window_ThongKe = new JPanel();
 		window_ThongKe.setLayout(null);
 		contentPane.add(window_ThongKe, "name_362929623415800");
-		
+
 		JLabel lblNewLabel_4_3 = new JLabel("THỐNG KÊ");
-		lblNewLabel_4_3.setFont(new Font("Segoe UI", Font.BOLD, 18));
-		lblNewLabel_4_3.setBounds(458, 9, 112, 25);
+		lblNewLabel_4_3.setFont(new Font("Segoe UI", Font.BOLD, 25));
+		lblNewLabel_4_3.setBounds(430, 27, 265, 50);
 		window_ThongKe.add(lblNewLabel_4_3);
-		
+
 		JPanel panel_2 = new JPanel();
-		panel_2.setBounds(0, 568, 990, 72);
+		panel_2.setBounds(10, 526, 990, 72);
 		window_ThongKe.add(panel_2);
 		panel_2.setLayout(null);
-		
+
 		JLabel lblNewLabel_2_1_3_1_1 = new JLabel("Từ ngày:");
 		lblNewLabel_2_1_3_1_1.setBounds(28, 25, 108, 25);
 		lblNewLabel_2_1_3_1_1.setFont(new Font("Segoe UI", Font.PLAIN, 18));
 		panel_2.add(lblNewLabel_2_1_3_1_1);
-		
+
 		textField_ThongKe_tuNgay = new JTextField();
 		textField_ThongKe_tuNgay.setBounds(141, 22, 166, 31);
 		textField_ThongKe_tuNgay.setFont(new Font("Segoe UI", Font.PLAIN, 18));
 		textField_ThongKe_tuNgay.setColumns(10);
 		panel_2.add(textField_ThongKe_tuNgay);
-		
+
 		JLabel lblNewLabel_2_1_1_2_1_1 = new JLabel("Đến ngày");
-		lblNewLabel_2_1_1_2_1_1.setBounds(312, 25, 87, 25);
+		lblNewLabel_2_1_1_2_1_1.setBounds(344, 24, 87, 25);
 		lblNewLabel_2_1_1_2_1_1.setFont(new Font("Segoe UI", Font.PLAIN, 18));
 		panel_2.add(lblNewLabel_2_1_1_2_1_1);
-		
+
 		textField_ThongKe_denNgay = new JTextField();
-		textField_ThongKe_denNgay.setBounds(404, 22, 166, 31);
+		textField_ThongKe_denNgay.setBounds(436, 21, 166, 31);
 		textField_ThongKe_denNgay.setFont(new Font("Segoe UI", Font.PLAIN, 18));
 		textField_ThongKe_denNgay.setColumns(10);
 		panel_2.add(textField_ThongKe_denNgay);
-		
+
 		JButton jButton_KhoHang_Insert_1_1 = new JButton("Thống Kê");
+		jButton_KhoHang_Insert_1_1.setIcon(addButtonIcon5);
+		
 		jButton_KhoHang_Insert_1_1.addActionListener(quanLyKhoHangController);
 		jButton_KhoHang_Insert_1_1.setActionCommand("ThongKe_ThongKe");
-			
-		
+
 		jButton_KhoHang_Insert_1_1.setFont(new Font("Segoe UI", Font.PLAIN, 18));
 		jButton_KhoHang_Insert_1_1.setBackground(UIManager.getColor("Button.background"));
 		jButton_KhoHang_Insert_1_1.setBounds(773, 10, 152, 52);
 		panel_2.add(jButton_KhoHang_Insert_1_1);
-		
+
 		JLabel lblNewLabel_3 = new JLabel("Tổng giá trị hàng đã nhập kho:");
-		lblNewLabel_3.setFont(new Font("Segoe UI", Font.PLAIN, 18));
-		lblNewLabel_3.setBounds(59, 169, 256, 50);
+		lblNewLabel_3.setForeground(SystemColor.textHighlight);
+		lblNewLabel_3.setFont(new Font("Segoe UI", Font.BOLD, 20));
+		lblNewLabel_3.setBounds(145, 144, 305, 50);
 		window_ThongKe.add(lblNewLabel_3);
-		
+
 		JLabel lblNewLabel_3_1 = new JLabel("Tổng giá trị hàng đã xuất kho:");
-		lblNewLabel_3_1.setFont(new Font("Segoe UI", Font.PLAIN, 18));
-		lblNewLabel_3_1.setBounds(58, 248, 256, 50);
+		lblNewLabel_3_1.setForeground(SystemColor.textHighlight);
+		lblNewLabel_3_1.setFont(new Font("Segoe UI", Font.BOLD, 20));
+		lblNewLabel_3_1.setBounds(145, 223, 304, 50);
 		window_ThongKe.add(lblNewLabel_3_1);
-		
+
 		jLabel_ThongKe_GiaTriHangNhapKho = new JLabel("");
 		jLabel_ThongKe_GiaTriHangNhapKho.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		jLabel_ThongKe_GiaTriHangNhapKho.setBounds(325, 169, 324, 50);
+		jLabel_ThongKe_GiaTriHangNhapKho.setBounds(460, 144, 324, 50);
 		window_ThongKe.add(jLabel_ThongKe_GiaTriHangNhapKho);
-		
+
 		jLabel_ThongKe_GiaTriHangXuatKho = new JLabel("");
 		jLabel_ThongKe_GiaTriHangXuatKho.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		jLabel_ThongKe_GiaTriHangXuatKho.setBounds(324, 248, 324, 50);
+		jLabel_ThongKe_GiaTriHangXuatKho.setBounds(459, 223, 324, 50);
 		window_ThongKe.add(jLabel_ThongKe_GiaTriHangXuatKho);
-		
+
 		JLabel lblNewLabel_3_1_1 = new JLabel("CHÊNH LỆCH THU - CHI:");
-		lblNewLabel_3_1_1.setFont(new Font("Segoe UI", Font.PLAIN, 18));
-		lblNewLabel_3_1_1.setBounds(59, 359, 256, 50);
+		lblNewLabel_3_1_1.setForeground(new Color(51, 51, 255));
+		lblNewLabel_3_1_1.setFont(new Font("Segoe UI", Font.BOLD, 22));
+		lblNewLabel_3_1_1.setBounds(194, 334, 256, 50);
 		window_ThongKe.add(lblNewLabel_3_1_1);
-		
+
 		jLabel_ThongKe_ChenhLech = new JLabel("");
 		jLabel_ThongKe_ChenhLech.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		jLabel_ThongKe_ChenhLech.setBounds(325, 359, 324, 50);
+		jLabel_ThongKe_ChenhLech.setBounds(460, 334, 324, 50);
 		window_ThongKe.add(jLabel_ThongKe_ChenhLech);
 		this.setVisible(true);
 	}
@@ -818,6 +841,7 @@ public class QuanLyKhoHangView extends JFrame {
 		}
 
 	}
+
 	public void deleteTable_XuatHang(ArrayList<ThongTinDonXuatHang> thongTinDonXuatHang) {
 		DefaultTableModel model_XuatHang = (DefaultTableModel) table_XuatHang.getModel();
 		int i_row = table_XuatHang.getSelectedRow();
@@ -830,15 +854,14 @@ public class QuanLyKhoHangView extends JFrame {
 		}
 
 	}
-	public void showTable_HangHoa(ArrayList<ChiTietTonKho> listChiTietTonKho) {
-		
 
-		
-		String[] columnName = { "Mã Kho Hàng", "Mã Sản Phẩm","Tên Sản Phẩm",  "Số lượng tồn kho" };
+	public void showTable_HangHoa(ArrayList<ChiTietTonKho> listChiTietTonKho) {
+
+		String[] columnName = { "Mã Kho Hàng", "Mã Sản Phẩm", "Tên Sản Phẩm", "Số lượng tồn kho" };
 		DefaultTableModel model_HangHoa = new DefaultTableModel(columnName, 0);
 		for (ChiTietTonKho hh : listChiTietTonKho) {
-			model_HangHoa.addRow(new Object[] { hh.getMaKhoHang(), hh.getMaSanPham(), hh.getTenSanPHam(),
-										hh.getSoLuongTonKho() });
+			model_HangHoa.addRow(
+					new Object[] { hh.getMaKhoHang(), hh.getMaSanPham(), hh.getTenSanPHam(), hh.getSoLuongTonKho() });
 		}
 		table_HangHoa.setModel(model_HangHoa);
 
@@ -846,18 +869,14 @@ public class QuanLyKhoHangView extends JFrame {
 
 	public void showThongTinDonXuatHang(ArrayList<ThongTinDonXuatHang> list) {
 
-		String[] columnName = { "Mã Kho Hàng", "Mã Sản Phẩm","Tên Sản Phẩm",  "Số lượng xuất kho", "Đơn giá xuất kho" };
+		String[] columnName = { "Mã Kho Hàng", "Mã Sản Phẩm", "Tên Sản Phẩm", "Số lượng xuất kho", "Đơn giá xuất kho" };
 		DefaultTableModel model_XuatHang = new DefaultTableModel(columnName, 0);
 
-		for(ThongTinDonXuatHang ttdxh: list) {
+		for (ThongTinDonXuatHang ttdxh : list) {
 			model_XuatHang.addRow(new Object[] { ttdxh.getDonXuatHang_maKhoHang(), ttdxh.getDonXuatHang_maSanPham(),
-					ttdxh.getDonXuatHang_tenSanPham(), 					
-					 ttdxh.getDonXuatHang_soLuongXuatKho(),ttdxh.getDonXuatHang_donGia()
-					 });
+					ttdxh.getDonXuatHang_tenSanPham(), ttdxh.getDonXuatHang_soLuongXuatKho(),
+					ttdxh.getDonXuatHang_donGia() });
 		}
-
-			
-		
 
 		table_XuatHang.setModel(model_XuatHang);
 	}
