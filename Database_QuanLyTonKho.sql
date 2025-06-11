@@ -73,13 +73,6 @@ GO
 
 
 
--------Tạo dữ liệu mẫu------
---KhoHang
-insert into KhoHang values ('Kho HCM','Kho 1',N'164 Ngô Gia Tự, Phường 16, QUận 8, Tp.HCM');
-insert into KhoHang values ('Kho Ha Noi','Kho 2',N'169 Ngô Gia Tự, Phường 16, QUận 8, Tp.HCM');
-insert into KhoHang values ('Kho Da Nang','Kho 3',N'169 Ngô Gia Tự, Quận Cầu Giấy, Hà Nội');
-
-
 -----------------------------
 select* from KhoHang;
 select* from DonNhapHang;
@@ -87,74 +80,16 @@ select* from DonXuatHang;
 select* from SanPham;
 select* from ChiTietTonKho;
 select* from ChiTietDonXuatHang;
-
+select* from ChiTietDonNhapHang;
+-------------------------------
+	TRUNCATE TABLE DonNhapHang;
 --------------------------------------
 delete from DonXuatHang where MaDonXuat='DX1'
-	SELECT MaKhoHang,MaSanPham,TenSanPham,SoLuongTonKho FROM ChiTietTonKho WHERE MaKhoHang = 'Kho HCM';
-	TRUNCATE TABLE KhoHang;
-select* from ChiTietDonNhapHang;
-select* from ChiTietDonXuatHang;
----------------------
-SELECT MaKhoHang,DonNhapHang.MaDonNhap,TenSanPham,SanPham.MaSanPham,TenLoaiSanPham,DonViTinh,ChiTiet,DonGia,SoLuong,NgayTao
 
-FROM SanPham Join ChiTietDonNhapHang on ChiTietDonNhapHang.MaSanPham=SanPham.MaSanPham Join DonNhapHang on DonNhapHang.MaDonNhap=ChiTietDonNhapHang.MaDonNhap
-where MaKhoHang = 'Kho HCM'
-order by DonNhapHang.MaKhoHang
-
-
----------------------
-SELECT MaKhoHang,TenSanPham,SanPham.MaSanPham,TenLoaiSanPham,DonViTinh,ChiTiet,SoLuong
-
-FROM SanPham Join ChiTietDonNhapHang on ChiTietDonNhapHang.MaSanPham=SanPham.MaSanPham Join DonNhapHang on DonNhapHang.MaDonNhap=ChiTietDonNhapHang.MaDonNhap
-where MaKhoHang = 'Kho HCM'
-order by DonNhapHang.MaKhoHang
-
----------------------------------
-SELECT 
-    DonNhapHang.MaKhoHang,
-    SanPham.MaSanPham,
-    TenSanPham,
-    TenLoaiSanPham,
-    DonViTinh,
-    ChiTiet,
-    SUM(SoLuong) AS TongSoLuong
-FROM 
-    SanPham
-    JOIN ChiTietDonNhapHang ON ChiTietDonNhapHang.MaSanPham = SanPham.MaSanPham
-    JOIN DonNhapHang ON DonNhapHang.MaDonNhap = ChiTietDonNhapHang.MaDonNhap
-WHERE 
-    DonNhapHang.MaKhoHang = 'HCM'
-GROUP BY 
-    DonNhapHang.MaKhoHang,
-    SanPham.MaSanPham,
-    TenSanPham,
-    TenLoaiSanPham,
-    DonViTinh,
-    ChiTiet
-ORDER BY 
-    DonNhapHang.MaKhoHang;
-
-
-	-------------------------
-	SELECT
-    ChiTietTonKho.MaKhoHang,
-    DonNhapHang.MaDonNhap,
-    SanPham.TenSanPham,
-    SanPham.MaSanPham,
-    SanPham.TenLoaiSanPham,
-    SanPham.DonViTinh,
-   SanPham.ChiTiet,
-    ChiTietDonNhapHang.DonGia,
-    ChiTietDonNhapHang.SoLuong, -- Lưu ý: SoLuong này là từ ChiTietDonNhapHang, không phải SoLuongTonKho
-    DonNhapHang.NgayTao -- Lấy ngày tạo của đơn nhập hàng làm ngày nhập
-FROM
-    ChiTietTonKho
-JOIN
-    SanPham ON  ChiTietTonKho.MaSanPham = SanPham.MaSanPham
-JOIN
-    ChiTietDonNhapHang ON ChiTietTonKho.MaSanPham = ChiTietDonNhapHang.MaSanPham
-JOIN
-    DonNhapHang ON ChiTietDonNhapHang.MaDonNhap = DonNhapHang.MaDonNhap
-WHERE
-    ChiTietTonKho.MaKhoHang = 'Kho HCM';
-
+--------TẠO DỮ LIỆU MẪU--------
+--KhoHang
+INSERT INTO KhoHang (MaKhoHang, TenKhoHang, DiaChi) VALUES ('SAIGON', N'Kho Chính Sài Gòn', N'123 Đường Nguyễn Huệ, Quận 1, TP.HCM');
+INSERT INTO KhoHang (MaKhoHang, TenKhoHang, DiaChi) VALUES ('HANOI', N'Kho Miền Bắc Hà Nội', N'456 Đường Láng, Đống Đa, Hà Nội');
+INSERT INTO KhoHang (MaKhoHang, TenKhoHang, DiaChi) VALUES ('DANANG', N'Kho Đà Nẵng', N'789 Đường 2/9, Hải Châu, Đà Nẵng');
+INSERT INTO KhoHang (MaKhoHang, TenKhoHang, DiaChi) VALUES ('CANTHO', N'Kho Cần Thơ', N'101 Đường 3/2, Ninh Kiều, Cần Thơ');
+INSERT INTO KhoHang (MaKhoHang, TenKhoHang, DiaChi) VALUES ('HAIPHONG', N'Kho Hải Phòng', N'202 Đường Lạch Tray, Ngô Quyền, Hải Phòng');
