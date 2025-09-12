@@ -343,7 +343,7 @@ public class QuanLyKhoHangView extends JFrame {
 
 		JPanel panel_3_1 = new JPanel();
 		panel_3_1.setLayout(null);
-		panel_3_1.setBounds(0, 605, 1000, 72);
+		panel_3_1.setBounds(0, 576, 1000, 72);
 		window_NhapHang.add(panel_3_1);
 
 		JButton JButton_NhapHang_Save = new JButton("Duyệt Nhập Hàng");
@@ -355,7 +355,7 @@ public class QuanLyKhoHangView extends JFrame {
 		panel_3_1.add(JButton_NhapHang_Save);
 
 		JScrollPane scrollPane_1 = new JScrollPane();
-		scrollPane_1.setBounds(0, 145, 1000, 255);
+		scrollPane_1.setBounds(0, 125, 1000, 247);
 		window_NhapHang.add(scrollPane_1);
 
 		table_NhapHang = new JTable();
@@ -366,7 +366,7 @@ public class QuanLyKhoHangView extends JFrame {
 
 		JPanel panel_1_1_1 = new JPanel();
 		panel_1_1_1.setLayout(null);
-		panel_1_1_1.setBounds(10, 407, 990, 195);
+		panel_1_1_1.setBounds(0, 383, 990, 195);
 		window_NhapHang.add(panel_1_1_1);
 
 		JLabel lblNewLabel_2 = new JLabel("Mã sản phẩm:");
@@ -480,7 +480,7 @@ public class QuanLyKhoHangView extends JFrame {
 		window_NhapHang.add(lblNewLabel_4_1);
 
 		JPanel panel = new JPanel();
-		panel.setBounds(0, 33, 1000, 102);
+		panel.setBounds(0, 33, 1000, 91);
 		window_NhapHang.add(panel);
 		panel.setLayout(null);
 
@@ -519,13 +519,13 @@ public class QuanLyKhoHangView extends JFrame {
 
 		JLabel lblNewLabel_2_1_2 = new JLabel("Người bán:");
 		lblNewLabel_2_1_2.setFont(new Font("Segoe UI", Font.PLAIN, 18));
-		lblNewLabel_2_1_2.setBounds(10, 64, 114, 25);
+		lblNewLabel_2_1_2.setBounds(10, 52, 114, 25);
 		panel.add(lblNewLabel_2_1_2);
 
 		textField_NhapHang_tenNguoiBan = new JTextField();
 		textField_NhapHang_tenNguoiBan.setFont(new Font("Segoe UI", Font.PLAIN, 18));
 		textField_NhapHang_tenNguoiBan.setColumns(10);
-		textField_NhapHang_tenNguoiBan.setBounds(134, 61, 173, 31);
+		textField_NhapHang_tenNguoiBan.setBounds(134, 49, 173, 31);
 		panel.add(textField_NhapHang_tenNguoiBan);
 
 		JPanel window_XuatHang = new JPanel();
@@ -534,7 +534,7 @@ public class QuanLyKhoHangView extends JFrame {
 
 		JPanel panel_3_2 = new JPanel();
 		panel_3_2.setLayout(null);
-		panel_3_2.setBounds(0, 605, 1000, 72);
+		panel_3_2.setBounds(0, 583, 1000, 72);
 		window_XuatHang.add(panel_3_2);
 
 		JButton JButton_Save_2 = new JButton("Duyệt Xuất Hàng");
@@ -554,7 +554,7 @@ public class QuanLyKhoHangView extends JFrame {
 		panel_3_2.add(JButton_Save_2_1);
 
 		JScrollPane scrollPane_2 = new JScrollPane();
-		scrollPane_2.setBounds(0, 140, 1000, 373);
+		scrollPane_2.setBounds(0, 140, 1000, 349);
 		window_XuatHang.add(scrollPane_2);
 
 		table_XuatHang = new JTable();
@@ -565,7 +565,7 @@ public class QuanLyKhoHangView extends JFrame {
 
 		JPanel panel_1_1_2 = new JPanel();
 		panel_1_1_2.setLayout(null);
-		panel_1_1_2.setBounds(10, 523, 998, 72);
+		panel_1_1_2.setBounds(10, 500, 998, 72);
 		window_XuatHang.add(panel_1_1_2);
 
 		JButton jButton_XuatHang_XoaSanPham = new JButton("Xoá sản phẩm");
